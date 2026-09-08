@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure smooth rendering for transforms */
+.will-change-transform {
+  will-change: transform;
+}
+
+/* Hardware acceleration for animations */
+.will-change-transform,
+.animate-fadeIn,
+.animate-slowZoom,
+.animate-float,
+.animate-breathe,
+.animate-slideUpFade,
+.animate-drift,
+.animate-shimmer,
+.animate-rotateSlow,
+.animate-grain,
+.animate-mistFlow,
+.animate-curtainReveal {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.snap-x {
+  scroll-snap-type: x mandatory;
+}
+
+.snap-center {
+  scroll-snap-align: center;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a1628;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4af37;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b08d1e;
+}
+
+.text-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.perspective-text {
+  perspective: 1000px;
+}
+
+.glass-panel {
+  background: rgba(10, 22, 40, 0.3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Smooth Scroll Behavior REMOVED - Conflicts with JS scroll animations */
+html {
+  scroll-behavior: auto !important;
+}
+
+.iti { width: 100%; }
+.iti__country-list { 
+    background-color: #0f172a !important; 
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+}
+.iti__country:hover { background-color: rgba(212, 175, 55, 0.1) !important; }
+.iti__selected-flag { background-color: transparent !important; }
+.iti__country-name, .iti__dial-code { color: #94a3b8 !important; }
+.iti__country.iti__highlight { background-color: rgba(212, 175, 55, 0.2) !important; }
+

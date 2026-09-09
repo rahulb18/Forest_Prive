@@ -224,20 +224,30 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
         />
         <canvas ref={canvasRef} className="absolute inset-0 w-full h-full object-cover z-0" />
 
+        {/* Persistent Top Scrim: Subtle natural gradient for pristine brand lockup legibility without darkening landscape */}
+        <div className="absolute inset-x-0 top-0 h-40 sm:h-44 bg-gradient-to-b from-black/70 via-black/30 to-transparent pointer-events-none z-20" />
+
         {/* Soft, luminous vignette ONLY on Initial Hero: preserves true daylight, vivid greens, pools & architecture */}
         <div className={`absolute inset-0 pointer-events-none transition-opacity duration-700 z-10 ${currentFrame <= 15 ? "opacity-100" : "opacity-0"}`}>
-            {/* Top subtle scrim for brand logo clarity */}
-            <div className="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-black/60 via-black/25 to-transparent" />
             {/* Targeted central radial vignette: darkens the central reading zone while leaving the surrounding landscape bright & vivid */}
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_75%_60%_at_50%_48%,rgba(5,15,35,0.72)_0%,rgba(5,15,35,0.4)_45%,transparent_85%)]" />
             {/* Bottom subtle scrim for scroll cue clarity */}
             <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
         </div>
 
-        {/* Top Brand Lockup */}
-        <div className="absolute top-5 sm:top-8 md:top-10 left-1/2 -translate-x-1/2 z-30 pointer-events-none text-center px-4 w-full max-w-xl flex flex-col items-center">
-            <img src="assets/logo.png" alt="NeoLiv" width={113} height={32} className="h-6 sm:h-7 md:h-8 w-auto mb-2 opacity-95 drop-shadow-md" />
-            <h1 className="font-serif text-sm sm:text-base md:text-xl text-white tracking-[0.22em] uppercase font-bold drop-shadow-2xl">
+        {/* Bottom Sequence Scrim: Soft ambient feathering active only during scroll sequence */}
+        <div className={`absolute inset-x-0 bottom-0 h-52 sm:h-72 bg-gradient-to-t from-black/80 via-black/35 to-transparent pointer-events-none z-15 transition-opacity duration-700 ${isLoaded && currentFrame > 15 ? "opacity-100" : "opacity-0"}`} />
+
+        {/* Top Brand Lockup - Prominently Sized for Desktop & Mobile with Refined Proportions */}
+        <div className="absolute top-4 sm:top-6 md:top-8 left-1/2 -translate-x-1/2 z-30 pointer-events-none text-center px-4 w-full max-w-xl flex flex-col items-center">
+            <img
+                src="assets/logo.png"
+                alt="NeoLiv"
+                width={140}
+                height={40}
+                className="h-9 sm:h-10 md:h-11 lg:h-12 w-auto mb-2 sm:mb-2.5 opacity-95 drop-shadow-[0_3px_14px_rgba(0,0,0,0.95)]"
+            />
+            <h1 className="font-serif text-base sm:text-lg md:text-xl lg:text-2xl text-white tracking-[0.22em] sm:tracking-[0.28em] uppercase font-bold [text-shadow:_0_2px_12px_rgba(0,0,0,0.98),_0_4px_24px_rgba(0,0,0,0.95)]">
                 GRAND FOREST <span className="text-gold-400">PRIVÉ</span>
             </h1>
         </div>
@@ -296,8 +306,8 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
             </div>
         </div>
 
-        {/* Narrative Scroll Chapters (Appears during sequence - NO blue box or dark overlay) */}
-        <div className={`absolute bottom-28 sm:bottom-28 md:bottom-24 left-0 w-full z-20 pointer-events-none px-6 transition-opacity duration-1000 ${isLoaded && currentFrame > 15 ? "opacity-100" : "opacity-0"}`}>
+        {/* Narrative Scroll Chapters - Floating Cinematic Movie Titles (NO artificial box/border) */}
+        <div className={`absolute bottom-24 sm:bottom-28 md:bottom-28 left-0 w-full z-20 pointer-events-none px-6 transition-opacity duration-1000 ${isLoaded && currentFrame > 15 ? "opacity-100" : "opacity-0"}`}>
           {NARRATIVE.map((chapter, index) => {
             const fadeInDuration = 10;
             const fadeOutDuration = 10;
@@ -326,14 +336,20 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
             return (
               <div
                 key={index}
-                className="absolute inset-0 flex flex-col items-center justify-center transition-all duration-500 ease-out transform"
+                className="absolute inset-0 flex flex-col items-center justify-center transition-all duration-500 ease-out transform px-4"
                 style={{ opacity, transform: `translateY(${translateY}px)` }}
               >
-                <div className="space-y-1.5 text-center max-w-2xl mx-auto px-4 drop-shadow-[0_4px_20px_rgba(0,0,0,0.95)]">
-                    <p className="text-gold-400 font-medium tracking-[0.35em] text-[9px] sm:text-[11px] uppercase opacity-95">
+                <div className="relative max-w-4xl mx-auto px-4 text-center pointer-events-none space-y-2">
+                    {/* Feathered dark radial aura: 100% invisible edges, diffuses contrast without any box or border */}
+                    <div className="absolute inset-0 -inset-x-16 bg-black/60 rounded-full blur-3xl -z-10 scale-125 pointer-events-none" />
+
+                    {/* Subtitle / Eyebrow */}
+                    <p className="text-[#F6D57E] font-medium tracking-[0.35em] sm:tracking-[0.45em] text-[10px] sm:text-xs md:text-sm uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,1)]">
                         {chapter.subtitle}
                     </p>
-                    <h2 className="font-serif text-xl sm:text-3xl md:text-4xl text-white uppercase tracking-wider drop-shadow-[0_4px_24px_rgba(0,0,0,1)]">
+
+                    {/* Cinematic Chapter Title */}
+                    <h2 className="font-serif text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-white uppercase tracking-wider font-normal leading-[1.18] [text-shadow:_0_2px_6px_rgba(0,0,0,1),_0_6px_20px_rgba(0,0,0,0.95),_0_16px_48px_rgba(0,0,0,0.98)]">
                         {chapter.title}
                     </h2>
                 </div>

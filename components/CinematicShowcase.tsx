@@ -102,9 +102,15 @@ interface ProgressIndicatorItemProps {
   index: number;
   totalScenes: number;
   scrollYProgress: MotionValue<number>;
+  containerRef?: React.RefObject<HTMLDivElement | null>;
 }
 
-const ProgressIndicatorItem: React.FC<ProgressIndicatorItemProps> = ({ index, totalScenes, scrollYProgress }) => {
+const ProgressIndicatorItem: React.FC<ProgressIndicatorItemProps> = ({ 
+  index, 
+  totalScenes, 
+  scrollYProgress,
+  containerRef 
+}) => {
   const start = index / totalScenes;
   const end = (index + 1) / totalScenes;
   const isFirst = index === 0;
@@ -119,25 +125,50 @@ const ProgressIndicatorItem: React.FC<ProgressIndicatorItemProps> = ({ index, to
     isFirst ? [1, 1, 0] : isLast ? [0, 1, 1] : [0, 1, 1, 0]
   );
   const scaleY = useTransform(scrollYProgress, [start, end], [0, 1]);
+  const numberOpacity = useTransform(isActive, [0, 1], [0.6, 1]);
+  const numberScale = useTransform(isActive, [0, 1], [0.95, 1.18]);
+  const numberColor = useTransform(isActive, [0, 1], ["#ffffff", "#F6D57E"]);
+
+  const handleClick = () => {
+    if (!containerRef?.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const containerTop = rect.top + scrollTop;
+    const scrollableHeight = containerRef.current.offsetHeight - window.innerHeight;
+    const targetScroll = containerTop + (index / totalScenes) * scrollableHeight + 10;
+    window.scrollTo({ top: targetScroll, behavior: "smooth" });
+  };
 
   return (
-    <div className="group relative flex items-center">
-      <motion.div
-        style={{ opacity: isActive }}
-        className="absolute left-full ml-3 md:ml-4 text-gold-400 font-serif text-lg md:text-2xl font-bold select-none"
+    <button
+      type="button"
+      onClick={handleClick}
+      aria-label={`View scene 0${index + 1}`}
+      className="group relative flex flex-col items-center gap-1 sm:gap-1.5 focus:outline-none cursor-pointer touch-manipulation py-0.5"
+    >
+      {/* High-Contrast Floating Number Indicator - Crisp Serif Typography */}
+      <motion.span
+        style={{
+          opacity: numberOpacity,
+          scale: numberScale,
+          color: numberColor,
+        }}
+        className="font-serif font-bold text-[11px] sm:text-xs md:text-sm tracking-wider select-none [text-shadow:_0_1px_4px_rgba(0,0,0,1),_0_2px_10px_rgba(0,0,0,0.95)] group-hover:text-amber-300 transition-colors duration-300"
       >
         0{index + 1}
-      </motion.div>
-      <div className="w-[1.5px] md:w-[2px] h-8 md:h-12 bg-white/15 relative overflow-hidden rounded-full">
+      </motion.span>
+
+      {/* Architectural Progress Line Track */}
+      <div className="w-[2px] sm:w-[2.5px] h-6 sm:h-8 md:h-10 bg-white/35 rounded-full relative overflow-hidden shadow-[0_1px_4px_rgba(0,0,0,0.9)] group-hover:bg-white/60 transition-colors duration-300">
         <motion.div
           style={{
             scaleY,
             opacity: isActive
           }}
-          className="absolute inset-0 bg-gold-400 origin-top"
+          className="absolute inset-0 bg-gradient-to-b from-amber-300 via-gold-400 to-amber-500 origin-top rounded-full shadow-[0_0_12px_rgba(212,175,55,1)]"
         />
       </div>
-    </div>
+    </button>
   );
 };
 
@@ -161,21 +192,25 @@ export const CinematicShowcase: React.FC = () => {
           />
         ))}
 
+        {/* Ambient Left Lens Vignette: Soft feathered darkness ensuring 100% legibility across all bright scenes without an artificial container */}
+        <div className="absolute inset-y-0 left-0 w-40 sm:w-60 md:w-72 bg-gradient-to-r from-black/65 via-black/25 to-transparent pointer-events-none z-[80]" />
+
         {/* Artistic Impression Overlay Label */}
         <div className="absolute top-6 right-6 z-[100] pointer-events-none">
-          <span className="px-3 py-1 rounded-full bg-navy-950/80 backdrop-blur-md border border-white/10 text-[9px] uppercase tracking-[0.2em] text-gold-300 font-semibold shadow-lg">
+          <span className="px-3 py-1 rounded-full bg-navy-950/85 backdrop-blur-md border border-gold-400/30 text-[9px] uppercase tracking-[0.2em] text-amber-300 font-semibold shadow-lg">
             Artistic Impression
           </span>
         </div>
 
-        {/* SIDE PROGRESS NAVIGATION - Responsive */}
-        <div className="absolute left-6 md:left-10 top-1/2 -translate-y-1/2 z-[100] flex flex-col gap-6 md:gap-10">
+        {/* SIDE PROGRESS NAVIGATION - Floating Minimalist Luxury Rail (NO clunky box/capsule) */}
+        <div className="absolute left-4 sm:left-7 md:left-10 top-1/2 -translate-y-1/2 z-[100] flex flex-col items-center gap-3 sm:gap-4 md:gap-5 select-none">
           {SCENES.map((_, i) => (
             <ProgressIndicatorItem
               key={i}
               index={i}
               totalScenes={SCENES.length}
               scrollYProgress={scrollYProgress}
+              containerRef={containerRef}
             />
           ))}
         </div>

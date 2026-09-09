@@ -16,8 +16,8 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete, progress: exte
             if (externalProgress >= 100) {
                 setTimeout(() => {
                     setIsFinished(true);
-                    setTimeout(onComplete, 1000);
-                }, 500);
+                    setTimeout(onComplete, 400);
+                }, 200);
             }
             return;
         }
@@ -28,8 +28,8 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete, progress: exte
                     clearInterval(interval);
                     setTimeout(() => {
                         setIsFinished(true);
-                        setTimeout(onComplete, 1000);
-                    }, 500);
+                        setTimeout(onComplete, 400);
+                    }, 200);
                     return 100;
                 }
                 // Random increments for a more natural feel

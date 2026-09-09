@@ -23,13 +23,10 @@ function App() {
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [shouldRenderContent, setShouldRenderContent] = useState(false);
 
-  // OPTIMIZATION: Ultra-Smooth Reveal
+  // OPTIMIZATION: Instant Content Mount Underneath Preloader
   useEffect(() => {
     if (loadingProgress >= 100) {
-      const timer = setTimeout(() => {
-        setShouldRenderContent(true);
-      }, 800);
-      return () => clearTimeout(timer);
+      setShouldRenderContent(true);
     }
   }, [loadingProgress]);
 

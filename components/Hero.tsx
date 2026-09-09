@@ -48,29 +48,39 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
   const scrollProg = useRef(0);
   const targetScrollProg = useRef(0);
 
-  // --- PRELOADER ---
+  // --- PROGRESSIVE SMART-BUFFER PRELOADER ---
   useEffect(() => {
-    let loadedCount = 0;
+    // Initial buffer: first 18 frames (~9 MB) ensures instant entry with zero stutter,
+    // while remaining 174 frames stream smoothly in the background
+    const INITIAL_READY_COUNT = 18;
+    let initialLoadedCount = 0;
+    let isExperienceReady = false;
     const images: HTMLImageElement[] = new Array(FRAME_COUNT);
 
     const onImageLoad = (index: number) => {
-      loadedCount++;
-      const progress = Math.round((loadedCount / FRAME_COUNT) * 100);
-      if (onProgress) onProgress(progress);
+      // Progress calculation based on initial buffer readiness
+      if (index < INITIAL_READY_COUNT) {
+        initialLoadedCount++;
+        const initialProgress = Math.min(100, Math.round((initialLoadedCount / INITIAL_READY_COUNT) * 100));
+        if (onProgress) onProgress(initialProgress);
 
+        if (initialLoadedCount >= INITIAL_READY_COUNT && !isExperienceReady) {
+          isExperienceReady = true;
+          setIsLoaded(true);
+          if (onProgress) onProgress(100);
+        }
+      }
+
+      // Draw initial frame 0 immediately when ready for zero-latency First Contentful Paint
       if (index === 0 && canvasRef.current) {
         const ctx = canvasRef.current.getContext("2d");
         if (ctx && images[0]?.complete) {
           ctx.drawImage(images[0], 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
         }
       }
-
-      if (loadedCount === FRAME_COUNT) {
-        setIsLoaded(true);
-      }
     };
 
-    // OPTIMIZATION: Prioritize Frame 0 immediately for instant First Contentful Paint
+    // 1. Prioritize Frame 0 immediately for instant First Contentful Paint
     const firstImg = new Image();
     firstImg.src = FRAME_PATH(0);
     images[0] = firstImg;
@@ -86,15 +96,13 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
       }
     })();
 
-    // Efficient Concurrent Batch Loading with HTTP/2 Multiplexing
-    const loadBatch = async (start: number, size: number) => {
-      const end = Math.min(start + size, FRAME_COUNT);
-      const batchPromises = [];
-
-      for (let i = start; i < end; i++) {
-        if (i === 0) continue; // Already handled above
+    // 2. Load Phase 1: Initial Buffer (Frames 1 to 17) with high priority
+    const loadInitialBuffer = async () => {
+      const bufferPromises = [];
+      for (let i = 1; i < INITIAL_READY_COUNT; i++) {
         const img = new Image();
         img.src = FRAME_PATH(i);
+        images[i] = img;
 
         const promise = (async () => {
           try {
@@ -107,26 +115,57 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
               });
             }
           } catch {
-            // Decode error fallback
+            // Fallback
           } finally {
             onImageLoad(i);
           }
         })();
+        bufferPromises.push(promise);
+      }
+      await Promise.all(bufferPromises);
 
-        batchPromises.push(promise);
+      // 3. Load Phase 2: Background Stream (Frames 18 to 191) in smooth batches
+      loadBackgroundStream(INITIAL_READY_COUNT, 8);
+    };
+
+    // Phase 2: Background Streamer with micro-intervals to keep UI thread fluid
+    const loadBackgroundStream = async (start: number, batchSize: number) => {
+      if (start >= FRAME_COUNT) return;
+      const end = Math.min(start + batchSize, FRAME_COUNT);
+      const batchPromises = [];
+
+      for (let i = start; i < end; i++) {
+        const img = new Image();
+        img.src = FRAME_PATH(i);
         images[i] = img;
+
+        const promise = (async () => {
+          try {
+            if ('decode' in img && typeof (img as any).decode === 'function') {
+              await (img as any).decode();
+            } else {
+              await new Promise<void>((res) => {
+                img.onload = () => res();
+                img.onerror = () => res();
+              });
+            }
+          } catch {
+            // Fallback
+          } finally {
+            onImageLoad(i);
+          }
+        })();
+        batchPromises.push(promise);
       }
 
       await Promise.all(batchPromises);
 
       if (end < FRAME_COUNT) {
-        // Fast yield to keep main thread fluid without stalling pipeline
-        setTimeout(() => loadBatch(end, size), 10);
+        setTimeout(() => loadBackgroundStream(end, batchSize), 20);
       }
     };
 
-    // Load in concurrent batches of 8 for high throughput
-    loadBatch(1, 8);
+    loadInitialBuffer();
     imagesRef.current = images;
   }, []);
 
@@ -173,7 +212,22 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
       const frameIndex = Math.min(FRAME_COUNT - 1, Math.max(0, Math.floor(scrollProg.current * FRAME_COUNT)));
 
       if (frameIndex !== lastFrame) {
-        const img = imagesRef.current[frameIndex];
+        let img = imagesRef.current[frameIndex];
+
+        // Seamless fallback: if the requested frame is still buffering during super-fast scroll,
+        // search backward for the closest already decoded frame so the canvas never drops or flickers
+        if (!img || !img.complete) {
+          for (let f = frameIndex - 1; f >= 0; f--) {
+            if (imagesRef.current[f]?.complete) {
+              img = imagesRef.current[f];
+              break;
+            }
+          }
+          if (!img || !img.complete) {
+            img = imagesRef.current[0];
+          }
+        }
+
         if (img && img.complete) {
           ctx.drawImage(img, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
         }

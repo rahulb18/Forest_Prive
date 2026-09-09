@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense, lazy } from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Hero } from './components/Hero';
 import { Navbar } from './components/Navbar';
 import { FloatingCTA } from './components/FloatingCTA';
@@ -17,91 +17,57 @@ const ContactForm = lazy(() => import('./components/ContactForm').then(m => ({ d
 const Footer = lazy(() => import('./components/Footer').then(m => ({ default: m.Footer })));
 
 function App() {
-  const [shouldRenderContent, setShouldRenderContent] = useState(false);
-
-  // OPTIMIZATION: Instant Hero LCP with gentle deferred mounting for below-the-fold sections
-  useEffect(() => {
-    if (window.scrollY > 20) {
-      setShouldRenderContent(true);
-      return;
-    }
-
-    const handleFirstInteraction = () => {
-      setShouldRenderContent(true);
-      window.removeEventListener('scroll', handleFirstInteraction);
-      window.removeEventListener('touchstart', handleFirstInteraction);
-      window.removeEventListener('click', handleFirstInteraction);
-    };
-
-    window.addEventListener('scroll', handleFirstInteraction, { passive: true });
-    window.addEventListener('touchstart', handleFirstInteraction, { passive: true });
-    window.addEventListener('click', handleFirstInteraction, { passive: true });
-
-    const timer = setTimeout(() => {
-      setShouldRenderContent(true);
-    }, 1200);
-
-    return () => {
-      clearTimeout(timer);
-      window.removeEventListener('scroll', handleFirstInteraction);
-      window.removeEventListener('touchstart', handleFirstInteraction);
-      window.removeEventListener('click', handleFirstInteraction);
-    };
-  }, []);
-
   return (
     <>
-      <main className="w-full min-h-screen bg-transparent selection:bg-gold-400 selection:text-navy-900 pointer-events-auto overflow-x-hidden">
+      <main className="w-full min-h-screen bg-transparent selection:bg-gold-400 selection:text-navy-900 pointer-events-auto">
         {/* Section 1: Header & Navigation */}
         <Navbar />
 
-        {/* Section 2: Hero Section */}
+        {/* Section 2: Hero Section with Full Sticky Viewport Pinning */}
         <div className="relative w-full h-[600vh] md:h-[1200vh]">
-          <div className="sticky top-0 h-screen w-full overflow-hidden">
+          <div className="sticky top-0 h-screen h-[100dvh] w-full overflow-hidden">
             <Hero />
           </div>
         </div>
 
-        {/* Content Layer - Deferred Mounting to eliminate initial scroll lag */}
-        {shouldRenderContent && (
-          <div className="relative z-10 bg-navy-900">
-            {/* Cinematic Background Showcase */}
-            <div id="Cinematic"><CinematicShowcase /></div>
+        {/* Content Layer: Stable Document Flow with Suspense Lazy Loading */}
+        <div className="relative z-10 bg-navy-900">
+          {/* Cinematic Background Showcase */}
+          <div id="Cinematic"><CinematicShowcase /></div>
 
-            {/* Section 02 & 03: Project Introduction & Project Highlights */}
-            <div id="Overview"><AboutNeoLiv /></div>
-            
-            <Suspense fallback={<div className="h-20 bg-navy-950" />}>
-              {/* Section 04: Nature & Lifestyle */}
-              <div id="Lifestyle"><CuratedLifestyle /></div>
+          {/* Section 02 & 03: Project Introduction & Project Highlights */}
+          <div id="Overview"><AboutNeoLiv /></div>
+          
+          <Suspense fallback={<div className="h-20 bg-navy-950" />}>
+            {/* Section 04: Nature & Lifestyle */}
+            <div id="Lifestyle"><CuratedLifestyle /></div>
 
-              {/* Section 05: Location & Connectivity */}
-              <div id="Location"><Location /></div>
+            {/* Section 05: Location & Connectivity */}
+            <div id="Location"><Location /></div>
 
-              {/* Section 06: Curated Amenities & Section 07: Club Experience */}
-              <div id="Amenities"><Amenities /></div>
+            {/* Section 06: Curated Amenities & Section 07: Club Experience */}
+            <div id="Amenities"><Amenities /></div>
 
-              {/* Section 08 & 12: Architectural Vision & Gallery */}
-              <div id="Gallery"><Gallery /></div>
+            {/* Section 08 & 12: Architectural Vision & Gallery */}
+            <div id="Gallery"><Gallery /></div>
 
-              {/* Section 09: Grand Privé Advantage & Section 10: Investment Opportunity */}
-              <div id="Pricing"><GrandPriveAdvantage /></div>
+            {/* Section 09: Grand Privé Advantage & Section 10: Investment Opportunity */}
+            <div id="Pricing"><GrandPriveAdvantage /></div>
 
-              {/* Section 11: Developer Profile: About NeoLiv */}
-              <div id="AboutUs"><AboutUs /></div>
+            {/* Section 11: Developer Profile: About NeoLiv */}
+            <div id="AboutUs"><AboutUs /></div>
 
-              {/* Section 13: Frequently Asked Questions */}
-              <div id="FAQ"><FAQSection /></div>
+            {/* Section 13: Frequently Asked Questions */}
+            <div id="FAQ"><FAQSection /></div>
 
-              {/* Section 14: Lead Capture / Enquiry Section */}
-              <div id="Contact"><ContactForm /></div>
+            {/* Section 14: Lead Capture / Enquiry Section */}
+            <div id="Contact"><ContactForm /></div>
 
-              {/* Section 15: Compliance, Footer & Sticky UX */}
-              <Footer />
-            </Suspense>
-            <FloatingCTA />
-          </div>
-        )}
+            {/* Section 15: Compliance, Footer & Sticky UX */}
+            <Footer />
+          </Suspense>
+          <FloatingCTA />
+        </div>
         <EnquiryModal />
       </main>
     </>

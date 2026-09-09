@@ -213,7 +213,7 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
   }, []);
 
   return (
-    <div id="home" className="relative w-full h-[100dvh] bg-navy-950 overflow-hidden will-change-transform">
+    <div id="home" className="relative w-full h-full bg-navy-950 overflow-hidden">
         {/* Instant LCP Visual Anchor - Frame 0 rendered immediately by browser */}
         <img
           src="assets/sequenceLandscape/frame_001.jpg"

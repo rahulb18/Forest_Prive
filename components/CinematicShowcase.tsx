@@ -98,6 +98,49 @@ const Scene: React.FC<SceneProps> = ({ scene, index, totalScenes, scrollYProgres
   );
 };
 
+interface ProgressIndicatorItemProps {
+  index: number;
+  totalScenes: number;
+  scrollYProgress: MotionValue<number>;
+}
+
+const ProgressIndicatorItem: React.FC<ProgressIndicatorItemProps> = ({ index, totalScenes, scrollYProgress }) => {
+  const start = index / totalScenes;
+  const end = (index + 1) / totalScenes;
+  const isFirst = index === 0;
+  const isLast = index === totalScenes - 1;
+  const isActive = useTransform(
+    scrollYProgress,
+    isFirst
+      ? [0, end - 0.04, end]
+      : isLast
+      ? [start - 0.04, start, 1]
+      : [start - 0.04, start, end - 0.04, end],
+    isFirst ? [1, 1, 0] : isLast ? [0, 1, 1] : [0, 1, 1, 0]
+  );
+  const scaleY = useTransform(scrollYProgress, [start, end], [0, 1]);
+
+  return (
+    <div className="group relative flex items-center">
+      <motion.div
+        style={{ opacity: isActive }}
+        className="absolute left-full ml-3 md:ml-4 text-gold-400 font-serif text-lg md:text-2xl font-bold select-none"
+      >
+        0{index + 1}
+      </motion.div>
+      <div className="w-[1.5px] md:w-[2px] h-8 md:h-12 bg-white/15 relative overflow-hidden rounded-full">
+        <motion.div
+          style={{
+            scaleY,
+            opacity: isActive
+          }}
+          className="absolute inset-0 bg-gold-400 origin-top"
+        />
+      </div>
+    </div>
+  );
+};
+
 export const CinematicShowcase: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -107,7 +150,7 @@ export const CinematicShowcase: React.FC = () => {
 
   return (
     <section ref={containerRef} className="relative h-[600vh] md:h-[1200vh] bg-navy-950">
-      <div className="sticky top-0 h-screen w-full overflow-hidden">
+      <div className="sticky top-0 h-screen h-[100dvh] w-full overflow-hidden">
         {SCENES.map((scene, index) => (
           <Scene 
             key={scene.src} 
@@ -127,46 +170,14 @@ export const CinematicShowcase: React.FC = () => {
 
         {/* SIDE PROGRESS NAVIGATION - Responsive */}
         <div className="absolute left-6 md:left-10 top-1/2 -translate-y-1/2 z-[100] flex flex-col gap-6 md:gap-10">
-          {SCENES.map((_, i) => {
-            const start = i / SCENES.length;
-            const end = (i + 1) / SCENES.length;
-            const isFirst = i === 0;
-            const isLast = i === SCENES.length - 1;
-            const isActive = useTransform(
-              scrollYProgress, 
-              isFirst 
-                ? [0, end - 0.04, end] 
-                : isLast 
-                ? [start - 0.04, start, 1]
-                : [start - 0.04, start, end - 0.04, end], 
-              isFirst 
-                ? [1, 1, 0] 
-                : isLast 
-                ? [0, 1, 1]
-                : [0, 1, 1, 0]
-            );
-
-            return (
-              <div key={i} className="group relative flex items-center">
-                <motion.div 
-                    style={{ opacity: isActive }}
-                    className="absolute left-full ml-3 md:ml-4 text-gold-400 font-serif text-lg md:text-2xl font-bold select-none"
-                >
-                    0{i + 1}
-                </motion.div>
-                
-                <div className="w-[1.5px] md:w-[2px] h-8 md:h-12 bg-white/15 relative overflow-hidden rounded-full">
-                    <motion.div 
-                        style={{ 
-                            scaleY: useTransform(scrollYProgress, [start, end], [0, 1]),
-                            opacity: isActive
-                        }}
-                        className="absolute inset-0 bg-gold-400 origin-top"
-                    />
-                </div>
-              </div>
-            )
-          })}
+          {SCENES.map((_, i) => (
+            <ProgressIndicatorItem
+              key={i}
+              index={i}
+              totalScenes={SCENES.length}
+              scrollYProgress={scrollYProgress}
+            />
+          ))}
         </div>
 
         <div className="absolute inset-0 pointer-events-none">

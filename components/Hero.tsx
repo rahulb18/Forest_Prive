@@ -202,12 +202,14 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
         />
         <canvas ref={canvasRef} className="absolute inset-0 w-full h-full object-cover z-0" />
 
-        {/* Contrast Scrim ONLY on Initial Hero (Slide 1), completely fades out from second slide onward */}
+        {/* Soft, luminous vignette ONLY on Initial Hero: preserves true daylight, vivid greens, pools & architecture */}
         <div className={`absolute inset-0 pointer-events-none transition-opacity duration-700 z-10 ${currentFrame <= 15 ? "opacity-100" : "opacity-0"}`}>
-            {/* Base gradient ensuring top brand lockup, paragraph, and CTAs are crisp */}
-            <div className="absolute inset-0 bg-gradient-to-b from-navy-950/85 via-navy-950/50 to-navy-950/90" />
-            {/* Central radial vignette ensuring central text zone readability against video brightness */}
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(5,15,35,0.7)_0%,rgba(5,15,35,0.3)_60%,transparent_90%)]" />
+            {/* Top subtle scrim for brand logo clarity */}
+            <div className="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-black/60 via-black/25 to-transparent" />
+            {/* Targeted central radial vignette: darkens the central reading zone while leaving the surrounding landscape bright & vivid */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_75%_60%_at_50%_48%,rgba(5,15,35,0.72)_0%,rgba(5,15,35,0.4)_45%,transparent_85%)]" />
+            {/* Bottom subtle scrim for scroll cue clarity */}
+            <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
         </div>
 
         {/* Top Brand Lockup */}
@@ -218,65 +220,37 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
             </h1>
         </div>
 
-        {/* Initial Hero Welcome Panel */}
+        {/* Initial Hero Welcome Panel - Focused Luxury Editorial: Single Headline with CTAs */}
         <div className={`absolute inset-0 z-20 flex flex-col items-center justify-center px-4 sm:px-6 text-center transition-all duration-700 pointer-events-none ${currentFrame <= 15 ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-6"}`}>
-            <div className="max-w-3xl space-y-3 sm:space-y-4 pt-10 sm:pt-14 md:pt-16">
+            <div className="max-w-4xl space-y-4 sm:space-y-6 relative py-4 px-2">
+                {/* Soft feathered dark aura directly behind the headline and CTAs */}
+                <div className="absolute inset-0 bg-navy-950/50 rounded-full blur-3xl -z-10 scale-110 pointer-events-none" />
                 
                 {/* Refined Eyebrow */}
                 <div>
-                    <span className="inline-block px-3.5 py-1 rounded-full bg-gold-400/10 border border-gold-400/25 text-gold-400 text-[8px] sm:text-[9px] md:text-[10px] tracking-[0.25em] uppercase font-semibold backdrop-blur-md">
+                    <span className="inline-block px-4 py-1.5 rounded-full bg-black/65 border border-gold-400/50 text-amber-300 text-[9px] sm:text-[11px] md:text-xs tracking-[0.28em] uppercase font-semibold backdrop-blur-md shadow-xl">
                         PLOTTED LIVING • 360° MOUNTAIN VIEWS
                     </span>
                 </div>
 
-                {/* Exquisite Headline */}
-                <h2 className="font-serif text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-[1.12] uppercase tracking-wide drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)]">
+                {/* Single Majestic Headline with High-Contrast Multi-Tier Text Shadow */}
+                <h2 className="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-white font-medium uppercase tracking-wide leading-[1.14] [text-shadow:_0_2px_8px_rgba(0,0,0,0.95),_0_6px_24px_rgba(0,0,0,0.9),_0_14px_48px_rgba(0,0,0,0.95)]">
                     Where Nature <br className="hidden sm:inline" />
-                    <span className="text-gold-400 italic">Becomes a Privilege.</span>
+                    <span className="text-[#F6D57E] italic font-serif">Becomes a Privilege.</span>
                 </h2>
 
-                {/* Focused Subheading - Exact Client Copy */}
-                <p className="text-gray-100 text-xs sm:text-sm md:text-base font-normal max-w-md md:max-w-2xl mx-auto leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
-                    Premium plotted living surrounded by mountains, greenery and thoughtfully curated experiences. Discover a low-density lifestyle with 360° mountain views, wide roads, premium infrastructure and access to two exclusive clubs.
-                </p>
-
-                {/* Luxury Frosted Glass Metrics Capsule (Mobile Optimized) */}
-                <div className="pt-2 pb-1 flex justify-center w-full px-2">
-                    <div className="w-full sm:w-auto inline-flex items-center justify-center gap-4 sm:gap-10 px-4 sm:px-10 py-2.5 sm:py-3.5 rounded-2xl bg-navy-950/90 backdrop-blur-md border border-gold-400/35 shadow-[0_12px_40px_rgba(0,0,0,0.85)]">
-                        <div className="text-center flex-1 sm:flex-initial">
-                            <div className="font-sans font-bold text-base sm:text-xl md:text-2xl text-white tracking-tight [font-variant-numeric:lining-nums] drop-shadow-sm">
-                                1,500 <span className="text-[11px] sm:text-sm font-normal text-gold-300">sq. ft.*</span>
-                            </div>
-                            <p className="text-gold-400 text-[8px] sm:text-[9px] md:text-[10px] uppercase tracking-[0.18em] sm:tracking-[0.22em] font-semibold mt-0.5">
-                                Plots Starting From
-                            </p>
-                        </div>
-
-                        <div className="w-px h-7 sm:h-10 bg-gradient-to-b from-transparent via-gold-400/50 to-transparent" />
-
-                        <div className="text-center flex-1 sm:flex-initial">
-                            <div className="font-sans font-bold text-base sm:text-xl md:text-2xl text-white tracking-tight [font-variant-numeric:lining-nums] drop-shadow-sm">
-                                ₹5,299 <span className="text-[11px] sm:text-sm font-normal text-gold-300">/ sq. ft.*</span>
-                            </div>
-                            <p className="text-gold-400 text-[8px] sm:text-[9px] md:text-[10px] uppercase tracking-[0.18em] sm:tracking-[0.22em] font-semibold mt-0.5">
-                                Special Privé Price
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Luxury CTA Buttons */}
-                <div className="flex flex-row items-center justify-center gap-2.5 sm:gap-4 pointer-events-auto w-full max-w-sm sm:max-w-md mx-auto pt-1">
+                {/* Dual Luxury Action CTAs */}
+                <div className="flex flex-row items-center justify-center gap-3 sm:gap-5 pointer-events-auto w-full max-w-sm sm:max-w-md mx-auto pt-2 sm:pt-4">
                     <a
                         href="#Overview"
-                        className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 sm:gap-2 px-4 py-3 sm:px-8 sm:py-3.5 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-bold text-[10px] sm:text-xs uppercase tracking-[0.15em] sm:tracking-[0.18em] rounded-full shadow-[0_4px_20px_rgba(212,175,55,0.35)] hover:shadow-[0_6px_28px_rgba(212,175,55,0.5)] transition-all active:scale-95 cursor-pointer whitespace-nowrap"
+                        className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-5 py-3.5 sm:px-8 sm:py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-bold text-[11px] sm:text-xs uppercase tracking-[0.16em] sm:tracking-[0.18em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.45)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.6)] transition-all active:scale-95 cursor-pointer whitespace-nowrap"
                     >
                         <span>Explore Grand Forest Privé</span>
-                        <ArrowRight size={13} className="hidden sm:inline" />
+                        <ArrowRight size={14} className="hidden sm:inline" />
                     </a>
                     <button
                         onClick={() => modalState.open("NeoLiv Grand Forest Privé - Enquiry")}
-                        className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 sm:gap-2 px-4 py-3 sm:px-8 sm:py-3.5 bg-navy-950/80 hover:bg-white/10 text-white border border-gold-400/40 hover:border-gold-400 text-[10px] sm:text-xs uppercase tracking-[0.15em] sm:tracking-[0.18em] font-semibold rounded-full backdrop-blur-md shadow-xl hover:shadow-[0_4px_20px_rgba(212,175,55,0.2)] transition-all active:scale-95 cursor-pointer whitespace-nowrap"
+                        className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-5 py-3.5 sm:px-8 sm:py-4 bg-black/60 hover:bg-black/80 text-white border border-gold-400/60 hover:border-gold-400 text-[11px] sm:text-xs uppercase tracking-[0.16em] sm:tracking-[0.18em] font-semibold rounded-full backdrop-blur-md shadow-[0_4px_25px_rgba(0,0,0,0.6)] hover:shadow-[0_6px_30px_rgba(212,175,55,0.3)] transition-all active:scale-95 cursor-pointer whitespace-nowrap"
                     >
                         Enquire Now
                     </button>

@@ -38,15 +38,22 @@ interface SceneProps {
 const Scene: React.FC<SceneProps> = ({ scene, index, totalScenes, scrollYProgress }) => {
   const start = index / totalScenes;
   const end = (index + 1) / totalScenes;
+  const isFirst = index === 0;
+  const isLast = index === totalScenes - 1;
 
   // Background Motion Logic - clean crossfade between scenes
+  // For the final scene (06), stay at opacity 1 through scroll progress 1.0 to eliminate any blank gap
   const opacity = useTransform(
     scrollYProgress,
-    index === 0
+    isFirst
       ? [0, end - 0.04, end]
+      : isLast
+      ? [start - 0.04, start, 1]
       : [start - 0.04, start, end - 0.04, end],
-    index === 0
+    isFirst
       ? [1, 1, 0]
+      : isLast
+      ? [0, 1, 1]
       : [0, 1, 1, 0]
   );
 
@@ -63,6 +70,8 @@ const Scene: React.FC<SceneProps> = ({ scene, index, totalScenes, scrollYProgres
         zIndex: index + 10,
         WebkitBackfaceVisibility: 'hidden',
         backfaceVisibility: 'hidden',
+        transform: 'translateZ(0)',
+        WebkitTransform: 'translateZ(0)',
       }}
       className="absolute inset-0 w-full h-full pointer-events-none"
     >
@@ -71,6 +80,8 @@ const Scene: React.FC<SceneProps> = ({ scene, index, totalScenes, scrollYProgres
           scale,
           WebkitBackfaceVisibility: 'hidden',
           backfaceVisibility: 'hidden',
+          transform: 'translateZ(0)',
+          WebkitTransform: 'translateZ(0)',
         }}
         className="absolute inset-0 w-full h-full"
       >
@@ -118,10 +129,20 @@ export const CinematicShowcase: React.FC = () => {
           {SCENES.map((_, i) => {
             const start = i / SCENES.length;
             const end = (i + 1) / SCENES.length;
+            const isFirst = i === 0;
+            const isLast = i === SCENES.length - 1;
             const isActive = useTransform(
               scrollYProgress, 
-              i === 0 ? [0, end - 0.04, end] : [start - 0.04, start, end - 0.04, end], 
-              i === 0 ? [1, 1, 0] : [0, 1, 1, 0]
+              isFirst 
+                ? [0, end - 0.04, end] 
+                : isLast 
+                ? [start - 0.04, start, 1]
+                : [start - 0.04, start, end - 0.04, end], 
+              isFirst 
+                ? [1, 1, 0] 
+                : isLast 
+                ? [0, 1, 1]
+                : [0, 1, 1, 0]
             );
 
             return (

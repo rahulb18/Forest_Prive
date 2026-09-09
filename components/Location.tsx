@@ -79,14 +79,10 @@ export const Location: React.FC = () => {
                                                 <Icon size={18} className="sm:w-5 sm:h-5" />
                                             </div>
                                             <div className="flex-1 min-w-0">
-                                                <span className={`inline-block text-[9px] sm:text-[10px] font-mono uppercase tracking-widest px-2 py-0.5 rounded-full border mb-1 ${
-                                                    item.isPrimary 
-                                                        ? 'bg-gold-400/15 border-gold-400/35 text-gold-300 font-bold' 
-                                                        : 'bg-white/5 border-white/10 text-gray-400'
-                                                }`}>
+                                                <span className="inline-block text-[10px] sm:text-[11px] font-mono uppercase tracking-widest px-2.5 py-0.5 rounded-full border mb-1 bg-gold-400/15 border-gold-400/35 text-white font-semibold">
                                                     {item.badge}
                                                 </span>
-                                                <h3 className="font-serif text-xs sm:text-base text-white group-hover:text-gold-300 transition-colors leading-snug truncate">
+                                                <h3 className="font-serif text-xs sm:text-base text-white group-hover:text-gold-300 transition-colors leading-snug">
                                                     {item.title}
                                                 </h3>
                                             </div>

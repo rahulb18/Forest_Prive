@@ -245,8 +245,6 @@ export const Gallery: React.FC = () => {
                             className="flex -mx-2 sm:-mx-3"
                         >
                             {GALLERY_ITEMS.map((item, idx) => {
-                                const badgeStyle = "bg-amber-500/20 text-amber-300 border-amber-500/30";
-
                                 return (
                                     <div
                                         key={idx}
@@ -271,26 +269,26 @@ export const Gallery: React.FC = () => {
                                                 <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/40 to-transparent opacity-85 group-hover:opacity-95 transition-opacity" />
                                                 <div className="absolute inset-0 bg-gold-400/0 group-hover:bg-gold-400/5 transition-colors duration-500 pointer-events-none" />
 
-                                                {/* Mandatory Compliance Badge */}
-                                                <div className="absolute top-3 left-3 z-10">
-                                                    <span className={`inline-block px-2.5 sm:px-3 py-1 rounded-full text-[8px] sm:text-[9px] font-mono tracking-wider uppercase font-bold border backdrop-blur-md shadow-md ${badgeStyle}`}>
-                                                        {item.badge}
-                                                    </span>
-                                                </div>
-
                                                 {/* Quick View Floating Cue */}
                                                 <div className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-navy-950/80 backdrop-blur-md border border-white/20 flex items-center justify-center text-white/70 group-hover:bg-gold-400 group-hover:text-navy-950 group-hover:scale-110 transition-all shadow-lg">
                                                     <Eye size={13} />
                                                 </div>
 
                                                 {/* Bottom Title Bar */}
-                                                <div className="absolute bottom-0 left-0 right-0 p-3.5 sm:p-5 z-10">
+                                                <div className="absolute bottom-0 left-0 right-0 p-3.5 sm:p-5 pr-28 sm:pr-36 z-10">
                                                     <h3 className="font-serif text-sm sm:text-base lg:text-lg text-white group-hover:text-gold-300 transition-colors leading-snug">
                                                         {item.title}
                                                     </h3>
                                                     <p className="text-[10px] sm:text-xs text-gold-400/70 font-mono mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
                                                         Click to view fullscreen
                                                     </p>
+                                                </div>
+
+                                                {/* Mandatory Compliance Text - Minimalist Bottom Right Watermark */}
+                                                <div className="absolute bottom-3.5 right-3.5 sm:bottom-5 sm:right-5 z-10 pointer-events-none select-none">
+                                                    <span className="text-[8px] sm:text-[9px] font-mono tracking-[0.2em] uppercase font-semibold text-white/80 drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
+                                                        {item.badge}
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>

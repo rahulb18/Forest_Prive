@@ -14,7 +14,7 @@ export const Footer: React.FC = () => {
       {/* Subtle brand pattern overlay */}
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-grain"></div>
 
-      <div className="container mx-auto flex flex-col items-center relative z-10 max-w-5xl">
+      <div className="container mx-auto flex flex-col items-center relative z-10 max-w-6xl">
         
         {/* Brand & Developer Header */}
         <div className="mb-8 sm:mb-10 flex flex-col items-center text-center">
@@ -77,9 +77,24 @@ export const Footer: React.FC = () => {
           </p>
         </div>
 
-        <p className="text-gray-400 text-[10px] tracking-[0.2em] uppercase text-center font-mono">
-          © {new Date().getFullYear()} NeoLiv Grand Forest Privé. Developed by North Bliss Properties Pvt. Ltd. All Rights Reserved.
-        </p>
+        <div className="w-full flex flex-col md:flex-row items-center justify-center gap-1.5 md:gap-3 text-gray-400 text-[10px] md:text-[11px] tracking-wider uppercase text-center font-mono">
+          <p className="whitespace-normal md:whitespace-nowrap">
+            © {new Date().getFullYear()} NeoLiv Grand Forest Privé. Developed by North Bliss Properties Pvt. Ltd.
+          </p>
+          <span className="hidden md:inline text-white/30">•</span>
+          <p className="whitespace-normal md:whitespace-nowrap">
+            Digitally Marketed by{" "}
+            <a
+              href="https://propstory.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gold-400 hover:text-gold-300 transition-colors font-medium underline underline-offset-4 inline-flex items-center gap-1"
+            >
+              Propstory
+              <ExternalLink size={10} className="opacity-70" />
+            </a>
+          </p>
+        </div>
       </div>
     </footer>
   );

@@ -72,10 +72,10 @@ export const AboutNeoLiv: React.FC = () => {
       {/* Subtle Luxury Atmospheric Glow */}
       <div className="absolute top-1/3 left-1/4 w-[500px] h-[300px] bg-gold-400/8 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="container mx-auto px-6 md:px-12 relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-16 items-center">
+      <div className="container mx-auto px-4 sm:px-8 md:px-12 relative z-10 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-14 items-center">
           {/* Left Column: The Vision & Living Philosophy (The Story) */}
-          <div className="lg:col-span-7 xl:col-span-7 text-left">
+          <div className="lg:col-span-6 xl:col-span-6 text-left">
             <RevealOnScroll variant="up">
               {/* Eyebrow */}
               <span className="inline-block text-gold-400 text-[11px] sm:text-xs md:text-sm uppercase tracking-[0.35em] font-semibold mb-4">
@@ -126,9 +126,9 @@ export const AboutNeoLiv: React.FC = () => {
           </div>
 
           {/* Right Column: Project Highlights (The Living Pillars / Evidence) */}
-          <div className="lg:col-span-5 xl:col-span-5">
+          <div className="lg:col-span-6 xl:col-span-6">
             <RevealOnScroll variant="up" delay={150}>
-              <div className="rounded-3xl bg-navy-900/80 border border-gold-400/25 backdrop-blur-xl p-5 sm:p-7 xl:p-8 shadow-2xl relative overflow-hidden">
+              <div className="rounded-3xl bg-navy-900/80 border border-gold-400/25 backdrop-blur-xl p-4 sm:p-6 xl:p-7 shadow-2xl relative overflow-hidden">
                 {/* Subtle inner glow */}
                 <div className="absolute top-0 right-0 w-48 h-48 bg-gold-400/10 rounded-full blur-3xl pointer-events-none" />
 
@@ -146,22 +146,22 @@ export const AboutNeoLiv: React.FC = () => {
                 </div>
 
                 {/* 7 Pillars Matrix: 2-Column on Mobile & Desktop for Glanceable Dashboard View */}
-                <div className="grid grid-cols-2 gap-2 sm:gap-3">
+                <div className="grid grid-cols-2 gap-2 sm:gap-2.5 xl:gap-3">
                   {HIGHLIGHTS.slice(0, 6).map((item, idx) => {
                     const Icon = item.icon;
                     return (
                       <div
                         key={idx}
-                        className="flex items-center gap-2.5 p-2.5 sm:p-3.5 rounded-xl bg-navy-950/80 border border-white/5 hover:border-gold-400/40 hover:bg-navy-950 transition-all duration-300 group"
+                        className="flex items-center gap-2 sm:gap-2.5 xl:gap-3 p-2 sm:p-3 xl:p-3.5 rounded-xl bg-navy-950/80 border border-white/5 hover:border-gold-400/40 hover:bg-navy-950 transition-all duration-300 group"
                       >
-                        <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-gold-400/10 border border-gold-400/20 flex items-center justify-center text-gold-400 group-hover:bg-gold-400 group-hover:text-navy-950 transition-all duration-300 shrink-0">
+                        <div className="w-8 h-8 sm:w-9 sm:h-9 xl:w-10 xl:h-10 rounded-lg bg-gold-400/10 border border-gold-400/20 flex items-center justify-center text-gold-400 group-hover:bg-gold-400 group-hover:text-navy-950 transition-all duration-300 shrink-0">
                           <Icon size={16} className="sm:w-[18px] sm:h-[18px]" />
                         </div>
                         <div className="text-left min-w-0">
-                          <div className="font-sans font-bold text-xs sm:text-sm md:text-base text-white tracking-tight [font-variant-numeric:lining-nums] leading-tight group-hover:text-gold-300 transition-colors truncate">
+                          <div className="font-sans font-bold text-xs sm:text-sm xl:text-base text-white tracking-tight [font-variant-numeric:lining-nums] leading-tight group-hover:text-gold-300 transition-colors whitespace-nowrap">
                             {item.highlight}
                           </div>
-                          <div className="font-serif text-[10px] sm:text-xs text-gray-300/90 font-light leading-snug mt-0.5 truncate">
+                          <div className="font-serif text-[10px] sm:text-xs text-gray-300/90 font-light leading-snug mt-0.5 whitespace-nowrap">
                             {item.label}
                           </div>
                         </div>
@@ -175,13 +175,13 @@ export const AboutNeoLiv: React.FC = () => {
                     return (
                       <div
                         key={idx}
-                        className="col-span-2 flex items-center gap-2.5 sm:gap-3 p-2.5 sm:p-3.5 rounded-xl bg-navy-950/80 border border-white/5 hover:border-gold-400/40 hover:bg-navy-950 transition-all duration-300 group"
+                        className="col-span-2 flex items-center gap-2.5 sm:gap-3 p-2 sm:p-3 xl:p-3.5 rounded-xl bg-navy-950/80 border border-white/5 hover:border-gold-400/40 hover:bg-navy-950 transition-all duration-300 group"
                       >
-                        <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-gold-400/10 border border-gold-400/20 flex items-center justify-center text-gold-400 group-hover:bg-gold-400 group-hover:text-navy-950 transition-all duration-300 shrink-0">
+                        <div className="w-8 h-8 sm:w-9 sm:h-9 xl:w-10 xl:h-10 rounded-lg bg-gold-400/10 border border-gold-400/20 flex items-center justify-center text-gold-400 group-hover:bg-gold-400 group-hover:text-navy-950 transition-all duration-300 shrink-0">
                           <Icon size={16} className="sm:w-[18px] sm:h-[18px]" />
                         </div>
                         <div className="text-left min-w-0">
-                          <div className="font-sans font-bold text-xs sm:text-sm md:text-base text-white tracking-tight [font-variant-numeric:lining-nums] leading-tight group-hover:text-gold-300 transition-colors">
+                          <div className="font-sans font-bold text-xs sm:text-sm xl:text-base text-white tracking-tight [font-variant-numeric:lining-nums] leading-tight group-hover:text-gold-300 transition-colors">
                             {item.highlight}
                           </div>
                           <div className="font-serif text-[10px] sm:text-xs text-gray-300/90 font-light leading-snug mt-0.5">

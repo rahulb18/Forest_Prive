@@ -108,7 +108,7 @@ export const Amenities: React.FC = () => {
                                             <div className="w-8 h-8 sm:w-11 sm:h-11 rounded-xl bg-gold-400/10 border border-gold-400/20 flex items-center justify-center text-gold-400 group-hover:bg-gold-400 group-hover:text-navy-950 transition-all duration-300 shrink-0">
                                                 <Icon size={16} className="sm:w-5 sm:h-5" />
                                             </div>
-                                            <span className="text-[9px] sm:text-[10px] font-mono text-gold-400/60 font-semibold">
+                                            <span className="text-xs sm:text-xs md:text-sm font-mono text-gold-400 font-bold tracking-wider">
                                                 {(idx + 1).toString().padStart(2, '0')}
                                             </span>
                                         </div>

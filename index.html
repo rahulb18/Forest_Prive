@@ -33,18 +33,6 @@
       margin: 0;
       padding: 0;
     }
-    #initial-brand-splash {
-      position: fixed;
-      inset: 0;
-      background-color: #030712;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      z-index: 50;
-      text-align: center;
-      pointer-events: none;
-    }
   </style>
 
   <!-- Marketing & Tracking Pixels: Deferred to background idle to eliminate Total Blocking Time -->
@@ -92,19 +80,7 @@
 </head>
 
 <body class="bg-navy-900 text-white antialiased overflow-x-clip selection:bg-gold-400 selection:text-navy-900">
-  <div id="root">
-    <!-- Immediate Brand Paint for Instant FCP (< 0.8s) -->
-    <div id="initial-brand-splash">
-      <img src="assets/logo.png" alt="NeoLiv" style="height: 38px; width: auto; margin-bottom: 16px; opacity: 0.95;" />
-      <div style="width: 48px; height: 1px; background: rgba(212,175,55,0.5); margin-bottom: 12px;"></div>
-      <div style="font-family: Georgia, serif; font-size: 15px; letter-spacing: 0.22em; text-transform: uppercase; color: #ffffff; font-weight: 700;">
-        GRAND FOREST <span style="color: #fbbf24;">PRIVÉ</span>
-      </div>
-      <p style="font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 9px; text-transform: uppercase; letter-spacing: 0.3em; color: #9ca3af; margin-top: 8px;">
-        Premium • Nature-Led • Plotted Living
-      </p>
-    </div>
-  </div>
+  <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
 </body>
 

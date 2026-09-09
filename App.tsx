@@ -4,9 +4,7 @@ import { Navbar } from './components/Navbar';
 import { FloatingCTA } from './components/FloatingCTA';
 import { CinematicShowcase } from './components/CinematicShowcase';
 import { AboutNeoLiv } from './components/AboutNeoLiv';
-import { Preloader } from './components/Preloader';
 import { EnquiryModal } from './components/EnquiryModal';
-
 // Lazy Load heavier components
 const CuratedLifestyle = lazy(() => import('./components/CuratedLifestyle').then(m => ({ default: m.CuratedLifestyle })));
 const Amenities = lazy(() => import('./components/Amenities').then(m => ({ default: m.Amenities })));
@@ -19,29 +17,28 @@ const ContactForm = lazy(() => import('./components/ContactForm').then(m => ({ d
 const Footer = lazy(() => import('./components/Footer').then(m => ({ default: m.Footer })));
 
 function App() {
-  const [loading, setLoading] = useState(true);
-  const [loadingProgress, setLoadingProgress] = useState(0);
   const [shouldRenderContent, setShouldRenderContent] = useState(false);
 
-  // OPTIMIZATION: Instant Content Mount Underneath Preloader
+  // OPTIMIZATION: Instant Hero LCP with gentle deferred mounting for below-the-fold sections
   useEffect(() => {
-    if (loadingProgress >= 100) {
-      setShouldRenderContent(true);
+    if ('requestIdleCallback' in window) {
+      (window as any).requestIdleCallback(() => setShouldRenderContent(true), { timeout: 800 });
+    } else {
+      const timer = setTimeout(() => setShouldRenderContent(true), 200);
+      return () => clearTimeout(timer);
     }
-  }, [loadingProgress]);
+  }, []);
 
   return (
     <>
-      <Preloader onComplete={() => setLoading(false)} progress={loadingProgress} />
-      
-      <main className={`w-full min-h-screen bg-transparent selection:bg-gold-400 selection:text-navy-900 ${loading ? 'pointer-events-none' : 'pointer-events-auto'}`}>
+      <main className="w-full min-h-screen bg-transparent selection:bg-gold-400 selection:text-navy-900 pointer-events-auto">
         {/* Section 1: Header & Navigation */}
         <Navbar />
 
         {/* Section 2: Hero Section */}
         <div className="relative w-full h-[600vh] md:h-[1200vh]">
           <div className="sticky top-0 h-screen w-full overflow-hidden">
-            <Hero onProgress={setLoadingProgress} />
+            <Hero />
           </div>
         </div>
 

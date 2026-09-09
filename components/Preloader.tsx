@@ -11,34 +11,41 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete, progress: exte
     const [isFinished, setIsFinished] = useState(false);
 
     useEffect(() => {
+        // High-Performance Core Web Vitals Cap: Never hold preloader past 700ms
+        const maxSafetyTimer = setTimeout(() => {
+            setIsFinished(true);
+            setTimeout(onComplete, 200);
+        }, 700);
+
         if (externalProgress !== undefined) {
             setProgress(prev => Math.max(prev, externalProgress));
             if (externalProgress >= 100) {
-                setTimeout(() => {
-                    setIsFinished(true);
-                    setTimeout(onComplete, 400);
-                }, 200);
+                clearTimeout(maxSafetyTimer);
+                setIsFinished(true);
+                setTimeout(onComplete, 200);
             }
-            return;
+            return () => clearTimeout(maxSafetyTimer);
         }
 
         const interval = setInterval(() => {
             setProgress((prev) => {
                 if (prev >= 100) {
                     clearInterval(interval);
-                    setTimeout(() => {
-                        setIsFinished(true);
-                        setTimeout(onComplete, 400);
-                    }, 200);
+                    clearTimeout(maxSafetyTimer);
+                    setIsFinished(true);
+                    setTimeout(onComplete, 200);
                     return 100;
                 }
-                // Random increments for a more natural feel
-                const increment = Math.floor(Math.random() * 15) + 5;
+                // Fast increments
+                const increment = Math.floor(Math.random() * 25) + 15;
                 return Math.min(prev + increment, 100);
             });
-        }, 150);
+        }, 80);
 
-        return () => clearInterval(interval);
+        return () => {
+            clearInterval(interval);
+            clearTimeout(maxSafetyTimer);
+        };
     }, [onComplete, externalProgress]);
 
     return (
@@ -46,8 +53,8 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete, progress: exte
             {!isFinished && (
                 <motion.div
                     initial={{ opacity: 1 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.8, ease: "easeInOut" }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.35, ease: "easeInOut" }}
                     className="fixed inset-0 z-[1000] bg-navy-950 flex flex-col items-center justify-center overflow-hidden will-change-transform"
                 >
                     {/* Background Pattern */}

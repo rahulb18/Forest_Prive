@@ -48,42 +48,36 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
   const scrollProg = useRef(0);
   const targetScrollProg = useRef(0);
 
-  // --- PROGRESSIVE SMART-BUFFER PRELOADER ---
+  // --- HIGH-PERFORMANCE ZERO-DELAY LCP & PROGRESSIVE STREAMER ---
   useEffect(() => {
-    // Initial buffer: first 18 frames (~9 MB) ensures instant entry with zero stutter,
-    // while remaining 174 frames stream smoothly in the background
-    const INITIAL_READY_COUNT = 18;
-    let initialLoadedCount = 0;
-    let isExperienceReady = false;
     const images: HTMLImageElement[] = new Array(FRAME_COUNT);
+    imagesRef.current = images;
+    let isExperienceReady = false;
 
-    const onImageLoad = (index: number) => {
-      // Progress calculation based on initial buffer readiness
-      if (index < INITIAL_READY_COUNT) {
-        initialLoadedCount++;
-        const initialProgress = Math.min(100, Math.round((initialLoadedCount / INITIAL_READY_COUNT) * 100));
-        if (onProgress) onProgress(initialProgress);
-
-        if (initialLoadedCount >= INITIAL_READY_COUNT && !isExperienceReady) {
-          isExperienceReady = true;
-          setIsLoaded(true);
-          if (onProgress) onProgress(100);
-        }
-      }
-
-      // Draw initial frame 0 immediately when ready for zero-latency First Contentful Paint
-      if (index === 0 && canvasRef.current) {
-        const ctx = canvasRef.current.getContext("2d");
-        if (ctx && images[0]?.complete) {
-          ctx.drawImage(images[0], 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-        }
+    // Trigger instant LCP display
+    const triggerExperienceReady = () => {
+      if (!isExperienceReady) {
+        isExperienceReady = true;
+        setIsLoaded(true);
+        if (onProgress) onProgress(100);
       }
     };
 
-    // 1. Prioritize Frame 0 immediately for instant First Contentful Paint
+    // 1. Instantly Decode Frame 0 (Preloaded in index.html for <0.8s LCP)
     const firstImg = new Image();
     firstImg.src = FRAME_PATH(0);
     images[0] = firstImg;
+
+    const renderFirstFrame = () => {
+      if (canvasRef.current && images[0]?.complete) {
+        const ctx = canvasRef.current.getContext("2d");
+        if (ctx) {
+          ctx.drawImage(images[0], 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+        }
+      }
+      triggerExperienceReady();
+    };
+
     (async () => {
       try {
         if ('decode' in firstImg) {
@@ -92,81 +86,90 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
       } catch {
         // Fallback
       } finally {
-        onImageLoad(0);
+        renderFirstFrame();
       }
     })();
 
-    // 2. Load Phase 1: Initial Buffer (Frames 1 to 17) with high priority
-    const loadInitialBuffer = async () => {
-      const bufferPromises = [];
-      for (let i = 1; i < INITIAL_READY_COUNT; i++) {
-        const img = new Image();
-        img.src = FRAME_PATH(i);
-        images[i] = img;
+    // Safety timeout: Never hold the preloader curtain past 350ms even if network lags
+    const readyTimer = setTimeout(triggerExperienceReady, 350);
 
-        const promise = (async () => {
-          try {
-            if ('decode' in img && typeof (img as any).decode === 'function') {
-              await (img as any).decode();
-            } else {
-              await new Promise<void>((res) => {
-                img.onload = () => res();
-                img.onerror = () => res();
-              });
-            }
-          } catch {
-            // Fallback
-          } finally {
-            onImageLoad(i);
-          }
-        })();
-        bufferPromises.push(promise);
-      }
-      await Promise.all(bufferPromises);
-
-      // 3. Load Phase 2: Background Stream (Frames 18 to 191) in smooth batches
-      loadBackgroundStream(INITIAL_READY_COUNT, 8);
+    // 2. Non-blocking Background Frame Streamer
+    // Loads frames in gentle batches without choking network bandwidth or blocking UI
+    let streamingInitiated = false;
+    const startStreaming = () => {
+      if (streamingInitiated) return;
+      streamingInitiated = true;
+      streamBatch(1, 4);
     };
 
-    // Phase 2: Background Streamer with micro-intervals to keep UI thread fluid
-    const loadBackgroundStream = async (start: number, batchSize: number) => {
+    const streamBatch = async (start: number, batchSize: number) => {
       if (start >= FRAME_COUNT) return;
       const end = Math.min(start + batchSize, FRAME_COUNT);
       const batchPromises = [];
 
       for (let i = start; i < end; i++) {
-        const img = new Image();
-        img.src = FRAME_PATH(i);
-        images[i] = img;
+        if (!images[i]) {
+          const img = new Image();
+          img.src = FRAME_PATH(i);
+          images[i] = img;
 
-        const promise = (async () => {
-          try {
-            if ('decode' in img && typeof (img as any).decode === 'function') {
-              await (img as any).decode();
-            } else {
-              await new Promise<void>((res) => {
-                img.onload = () => res();
-                img.onerror = () => res();
-              });
+          const p = (async () => {
+            try {
+              if ('decode' in img && typeof (img as any).decode === 'function') {
+                await (img as any).decode();
+              } else {
+                await new Promise<void>((res) => {
+                  img.onload = () => res();
+                  img.onerror = () => res();
+                });
+              }
+            } catch {
+              // Ignore individual frame errors
             }
-          } catch {
-            // Fallback
-          } finally {
-            onImageLoad(i);
-          }
-        })();
-        batchPromises.push(promise);
+          })();
+          batchPromises.push(p);
+        }
       }
 
       await Promise.all(batchPromises);
 
       if (end < FRAME_COUNT) {
-        setTimeout(() => loadBackgroundStream(end, batchSize), 20);
+        if ('requestIdleCallback' in window) {
+          (window as any).requestIdleCallback(() => streamBatch(end, batchSize), { timeout: 150 });
+        } else {
+          setTimeout(() => streamBatch(end, batchSize), 40);
+        }
       }
     };
 
-    loadInitialBuffer();
-    imagesRef.current = images;
+    // Trigger streaming on user interaction (scroll, touch, wheel) or after initial idle
+    const onUserInteraction = () => {
+      startStreaming();
+      window.removeEventListener("scroll", onUserInteraction);
+      window.removeEventListener("touchstart", onUserInteraction);
+      window.removeEventListener("wheel", onUserInteraction);
+    };
+
+    window.addEventListener("scroll", onUserInteraction, { passive: true });
+    window.addEventListener("touchstart", onUserInteraction, { passive: true });
+    window.addEventListener("wheel", onUserInteraction, { passive: true });
+
+    // Idle trigger: start background streaming after 1.2s if user has not interacted
+    const idleTimer = setTimeout(() => {
+      if ('requestIdleCallback' in window) {
+        (window as any).requestIdleCallback(startStreaming, { timeout: 2000 });
+      } else {
+        startStreaming();
+      }
+    }, 1200);
+
+    return () => {
+      clearTimeout(readyTimer);
+      clearTimeout(idleTimer);
+      window.removeEventListener("scroll", onUserInteraction);
+      window.removeEventListener("touchstart", onUserInteraction);
+      window.removeEventListener("wheel", onUserInteraction);
+    };
   }, []);
 
   // --- RENDER LOOP ---
@@ -342,7 +345,7 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
                         href="#Overview"
                         className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 sm:gap-2 px-4 py-3 sm:px-8 sm:py-3.5 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-bold text-[10px] sm:text-xs uppercase tracking-[0.15em] sm:tracking-[0.18em] rounded-full shadow-[0_4px_20px_rgba(212,175,55,0.35)] hover:shadow-[0_6px_28px_rgba(212,175,55,0.5)] transition-all active:scale-95 cursor-pointer whitespace-nowrap"
                     >
-                        <span>Explore Grand Privé</span>
+                        <span>Explore Grand Forest Privé</span>
                         <ArrowRight size={13} className="hidden sm:inline" />
                     </a>
                     <button

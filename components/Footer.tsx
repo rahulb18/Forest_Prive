@@ -72,12 +72,12 @@ export const Footer: React.FC = () => {
           <p>
             <strong className="text-white font-medium">Artistic Impression Disclaimer:</strong> Visual representations including architectural renders, landscapes, interior concepts, and club facilities represent artistic impressions and may differ from the actual completed development.
           </p>
-          <p className="text-gray-500 text-[9px]">
+          <p className="text-gray-400 text-[9px]">
             Privacy & Authorization: By submitting your contact details on this website, you authorize Grand Forest Privé and NeoLiv to contact you via phone call, SMS, or WhatsApp regarding project updates, overriding any national or international DND registration.
           </p>
         </div>
 
-        <p className="text-gray-600 text-[10px] tracking-[0.2em] uppercase text-center font-mono">
+        <p className="text-gray-400 text-[10px] tracking-[0.2em] uppercase text-center font-mono">
           © {new Date().getFullYear()} NeoLiv Grand Forest Privé. Developed by North Bliss Properties Pvt. Ltd. All Rights Reserved.
         </p>
       </div>

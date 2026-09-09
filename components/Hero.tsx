@@ -48,7 +48,7 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
   const scrollProg = useRef(0);
   const targetScrollProg = useRef(0);
 
-  // --- HIGH-PERFORMANCE ZERO-DELAY LCP & PROGRESSIVE STREAMER ---
+  // --- HIGH-PERFORMANCE ZERO-DELAY LCP & SLIDING-WINDOW STREAMER ---
   useEffect(() => {
     const images: HTMLImageElement[] = new Array(FRAME_COUNT);
     imagesRef.current = images;
@@ -63,7 +63,7 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
       }
     };
 
-    // 1. Instantly Decode Frame 0 (Preloaded in index.html for <0.8s LCP)
+    // 1. Instantly Render Frame 0 (Preloaded in index.html for <0.8s LCP)
     const firstImg = new Image();
     firstImg.src = FRAME_PATH(0);
     images[0] = firstImg;
@@ -90,85 +90,23 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
       }
     })();
 
-    // Safety timeout: Never hold the preloader curtain past 350ms even if network lags
-    const readyTimer = setTimeout(triggerExperienceReady, 350);
+    // Safety timeout: Never hold ready signal past 300ms
+    const readyTimer = setTimeout(triggerExperienceReady, 300);
 
-    // 2. Non-blocking Background Frame Streamer
-    // Loads frames in gentle batches without choking network bandwidth or blocking UI
-    let streamingInitiated = false;
-    const startStreaming = () => {
-      if (streamingInitiated) return;
-      streamingInitiated = true;
-      streamBatch(1, 4);
-    };
-
-    const streamBatch = async (start: number, batchSize: number) => {
-      if (start >= FRAME_COUNT) return;
-      const end = Math.min(start + batchSize, FRAME_COUNT);
-      const batchPromises = [];
-
-      for (let i = start; i < end; i++) {
+    // 2. Gentle Initial Buffer (Frames 1-6) without blocking the thread
+    const initBufferTimer = setTimeout(() => {
+      for (let i = 1; i <= 6 && i < FRAME_COUNT; i++) {
         if (!images[i]) {
           const img = new Image();
           img.src = FRAME_PATH(i);
           images[i] = img;
-
-          const p = (async () => {
-            try {
-              if ('decode' in img && typeof (img as any).decode === 'function') {
-                await (img as any).decode();
-              } else {
-                await new Promise<void>((res) => {
-                  img.onload = () => res();
-                  img.onerror = () => res();
-                });
-              }
-            } catch {
-              // Ignore individual frame errors
-            }
-          })();
-          batchPromises.push(p);
         }
       }
-
-      await Promise.all(batchPromises);
-
-      if (end < FRAME_COUNT) {
-        if ('requestIdleCallback' in window) {
-          (window as any).requestIdleCallback(() => streamBatch(end, batchSize), { timeout: 150 });
-        } else {
-          setTimeout(() => streamBatch(end, batchSize), 40);
-        }
-      }
-    };
-
-    // Trigger streaming on user interaction (scroll, touch, wheel) or after initial idle
-    const onUserInteraction = () => {
-      startStreaming();
-      window.removeEventListener("scroll", onUserInteraction);
-      window.removeEventListener("touchstart", onUserInteraction);
-      window.removeEventListener("wheel", onUserInteraction);
-    };
-
-    window.addEventListener("scroll", onUserInteraction, { passive: true });
-    window.addEventListener("touchstart", onUserInteraction, { passive: true });
-    window.addEventListener("wheel", onUserInteraction, { passive: true });
-
-    // Idle trigger: start background streaming after 1.2s if user has not interacted
-    const idleTimer = setTimeout(() => {
-      if ('requestIdleCallback' in window) {
-        (window as any).requestIdleCallback(startStreaming, { timeout: 2000 });
-      } else {
-        startStreaming();
-      }
-    }, 1200);
+    }, 600);
 
     return () => {
       clearTimeout(readyTimer);
-      clearTimeout(idleTimer);
-      window.removeEventListener("scroll", onUserInteraction);
-      window.removeEventListener("touchstart", onUserInteraction);
-      window.removeEventListener("wheel", onUserInteraction);
+      clearTimeout(initBufferTimer);
     };
   }, []);
 
@@ -215,6 +153,17 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
       const frameIndex = Math.min(FRAME_COUNT - 1, Math.max(0, Math.floor(scrollProg.current * FRAME_COUNT)));
 
       if (frameIndex !== lastFrame) {
+        // Sliding window: dynamically buffer 16 frames ahead of scroll position
+        const BUFFER_AHEAD = 16;
+        const targetEnd = Math.min(FRAME_COUNT, frameIndex + BUFFER_AHEAD);
+        for (let i = frameIndex; i < targetEnd; i++) {
+          if (!imagesRef.current[i]) {
+            const nextImg = new Image();
+            nextImg.src = FRAME_PATH(i);
+            imagesRef.current[i] = nextImg;
+          }
+        }
+
         let img = imagesRef.current[frameIndex];
 
         // Seamless fallback: if the requested frame is still buffering during super-fast scroll,
@@ -354,13 +303,6 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
                     >
                         Enquire Now
                     </button>
-                </div>
-
-                {/* Subtle Artistic Impression Indicator */}
-                <div className="pt-3 pointer-events-none">
-                    <span className="inline-block px-3 py-0.5 rounded-full bg-navy-950/60 backdrop-blur-md border border-white/10 text-[8px] sm:text-[9px] uppercase tracking-[0.2em] text-gold-300/80 font-mono">
-                        Artistic Impression
-                    </span>
                 </div>
             </div>
         </div>

@@ -302,7 +302,7 @@ export const Gallery: React.FC = () => {
                 </div>
 
                 {/* PAGINATION DOTS / SLIDE INDICATORS */}
-                <div className="flex items-center justify-center gap-1.5 sm:gap-2 mb-10 sm:mb-14">
+                <div className="flex items-center justify-center gap-1 sm:gap-1.5 mb-10 sm:mb-14">
                     {Array.from({ length: maxIndex + 1 }).map((_, dotIdx) => {
                         const isActive = currentIndex === dotIdx;
                         return (
@@ -310,12 +310,14 @@ export const Gallery: React.FC = () => {
                                 key={dotIdx}
                                 onClick={() => setCurrentIndex(dotIdx)}
                                 aria-label={`Go to slide ${dotIdx + 1}`}
-                                className={`transition-all duration-300 rounded-full cursor-pointer h-1.5 sm:h-2 ${
+                                className="p-2 flex items-center justify-center cursor-pointer"
+                            >
+                                <span className={`transition-all duration-300 rounded-full h-1.5 sm:h-2 block ${
                                     isActive
                                         ? 'w-7 sm:w-8 bg-gold-400 shadow-md shadow-gold-400/30'
                                         : 'w-1.5 sm:w-2 bg-white/20 hover:bg-white/40'
-                                }`}
-                            />
+                                }`} />
+                            </button>
                         );
                     })}
                 </div>

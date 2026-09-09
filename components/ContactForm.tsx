@@ -36,6 +36,11 @@ export const ContactForm: React.FC = () => {
                 separateDialCode: true,
                 preferredCountries: ["in", "us", "ae", "gb"]
             });
+            // Fix a11y: Remove dangling aria-activedescendant pointing to unmounted listbox
+            const flagBtn = phoneInputRef.current.parentElement?.querySelector('.iti__selected-flag');
+            if (flagBtn) {
+                flagBtn.removeAttribute('aria-activedescendant');
+            }
         }
 
         return () => {
@@ -263,7 +268,7 @@ export const ContactForm: React.FC = () => {
                                         </button>
                                     </div>
                                     
-                                    <p className="text-[9px] text-gray-500 text-center pt-2 uppercase tracking-widest">
+                                    <p className="text-[9px] text-gray-400 text-center pt-2 uppercase tracking-widest">
                                         Strict Privacy • Verified MahaRERA Registered Development
                                     </p>
                                 </form>

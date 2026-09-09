@@ -48,29 +48,33 @@ export const FloorPlan: React.FC = () => {
           {/* Controls */}
           <button 
             onClick={prevSlide}
-            className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/80 hover:bg-[#d6ba43] hover:text-white backdrop-blur-sm rounded-full flex items-center justify-center text-[#1d417f] transition-all shadow-lg z-10"
+            aria-label="Previous floor plan"
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/80 hover:bg-[#d6ba43] hover:text-white backdrop-blur-sm rounded-full flex items-center justify-center text-[#1d417f] transition-all shadow-lg z-10 cursor-pointer"
           >
             <ChevronLeft className="w-6 h-6" />
           </button>
           
           <button 
             onClick={nextSlide}
-            className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/80 hover:bg-[#d6ba43] hover:text-white backdrop-blur-sm rounded-full flex items-center justify-center text-[#1d417f] transition-all shadow-lg z-10"
+            aria-label="Next floor plan"
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/80 hover:bg-[#d6ba43] hover:text-white backdrop-blur-sm rounded-full flex items-center justify-center text-[#1d417f] transition-all shadow-lg z-10 cursor-pointer"
           >
             <ChevronRight className="w-6 h-6" />
           </button>
 
           {/* Dots */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-10">
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-1 z-10">
             {floorPlans.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => setCurrentIndex(idx)}
-                className={`w-3 h-3 rounded-full transition-all ${
-                  idx === currentIndex ? 'bg-[#d6ba43] scale-125' : 'bg-white/50 hover:bg-white'
-                }`}
                 aria-label={`Go to slide ${idx + 1}`}
-              />
+                className="p-2 flex items-center justify-center cursor-pointer"
+              >
+                <span className={`w-3 h-3 rounded-full transition-all block ${
+                  idx === currentIndex ? 'bg-[#d6ba43] scale-125' : 'bg-white/50 hover:bg-white'
+                }`} />
+              </button>
             ))}
           </div>
         </div>

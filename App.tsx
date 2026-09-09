@@ -51,7 +51,7 @@ function App() {
 
   return (
     <>
-      <main className="w-full min-h-screen bg-transparent selection:bg-gold-400 selection:text-navy-900 pointer-events-auto">
+      <main className="w-full min-h-screen bg-transparent selection:bg-gold-400 selection:text-navy-900 pointer-events-auto overflow-x-hidden">
         {/* Section 1: Header & Navigation */}
         <Navbar />
 

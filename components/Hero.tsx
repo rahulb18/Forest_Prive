@@ -244,13 +244,13 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
 
         {/* Initial Hero Welcome Panel - Focused Luxury Editorial: Single Headline with CTAs */}
         <div className={`absolute inset-0 z-20 flex flex-col items-center justify-center px-4 sm:px-6 text-center transition-all duration-700 pointer-events-none ${currentFrame <= 15 ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-6"}`}>
-            <div className="max-w-4xl space-y-4 sm:space-y-6 relative py-4 px-2 pointer-events-auto">
+            <div className="w-full max-w-4xl space-y-4 sm:space-y-6 relative py-4 px-2 pointer-events-auto">
                 {/* Soft feathered dark aura directly behind the headline and CTAs */}
                 <div className="absolute inset-0 bg-navy-950/50 rounded-full blur-3xl -z-10 scale-110 pointer-events-none" />
                 
                 {/* Refined Eyebrow */}
                 <div>
-                    <span className="inline-block px-4 py-1.5 rounded-full bg-black/65 border border-gold-400/50 text-amber-300 text-[9px] sm:text-[11px] md:text-xs tracking-[0.28em] uppercase font-semibold backdrop-blur-md shadow-xl">
+                    <span className="inline-block max-w-[92vw] px-4 py-1.5 rounded-full bg-black/65 border border-gold-400/50 text-amber-300 text-[8.5px] sm:text-[11px] md:text-xs tracking-[0.20em] sm:tracking-[0.28em] uppercase font-semibold backdrop-blur-md shadow-xl truncate">
                         PLOTTED LIVING • 360° MOUNTAIN VIEWS
                     </span>
                 </div>
@@ -261,8 +261,8 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
                     <span className="text-[#F6D57E] italic font-serif">Becomes a Privilege.</span>
                 </h2>
 
-                {/* Dual Luxury Action CTAs with Instant Touch Response */}
-                <div className="flex flex-row items-center justify-center gap-3 sm:gap-5 pointer-events-auto relative z-30 w-full max-w-sm sm:max-w-md mx-auto pt-2 sm:pt-4 touch-manipulation">
+                {/* Dual Luxury Action CTAs: Stacked cleanly on mobile to never overflow screen borders, side-by-side on sm+ */}
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pointer-events-auto relative z-30 w-full max-w-[280px] sm:max-w-xl mx-auto pt-2 sm:pt-4 touch-manipulation">
                     <a
                         href="#Overview"
                         onClick={(e) => {
@@ -276,10 +276,10 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
                                 window.scrollTo({ top: h * (isMobile ? 6 : 12) + 50, behavior: "smooth" });
                             }
                         }}
-                        className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-5 py-3.5 sm:px-8 sm:py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-bold text-[11px] sm:text-xs uppercase tracking-[0.16em] sm:tracking-[0.18em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.45)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.6)] transition-all active:scale-95 cursor-pointer whitespace-nowrap touch-manipulation select-none min-h-[44px]"
+                        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 sm:px-8 sm:py-3.5 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-bold text-[11px] sm:text-xs uppercase tracking-[0.14em] sm:tracking-[0.18em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.45)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.6)] transition-all active:scale-95 cursor-pointer whitespace-nowrap touch-manipulation select-none min-h-[44px]"
                     >
                         <span>Explore Grand Forest Privé</span>
-                        <ArrowRight size={14} className="hidden sm:inline" />
+                        <ArrowRight size={14} className="inline" />
                     </a>
                     <button
                         type="button"
@@ -288,7 +288,7 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
                             e.stopPropagation();
                             modalState.open("NeoLiv Grand Forest Privé - Enquiry");
                         }}
-                        className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-5 py-3.5 sm:px-8 sm:py-4 bg-black/60 hover:bg-black/80 active:bg-black/90 text-white border border-gold-400/60 hover:border-gold-400 text-[11px] sm:text-xs uppercase tracking-[0.16em] sm:tracking-[0.18em] font-semibold rounded-full backdrop-blur-md shadow-[0_4px_25px_rgba(0,0,0,0.6)] hover:shadow-[0_6px_30px_rgba(212,175,55,0.3)] transition-all active:scale-95 cursor-pointer whitespace-nowrap touch-manipulation select-none min-h-[44px]"
+                        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 sm:px-8 sm:py-3.5 bg-black/60 hover:bg-black/80 active:bg-black/90 text-white border border-gold-400/60 hover:border-gold-400 text-[11px] sm:text-xs uppercase tracking-[0.14em] sm:tracking-[0.18em] font-semibold rounded-full backdrop-blur-md shadow-[0_4px_25px_rgba(0,0,0,0.6)] hover:shadow-[0_6px_30px_rgba(212,175,55,0.3)] transition-all active:scale-95 cursor-pointer whitespace-nowrap touch-manipulation select-none min-h-[44px]"
                     >
                         Enquire Now
                     </button>

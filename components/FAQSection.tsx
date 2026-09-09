@@ -27,7 +27,7 @@ const FAQS: FAQItem[] = [
     },
     {
         question: "What amenities are offered?",
-        answer: "The project highlights a jogging/walking track, forest maze, multiplay court, bonfire deck, pet park, reflexology park, butterfly garden, amphitheatre, kids' play area, splash pond, Happy Street and Herb & Fragrance Circle."
+        answer: "The project highlights a jogging/walking track, forest maze, multiplay court, bonfire deck, pet park, reflexology park, butterfly garden, amphitheatre, kid's play area, splash pond, Happy Street and Herb & Fragrance Circle."
     },
     {
         question: "Does the development have a clubhouse?",
@@ -55,7 +55,7 @@ export const FAQSection: React.FC = () => {
                             Frequently Asked Questions
                         </span>
                         <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-white mb-4 sm:mb-6 leading-tight">
-                            Frequently Asked <span className="text-gold-400 italic">Questions.</span>
+                            Clear Answers. <span className="text-gold-400 italic">Thoughtful Details.</span>
                         </h2>
                         <div className="w-20 h-px bg-gradient-to-r from-transparent via-gold-400 to-transparent mx-auto mb-6" />
                     </div>

@@ -25,14 +25,14 @@ export const Overview: React.FC = () => {
           >
 
             <h2 className="font-serif text-4xl md:text-5xl text-[#1d417f] leading-tight mb-8">
-              Own a Golf-Inspired Luxury Plot in Faridabad’s Fastest Growing Corridor
+              Own a Nature-Inspired Luxury Plot at Grand Forest Privé
             </h2>
             
             <p className="text-gray-700 text-lg leading-relaxed mb-6">
               A rare plotted development designed for those who value <strong className="text-[#1d417f]">space</strong>, <strong className="text-[#1d417f]">privacy</strong>, and <strong className="text-[#1d417f]">long-term appreciation</strong>.
             </p>
             <p className="text-gray-700 text-lg leading-relaxed mb-10">
-              Located in <strong className="text-[#1d417f]">Sector 98 & 99A, Faridabad</strong>, this 47-acre township offers premium plots where you design your dream villa—within a secure, master-planned community.
+              Located in <strong className="text-[#1d417f]">Khopoli</strong>, this premium township offers low-density plots where you design your dream villa—within a secure, master-planned community.
             </p>
 
             <h3 className="font-serif text-2xl text-[#1d417f] mb-6 border-b border-gray-200 pb-4">
@@ -58,8 +58,8 @@ export const Overview: React.FC = () => {
             transition={{ duration: 0.8 }}
           >
             <img 
-              src="assets/neoliv_optimized/Golf Side villa.webp" 
-              alt="Golf Side Villa" 
+              src="assets/grand_forest_optimized/amenities-club-deck.webp" 
+              alt="Grand Forest Privé Club Experience" 
               className="absolute inset-0 w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#1d417f]/60 to-transparent" />

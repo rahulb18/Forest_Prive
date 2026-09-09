@@ -21,7 +21,7 @@ const features = [
   { icon: Flower2, text: "Experiential themed gardens including herb, fragrance, and butterfly zones" },
   { icon: Droplets, text: "Grade-A infrastructure with underground cabling and smart utilities" },
   { icon: ShieldCheck, text: "Multi-tier security for complete peace of mind in a gated township" },
-  { icon: Gamepad2, text: "Engaging outdoor zones including forest maze, kids' play area, and splash pond" },
+  { icon: Gamepad2, text: "Engaging outdoor zones including forest maze, kid's play area, and splash pond" },
   { icon: Leaf, text: "Rich, evergreen landscaping that enhances natural mountain biodiversity" },
   { icon: Users, text: "Exclusive access to two private clubs for recreation and social gatherings" },
 ];

@@ -4,7 +4,7 @@ import { ArrowRight, Mountain, Trees, Compass } from 'lucide-react';
 
 export const CuratedLifestyle: React.FC = () => {
   return (
-    <section id="Lifestyle" className="py-16 md:py-28 bg-navy-950 text-white relative overflow-hidden">
+    <section id="Lifestyle" className="pt-8 pb-16 md:pt-10 md:pb-24 lg:pt-12 lg:pb-28 bg-navy-950 text-white relative overflow-hidden">
       {/* Ambient Mountain Horizon Glow */}
       <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-gold-400/5 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-0 left-10 w-[400px] h-[400px] bg-emerald-500/5 rounded-full blur-[120px] pointer-events-none" />
@@ -63,8 +63,8 @@ export const CuratedLifestyle: React.FC = () => {
                 <div className="relative rounded-3xl overflow-hidden border border-gold-400/30 shadow-[0_20px_50px_rgba(0,0,0,0.8)] group">
                   <div className="aspect-[4/3] w-full relative overflow-hidden bg-navy-900">
                     <img
-                      src="assets/neoliv_optimized/Golf Mood View.webp"
-                      alt="Grand Forest Privé Mountain Landscape"
+                      src="assets/grand_forest_optimized/lifestyle-waterbody.webp"
+                      alt="Grand Forest Privé Waterbody & Nature Walk"
                       loading="lazy"
                       decoding="async"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
@@ -95,8 +95,8 @@ export const CuratedLifestyle: React.FC = () => {
                 <div className="hidden sm:block absolute -bottom-8 -left-8 w-48 lg:w-56 rounded-2xl overflow-hidden border-2 border-gold-400/40 shadow-2xl z-30 bg-navy-900">
                   <div className="aspect-square relative">
                     <img
-                      src="assets/neoliv_optimized/Road To Golf View.webp"
-                      alt="Green Surroundings & Wide Roads"
+                      src="assets/grand_forest_optimized/lifestyle-butterfly-garden.webp"
+                      alt="Butterfly & Fragrance Garden"
                       loading="lazy"
                       decoding="async"
                       className="w-full h-full object-cover"
@@ -104,10 +104,10 @@ export const CuratedLifestyle: React.FC = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-transparent to-transparent" />
                     <div className="absolute bottom-3 left-3 right-3">
                       <span className="text-[8px] uppercase tracking-widest text-gold-300 font-bold block">
-                        Wide Boulevards
+                        Butterfly Garden
                       </span>
                       <span className="text-[10px] text-white font-serif">
-                        Nature-Led Living
+                        Fragrance Circle
                       </span>
                     </div>
                   </div>

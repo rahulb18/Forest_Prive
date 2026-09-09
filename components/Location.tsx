@@ -29,7 +29,7 @@ const CONNECTIVITY_POINTS = [
     },
     {
         badge: "Ecosystem",
-        title: "Grade-A-ready infrastructure ecosystem",
+        title: "Grade-A ready infrastructure ecosystem",
         icon: ShieldCheck,
         isPrimary: false
     }
@@ -61,12 +61,12 @@ export const Location: React.FC = () => {
                     </div>
                 </RevealOnScroll>
 
-                {/* 2-Column: Connectivity Anchors & Interactive Map */}
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-12">
+                {/* 2-Column: Connectivity Anchors & Interactive Map (Balanced Baseline & Equal Height) */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch mb-12">
                     
                     {/* Left Column: 5 Approved Connectivity Anchors */}
-                    <div className="lg:col-span-5 space-y-3">
-                        <RevealOnScroll variant="left">
+                    <div className="lg:col-span-5 h-full">
+                        <RevealOnScroll variant="left" className="h-full flex flex-col justify-between">
                             <div className="space-y-2.5 sm:space-y-3">
                                 {CONNECTIVITY_POINTS.map((item, idx) => {
                                     const Icon = item.icon;
@@ -111,10 +111,10 @@ export const Location: React.FC = () => {
                         </RevealOnScroll>
                     </div>
 
-                    {/* Right Column: Large Interactive Location Map with Mobile Scroll-Trap Shield */}
-                    <div className="lg:col-span-7">
-                        <RevealOnScroll variant="right">
-                            <div className="rounded-3xl overflow-hidden border border-gold-400/30 shadow-2xl bg-navy-950 relative h-[340px] sm:h-[480px]">
+                    {/* Right Column: Large Interactive Location Map with Dynamic Height Match */}
+                    <div className="lg:col-span-7 h-full">
+                        <RevealOnScroll variant="right" className="h-full">
+                            <div className="rounded-3xl overflow-hidden border border-gold-400/30 shadow-2xl bg-navy-950 relative h-full min-h-[380px] sm:min-h-[480px] lg:min-h-[540px]">
                                 <iframe
                                     title="Grand Forest Privé Location Map"
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d120638.16347318534!2d73.10986756858277!3d18.99770020163304!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7e8412674e14f%3A0x8e57929d29f8a329!2sMumbai%20-%20Pune%20Hwy!5e0!3m2!1sen!2sin!4v1714240000000!5m2!1sen!2sin"

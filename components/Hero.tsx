@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Volume2, VolumeX, ArrowDown, ArrowRight } from "lucide-react";
+import { modalState } from "../lib/modal-state";
 
 // --- CONFIG ---
 const FRAME_COUNT = 192; 
@@ -254,7 +255,7 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
                                 1,500 <span className="text-[11px] sm:text-sm font-normal text-gold-300">sq. ft.*</span>
                             </div>
                             <p className="text-gold-400 text-[8px] sm:text-[9px] md:text-[10px] uppercase tracking-[0.18em] sm:tracking-[0.22em] font-semibold mt-0.5">
-                                From 1,500 sq. ft.*
+                                Plots Starting From
                             </p>
                         </div>
 
@@ -262,10 +263,10 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
 
                         <div className="text-center flex-1 sm:flex-initial">
                             <div className="font-sans font-bold text-base sm:text-xl md:text-2xl text-white tracking-tight [font-variant-numeric:lining-nums] drop-shadow-sm">
-                                ₹5299 <span className="text-[11px] sm:text-sm font-normal text-gold-300">/ sq. ft.*</span>
+                                ₹5,299 <span className="text-[11px] sm:text-sm font-normal text-gold-300">/ sq. ft.*</span>
                             </div>
                             <p className="text-gold-400 text-[8px] sm:text-[9px] md:text-[10px] uppercase tracking-[0.18em] sm:tracking-[0.22em] font-semibold mt-0.5">
-                                Privé: ₹5299/sq. ft.*
+                                Special Privé Price
                             </p>
                         </div>
                     </div>
@@ -280,12 +281,19 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
                         <span>Explore Grand Privé</span>
                         <ArrowRight size={13} className="hidden sm:inline" />
                     </a>
-                    <a
-                        href="#Contact"
+                    <button
+                        onClick={() => modalState.open("NeoLiv Grand Forest Privé - Enquiry")}
                         className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 sm:gap-2 px-4 py-3 sm:px-8 sm:py-3.5 bg-navy-950/80 hover:bg-white/10 text-white border border-gold-400/40 hover:border-gold-400 text-[10px] sm:text-xs uppercase tracking-[0.15em] sm:tracking-[0.18em] font-semibold rounded-full backdrop-blur-md shadow-xl hover:shadow-[0_4px_20px_rgba(212,175,55,0.2)] transition-all active:scale-95 cursor-pointer whitespace-nowrap"
                     >
                         Enquire Now
-                    </a>
+                    </button>
+                </div>
+
+                {/* Subtle Artistic Impression Indicator */}
+                <div className="pt-3 pointer-events-none">
+                    <span className="inline-block px-3 py-0.5 rounded-full bg-navy-950/60 backdrop-blur-md border border-white/10 text-[8px] sm:text-[9px] uppercase tracking-[0.2em] text-gold-300/80 font-mono">
+                        Artistic Impression
+                    </span>
                 </div>
             </div>
         </div>

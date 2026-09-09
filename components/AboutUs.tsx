@@ -1,6 +1,7 @@
 import React from 'react';
 import { RevealOnScroll } from './RevealOnScroll';
 import { ShieldCheck, Award, Briefcase, TrendingUp, ArrowRight } from 'lucide-react';
+import { modalState } from '../lib/modal-state';
 
 const CREDENTIAL_PILLARS = [
     {
@@ -86,13 +87,13 @@ export const AboutUs: React.FC = () => {
                 {/* CTA: Discover NeoLiv */}
                 <div className="text-center">
                     <RevealOnScroll variant="up">
-                        <a
-                            href="#Contact"
+                        <button
+                            onClick={() => modalState.open("NeoLiv Grand Forest Privé - Discover NeoLiv")}
                             className="inline-flex items-center justify-center w-full sm:w-auto gap-3 px-8 sm:px-9 py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-bold text-xs uppercase tracking-[0.22em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.35)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.5)] transition-all active:scale-95 cursor-pointer"
                         >
                             <span>Discover NeoLiv</span>
                             <ArrowRight size={14} />
-                        </a>
+                        </button>
                     </RevealOnScroll>
                 </div>
 

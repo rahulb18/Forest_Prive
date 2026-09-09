@@ -60,7 +60,7 @@ export const VideoShowcase: React.FC = () => {
                                     muted
                                     loop
                                     playsInline
-                                    poster="assets/neoliv_optimized/Golf Aerial.webp"
+                                    poster="assets/grand_forest_optimized/overview-masterplan-backdrop.webp"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
                                 

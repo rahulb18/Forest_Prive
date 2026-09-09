@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const images = [
-  'assets/neoliv_optimized/Golf Aerial.webp',
-  'assets/neoliv_optimized/Golf Mood View.webp',
-  'assets/neoliv_optimized/Road To Golf View.webp'
+  'assets/grand_forest_optimized/overview-masterplan-backdrop.webp',
+  'assets/grand_forest_optimized/lifestyle-waterbody.webp',
+  'assets/grand_forest_optimized/cinematic-club-facade.webp'
 ];
 
 export const HeroBanner: React.FC = () => {
@@ -23,7 +23,7 @@ export const HeroBanner: React.FC = () => {
         <motion.img
           key={currentIndex}
           src={images[currentIndex]}
-          alt={`NeoLiv Golf Experience ${currentIndex + 1}`}
+          alt={`NeoLiv Grand Forest Privé ${currentIndex + 1}`}
           className="absolute inset-0 w-full h-full object-cover"
           initial={{ opacity: 0, scale: 1.05 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -41,14 +41,14 @@ export const HeroBanner: React.FC = () => {
           transition={{ duration: 1, delay: 0.5 }}
         >
           <h3 className="text-white font-medium tracking-[0.4em] text-xs md:text-sm uppercase mb-4 drop-shadow-lg">
-            A Premium Golf Lifestyle
+            A Premium Nature & Forest Lifestyle
           </h3>
           <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-white tracking-tight drop-shadow-2xl mb-6 leading-tight">
             Soul of the Seasons
           </h1>
           <div className="w-24 h-[2px] bg-[#d6ba43] mx-auto mb-6 opacity-80" />
           <p className="text-white/90 font-sans text-lg md:text-2xl tracking-wide max-w-2xl mx-auto leading-relaxed drop-shadow-md">
-            Own a Golf-Inspired Luxury Plot in Faridabad
+            Own a Nature-Inspired Luxury Plot at Grand Forest Privé
           </p>
         </motion.div>
       </div>

@@ -60,7 +60,7 @@ export const ContactForm: React.FC = () => {
 
         if (!formData.phone.trim()) {
             newErrors.phone = "Mobile Number is required";
-        } else if (itiRef.current && !itiRef.current.isValidNumber()) {
+        } else if (formData.phone.replace(/\D/g, '').length < 7 && itiRef.current && !itiRef.current.isValidNumber()) {
             newErrors.phone = "Please enter a valid mobile number";
         }
 
@@ -179,7 +179,7 @@ export const ContactForm: React.FC = () => {
                                                 value={formData.phone}
                                                 onChange={handleInputChange}
                                                 className={`w-full bg-navy-950/70 border ${errors.phone ? 'border-red-500/60' : 'border-white/10'} rounded-xl pr-4 py-3.5 sm:py-3 text-white placeholder-gray-600 focus:outline-none focus:border-gold-400/60 transition-all text-base sm:text-sm font-medium`}
-                                                placeholder="Mobile Number"
+                                                placeholder="98765 43210"
                                             />
                                         </div>
                                         {errors.phone && <p className="text-[10px] text-red-400 flex items-center gap-1 mt-0.5"><AlertCircle size={10} /> {errors.phone}</p>}

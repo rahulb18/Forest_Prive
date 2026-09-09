@@ -5,6 +5,7 @@ import {
     Theater, Baby, Dog, Flame, HeartHandshake, 
     Droplets, Smile, Building2, ArrowRight 
 } from 'lucide-react';
+import { modalState } from '../lib/modal-state';
 
 const AMENITIES_LIST = [
     { 
@@ -38,7 +39,7 @@ const AMENITIES_LIST = [
         icon: Theater 
     },
     { 
-        title: "Kids' Play Area", 
+        title: "Kid's Play Area", 
         desc: "A dedicated outdoor space for younger residents.", 
         icon: Baby 
     },
@@ -54,17 +55,17 @@ const AMENITIES_LIST = [
     },
     { 
         title: "Reflexology Park", 
-        desc: "", 
+        desc: "A therapeutic stone pathway designed for natural healing and wellness.", 
         icon: HeartHandshake 
     },
     { 
         title: "Splash Pond", 
-        desc: "", 
+        desc: "A refreshing water feature designed for playful moments and gentle relaxation.", 
         icon: Droplets 
     },
     { 
         title: "Happy Street", 
-        desc: "", 
+        desc: "A vibrant pedestrian avenue designed for community celebrations and evening strolls.", 
         icon: Smile 
     },
 ];
@@ -100,7 +101,7 @@ export const Amenities: React.FC = () => {
                     {AMENITIES_LIST.map((amenity, idx) => {
                         const Icon = amenity.icon;
                         return (
-                            <RevealOnScroll key={idx} delay={idx * 20} variant="up">
+                            <RevealOnScroll key={idx} delay={idx * 20} variant="up" className="h-full">
                                 <div className="h-full bg-navy-900/80 border border-gold-400/20 p-3 sm:p-6 rounded-2xl group hover:border-gold-400/50 hover:bg-navy-900 transition-all duration-300 shadow-xl flex flex-col justify-between">
                                     <div>
                                         <div className="flex items-center justify-between mb-2.5 sm:mb-4">
@@ -125,17 +126,16 @@ export const Amenities: React.FC = () => {
                         );
                     })}
                 </div>
-
                 {/* Amenities CTA */}
                 <div className="text-center mb-16 sm:mb-24">
                     <RevealOnScroll variant="up">
-                        <a
-                            href="#Contact"
+                        <button
+                            onClick={() => modalState.open("NeoLiv Grand Forest Privé - Amenities & Club")}
                             className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-3.5 sm:py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-bold text-xs uppercase tracking-[0.22em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.35)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.5)] transition-all active:scale-95 cursor-pointer text-center"
                         >
                             <span>Explore All Amenities</span>
                             <ArrowRight size={14} />
-                        </a>
+                        </button>
                     </RevealOnScroll>
                 </div>
 
@@ -160,7 +160,7 @@ export const Amenities: React.FC = () => {
                                     
                                     <div className="space-y-3 sm:space-y-4 text-gray-300 text-sm sm:text-lg font-light leading-relaxed">
                                         <p>
-                                            Grand Forest Privé extends the lifestyle beyond the outdoors with access to two exclusive clubs.
+                                             Grand Forest Privé extends the lifestyle beyond the outdoors with access to two exclusive clubs.
                                         </p>
                                         <p>
                                             Designed as social and recreational destinations within the integrated township, they add another layer of exclusivity to everyday living.
@@ -168,13 +168,13 @@ export const Amenities: React.FC = () => {
                                     </div>
 
                                     <div className="pt-2 sm:pt-4">
-                                        <a
-                                            href="#Contact"
+                                        <button
+                                            onClick={() => modalState.open("NeoLiv Grand Forest Privé - Club Experience")}
                                             className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-3.5 sm:py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-bold text-xs uppercase tracking-[0.22em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.35)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.5)] transition-all active:scale-95 cursor-pointer text-center"
                                         >
                                             <span>Explore the Club Experience</span>
                                             <ArrowRight size={14} />
-                                        </a>
+                                        </button>
                                     </div>
                                 </div>
 
@@ -183,7 +183,7 @@ export const Amenities: React.FC = () => {
                                     <div className="relative rounded-2xl overflow-hidden border border-gold-400/30 shadow-2xl group">
                                         <div className="aspect-[4/3] relative bg-navy-950">
                                             <img
-                                                src="assets/neoliv_optimized/Golf Side villa.webp"
+                                                src="assets/grand_forest_optimized/amenities-club-deck.webp"
                                                 alt="Grand Forest Privé Club Experience"
                                                 loading="lazy"
                                                 decoding="async"

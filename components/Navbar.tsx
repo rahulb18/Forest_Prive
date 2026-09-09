@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { EnquiryModal } from './EnquiryModal';
+import { modalState } from '../lib/modal-state';
 
 export const Navbar: React.FC = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         let ticking = false;
@@ -65,8 +64,8 @@ export const Navbar: React.FC = () => {
                             </a>
                         ))}
                         <button
-                            onClick={() => setIsModalOpen(true)}
-                            className="bg-gold-400 text-navy-950 px-6 py-2.5 rounded-full text-[9px] uppercase tracking-[0.2em] font-bold hover:scale-105 hover:brightness-110 hover:shadow-2xl hover:shadow-gold-400/40 transition-all duration-500 shadow-xl shadow-gold-400/20 border border-gold-400/20"
+                            onClick={() => modalState.open("NeoLiv Grand Forest Privé - Enquiry")}
+                            className="bg-gold-400 text-navy-950 px-6 py-2.5 rounded-full text-[9px] uppercase tracking-[0.2em] font-bold hover:scale-105 hover:brightness-110 hover:shadow-2xl hover:shadow-gold-400/40 transition-all duration-500 shadow-xl shadow-gold-400/20 border border-gold-400/20 cursor-pointer"
                         >
                             Enquire Now
                         </button>
@@ -74,7 +73,7 @@ export const Navbar: React.FC = () => {
 
                     {/* Mobile & Tablet Toggle */}
                     <button
-                        className="xl:hidden text-gold-400 p-2"
+                        className="xl:hidden text-gold-400 p-2 cursor-pointer"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         aria-label="Toggle Navigation Menu"
                     >
@@ -94,7 +93,7 @@ export const Navbar: React.FC = () => {
                                 GRAND FOREST <span className="text-gold-400">PRIVÉ</span>
                             </span>
                         </div>
-                        <button onClick={() => setIsMobileMenuOpen(false)} className="text-gold-400 p-3 bg-white/5 rounded-full border border-white/10">
+                        <button onClick={() => setIsMobileMenuOpen(false)} className="text-gold-400 p-3 bg-white/5 rounded-full border border-white/10 cursor-pointer">
                             <X size={24} />
                         </button>
                     </div>
@@ -119,20 +118,15 @@ export const Navbar: React.FC = () => {
                         <button
                             onClick={() => {
                                 setIsMobileMenuOpen(false);
-                                setIsModalOpen(true);
+                                modalState.open("NeoLiv Grand Forest Privé - Enquiry");
                             }}
-                            className="w-full bg-gold-400 text-navy-900 py-4 rounded-xl font-bold uppercase tracking-widest shadow-xl shadow-gold-400/20 active:scale-95 transition-all"
+                            className="w-full bg-gold-400 text-navy-900 py-4 rounded-xl font-bold uppercase tracking-widest shadow-xl shadow-gold-400/20 active:scale-95 transition-all cursor-pointer"
                         >
                             Enquire Now
                         </button>
                     </div>
                 </div>
             </div>
-            <EnquiryModal
-                isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
-                title="Neoliv Grand Forest Privé - Enquiry"
-            />
         </>
     );
 };

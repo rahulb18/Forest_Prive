@@ -5,6 +5,7 @@ import { FloatingCTA } from './components/FloatingCTA';
 import { CinematicShowcase } from './components/CinematicShowcase';
 import { AboutNeoLiv } from './components/AboutNeoLiv';
 import { Preloader } from './components/Preloader';
+import { EnquiryModal } from './components/EnquiryModal';
 
 // Lazy Load heavier components
 const CuratedLifestyle = lazy(() => import('./components/CuratedLifestyle').then(m => ({ default: m.CuratedLifestyle })));
@@ -66,7 +67,7 @@ function App() {
               {/* Section 06: Curated Amenities & Section 07: Club Experience */}
               <div id="Amenities"><Amenities /></div>
 
-              {/* Section 08 & 12: Actual Site, Development & Gallery */}
+              {/* Section 08 & 12: Architectural Vision & Gallery */}
               <div id="Gallery"><Gallery /></div>
 
               {/* Section 09: Grand Privé Advantage & Section 10: Investment Opportunity */}
@@ -87,6 +88,7 @@ function App() {
             <FloatingCTA />
           </div>
         )}
+        <EnquiryModal />
       </main>
     </>
   );

@@ -9,13 +9,13 @@ const videos = [
   },
   { 
     id: 2, 
-    src: "assets/videos_optimized/Golfers_with_subtle_202604271837.mp4",
-    poster: "assets/videos_optimized/posters/Golfers_with_subtle_202604271837.webp"
+    src: "assets/videos_optimized/Video_Generation_Complete.mp4",
+    poster: "assets/grand_forest_optimized/overview-masterplan-backdrop.webp"
   },
   { 
     id: 3, 
-    src: "assets/videos_optimized/5773780_Coll_wavebreak_Golf_1280x720.mp4",
-    poster: "assets/videos_optimized/posters/5773780_Coll_wavebreak_Golf_1280x720.webp"
+    src: "assets/videos_optimized/Video_Generation_Complete (1).mp4",
+    poster: "assets/grand_forest_optimized/cinematic-club-facade.webp"
   },
   { 
     id: 4, 

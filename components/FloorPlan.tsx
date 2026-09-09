@@ -3,9 +3,9 @@ import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const floorPlans = [
-  { id: 1, src: 'assets/neoliv_optimized/Golf Bird Eye.webp', alt: 'Master Plan View 1' },
-  { id: 2, src: 'assets/neoliv_optimized/Golf View01.webp', alt: 'Master Plan View 2' },
-  { id: 3, src: 'assets/neoliv_optimized/Golf Aerial.webp', alt: 'Master Plan View 3' }
+  { id: 1, src: 'assets/grand_forest_optimized/overview-masterplan-backdrop.webp', alt: 'Grand Forest Privé Masterplan View' },
+  { id: 2, src: 'assets/grand_forest_optimized/cinematic-club-facade.webp', alt: 'Neo Club Architectural Plan View' },
+  { id: 3, src: 'assets/grand_forest_optimized/cinematic-event-lawns.webp', alt: 'Club Facilities & Lawns View' }
 ];
 
 export const FloorPlan: React.FC = () => {

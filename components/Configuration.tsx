@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { RevealOnScroll } from './RevealOnScroll';
 import { Lock } from 'lucide-react';
-import { EnquiryModal } from './EnquiryModal';
+import { modalState } from '../lib/modal-state';
 
 const plots = [
     { size: '1,500 SQ.FT', title: 'Plot Size 1', img: 'assets/floorplans/floorplan_1.png' },
@@ -11,13 +11,10 @@ const plots = [
 ];
 
 export const Configuration: React.FC = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [selectedPlot, setSelectedPlot] = useState<string | null>(null);
     const [activeIndex, setActiveIndex] = useState(0);
 
     const handleEnquire = (size: string) => {
-        setSelectedPlot(size);
-        setIsModalOpen(true);
+        modalState.open(`NeoLiv Grand Forest Privé - Plan Details: ${size}`);
     };
 
     return (
@@ -95,12 +92,6 @@ export const Configuration: React.FC = () => {
                     </div>
                 </div>
             </div>
-
-            <EnquiryModal
-                isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
-                title={selectedPlot ? `Plan Details: ${selectedPlot}` : "Request Floor Plan"}
-            />
         </section>
     );
 };

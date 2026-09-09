@@ -114,34 +114,16 @@ async function submitToMake(payload: any) {
 }
 
 /**
- * Main submission function
+ * Main submission function (Configured for Dummy Submit per client requirement)
  */
 export async function submitLead(data: LeadData) {
-    const ip = await getIP();
-    const agent = typeof navigator !== 'undefined' ? navigator.userAgent : '';
-    const websiteUrl = typeof window !== 'undefined' ? window.location.href : '';
-    const referrer = typeof document !== 'undefined' ? document.referrer : '';
+    // Simulate natural network latency
+    await new Promise(resolve => setTimeout(resolve, 450));
 
-    const payload = {
+    console.log("[Grand Forest Privé - Dummy Lead Submission Received]:", {
         ...data,
-        country_code: data.country_code || '91',
-        country_name: data.country_name || 'India',
-        ip_details: ip,
-        agent: agent,
-        url: websiteUrl,
-        page_url: websiteUrl,
-        referrer_url: referrer,
-        created_time: new Date().toISOString().slice(0, 19).replace('T', ' '),
-    };
-
-    // Parallel submissions
-    await Promise.allSettled([
-        submitToOptima(payload),
-        submitToMake(payload)
-    ]);
-
-    // Report conversion
-    reportGoogleConversion();
+        timestamp: new Date().toISOString(),
+    });
 
     return true;
 }

@@ -6,19 +6,19 @@ const masterpieceData = [
     title: "Bespoke Grandeur",
     subtitle: "A Masterclass in Luxury",
     description: "Every dimension of your estate is meticulously sculpted to reflect your taste. This is where architectural brilliance meets natural splendor, creating a sanctuary of unparalleled elegance.",
-    image: "assets/neoliv_optimized/Golf Mood View.webp",
+    image: "assets/grand_forest_optimized/lifestyle-waterbody.webp",
   },
   {
     title: "Curated Vistas",
-    subtitle: "Spectacular Golf Frontage",
-    description: "Wake up to infinite expanses of rolling greens. The spectacular golf course views are not just a backdrop, but an integral part of your daily living experience.",
-    image: "assets/neoliv_optimized/Golf Bird Eye.webp",
+    subtitle: "Panoramic Mountain Frontage",
+    description: "Wake up to infinite expanses of rolling green valleys and mountain vistas. The spectacular forest views are not just a backdrop, but an integral part of your daily living experience.",
+    image: "assets/grand_forest_optimized/overview-masterplan-backdrop.webp",
   },
   {
     title: "Exclusive Enclave",
     subtitle: "An Address of Distinction",
     description: "Join a community of the discerning few. With world-class amenities and unparalleled privacy, this is a legacy designed to be cherished for generations.",
-    image: "assets/neoliv_optimized/Golf Side villa.webp",
+    image: "assets/grand_forest_optimized/cinematic-club-facade.webp",
   }
 ];
 

@@ -3,27 +3,27 @@ import { motion, useScroll, useTransform, useSpring, MotionValue, AnimatePresenc
 
 const SCENES = [
   {
-    src: "assets/neoliv_optimized/Golf Aerial.webp",
+    src: "assets/grand_forest_optimized/cinematic-club-facade.webp",
     type: "panoramic"
   },
   {
-    src: "assets/neoliv_optimized/Golf Bird Eye.webp",
+    src: "assets/grand_forest_optimized/cinematic-pool-clubhouse.webp",
     type: "zoom"
   },
   {
-    src: "assets/neoliv_optimized/Golf Mood View.webp",
+    src: "assets/grand_forest_optimized/cinematic-pergola-jogging.webp",
     type: "panoramic"
   },
   {
-    src: "assets/neoliv_optimized/Golf Side villa.webp",
+    src: "assets/grand_forest_optimized/cinematic-reception.webp",
     type: "zoom"
   },
   {
-    src: "assets/neoliv_optimized/Golf View01.webp",
+    src: "assets/grand_forest_optimized/cinematic-gymnasium.webp",
     type: "panoramic"
   },
   {
-    src: "assets/neoliv_optimized/Road To Golf View.webp",
+    src: "assets/grand_forest_optimized/cinematic-event-lawns.webp",
     type: "zoom"
   }
 ];
@@ -135,6 +135,13 @@ export const CinematicShowcase: React.FC = () => {
             scrollYProgress={smoothProgress} 
           />
         ))}
+
+        {/* Artistic Impression Overlay Label */}
+        <div className="absolute top-6 right-6 z-[100] pointer-events-none">
+          <span className="px-3 py-1 rounded-full bg-navy-950/80 backdrop-blur-md border border-white/10 text-[9px] uppercase tracking-[0.2em] text-gold-300 font-semibold shadow-lg">
+            Artistic Impression
+          </span>
+        </div>
 
         {/* SIDE PROGRESS NAVIGATION - Responsive */}
         <div className="absolute left-6 md:left-10 top-1/2 -translate-y-1/2 z-[100] flex flex-col gap-6 md:gap-10">

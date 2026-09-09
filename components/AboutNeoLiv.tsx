@@ -60,6 +60,8 @@ export const AboutNeoLiv: React.FC = () => {
         <img
           src="assets/grand_forest_optimized/overview-masterplan-backdrop.webp"
           alt=""
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover object-center opacity-20 scale-105 filter blur-[1px]"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-navy-950/90 to-navy-950" />

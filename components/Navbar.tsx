@@ -57,7 +57,7 @@ export const Navbar: React.FC = () => {
                 <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center gap-6">
                     {/* Logo & Project Title */}
                     <a href="#" className="flex items-center gap-3 md:gap-3.5 group shrink-0">
-                        <img src="assets/logo.png" alt="NeoLiv" className="h-7 md:h-8 w-auto shrink-0 transition-transform group-hover:scale-105 duration-300" />
+                        <img src="assets/logo.png" alt="NeoLiv" width={113} height={32} className="h-7 md:h-8 w-auto shrink-0 transition-transform group-hover:scale-105 duration-300" />
                         <div className="w-px h-5 md:h-6 bg-gold-400/30 shrink-0" />
                         <span className="font-serif text-xs md:text-sm tracking-[0.2em] text-white uppercase font-bold leading-none whitespace-nowrap shrink-0">
                             GRAND FOREST <span className="text-gold-400">PRIVÉ</span>
@@ -106,7 +106,7 @@ export const Navbar: React.FC = () => {
                 {/* Header with Logo & Refined Close Button */}
                 <div className="relative z-10 flex justify-between items-center px-6 py-5 border-b border-white/10 shrink-0 bg-navy-950/40 backdrop-blur-md">
                     <div className="flex items-center gap-3 shrink-0">
-                        <img src="assets/logo.png" alt="NeoLiv" className="h-6 sm:h-7 w-auto shrink-0" />
+                        <img src="assets/logo.png" alt="NeoLiv" width={98} height={28} className="h-6 sm:h-7 w-auto shrink-0" />
                         <div className="w-px h-4 sm:h-5 bg-gold-400/30 shrink-0" />
                         <span className="font-serif text-xs tracking-[0.18em] text-white uppercase font-bold whitespace-nowrap leading-none">
                             GRAND FOREST <span className="text-gold-400">PRIVÉ</span>

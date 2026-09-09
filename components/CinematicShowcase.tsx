@@ -100,7 +100,7 @@ const Scene: React.FC<SceneProps> = ({ scene, index, totalScenes, scrollYProgres
         <img
           src={scene.src}
           alt=""
-          loading={index === 0 ? "eager" : "lazy"}
+          loading="lazy"
           decoding="async"
           className="w-full h-full object-cover"
         />

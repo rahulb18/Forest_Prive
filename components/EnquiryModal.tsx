@@ -176,6 +176,8 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                     <img 
                         src="assets/logo.png" 
                         alt="NeoLiv" 
+                        width={98}
+                        height={28}
                         className="h-6 sm:h-7 w-auto mb-2 opacity-95 brightness-110 drop-shadow-md" 
                     />
                     <h3 className="font-serif text-sm sm:text-base md:text-lg tracking-[0.22em] text-white uppercase font-bold leading-tight whitespace-nowrap">

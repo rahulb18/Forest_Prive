@@ -93,20 +93,8 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
     // Safety timeout: Never hold ready signal past 300ms
     const readyTimer = setTimeout(triggerExperienceReady, 300);
 
-    // 2. Gentle Initial Buffer (Frames 1-6) without blocking the thread
-    const initBufferTimer = setTimeout(() => {
-      for (let i = 1; i <= 6 && i < FRAME_COUNT; i++) {
-        if (!images[i]) {
-          const img = new Image();
-          img.src = FRAME_PATH(i);
-          images[i] = img;
-        }
-      }
-    }, 600);
-
     return () => {
       clearTimeout(readyTimer);
-      clearTimeout(initBufferTimer);
     };
   }, []);
 
@@ -235,7 +223,7 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
 
         {/* Top Brand Lockup */}
         <div className="absolute top-5 sm:top-8 md:top-10 left-1/2 -translate-x-1/2 z-30 pointer-events-none text-center px-4 w-full max-w-xl flex flex-col items-center">
-            <img src="assets/logo.png" alt="NeoLiv" className="h-6 sm:h-7 md:h-8 w-auto mb-2 opacity-95 drop-shadow-md" />
+            <img src="assets/logo.png" alt="NeoLiv" width={113} height={32} className="h-6 sm:h-7 md:h-8 w-auto mb-2 opacity-95 drop-shadow-md" />
             <h1 className="font-serif text-sm sm:text-base md:text-xl text-white tracking-[0.22em] uppercase font-bold drop-shadow-2xl">
                 GRAND FOREST <span className="text-gold-400">PRIVÉ</span>
             </h1>

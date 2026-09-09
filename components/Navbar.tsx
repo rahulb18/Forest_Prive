@@ -85,7 +85,8 @@ export const Navbar: React.FC = () => {
 
                     {/* Mobile & Tablet Toggle */}
                     <button
-                        className="xl:hidden text-gold-400 p-2 cursor-pointer"
+                        type="button"
+                        className="xl:hidden text-gold-400 p-2 cursor-pointer touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center active:scale-95"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         aria-label="Toggle Navigation Menu"
                     >

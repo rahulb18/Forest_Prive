@@ -88,7 +88,8 @@ const Scene: React.FC<SceneProps> = ({ scene, index, totalScenes, scrollYProgres
         <img
           src={scene.src}
           alt="NeoLiv Grand Forest Privé"
-          decoding="sync"
+          decoding="async"
+          loading={index === 0 ? "eager" : "lazy"}
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-navy-950/40 via-transparent to-navy-950/60" />

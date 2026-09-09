@@ -100,16 +100,19 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
       }
     })();
 
-    // 2. Pre-buffer initial frames (1-10) after 200ms so scroll is smooth from pixel 1
+    // 2. Pre-buffer on desktop only after a safe delay, keeping mobile cellular bandwidth 100% free
     const bufferTimer = setTimeout(() => {
-      for (let i = 1; i <= 10 && i < FRAME_COUNT; i++) {
-        if (!images[i]) {
-          const img = new Image();
-          img.src = FRAME_PATH(i);
-          images[i] = img;
+      const isMobile = window.innerWidth < 768;
+      if (!isMobile) {
+        for (let i = 1; i <= 4 && i < FRAME_COUNT; i++) {
+          if (!images[i]) {
+            const img = new Image();
+            img.src = FRAME_PATH(i);
+            images[i] = img;
+          }
         }
       }
-    }, 200);
+    }, 1200);
 
     const readyTimer = setTimeout(triggerExperienceReady, 300);
 
@@ -129,6 +132,7 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
 
     let rafId = 0;
     let lastFrame = -1;
+    let lastReportedFrame = -1;
 
     const render = () => {
       const h = window.innerHeight;
@@ -142,40 +146,58 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
         return;
       }
 
-      const lerpFactor = isMobile ? 0.14 : 0.09;
-      scrollProg.current += (targetScrollProg.current - scrollProg.current) * lerpFactor;
+      const diff = targetScrollProg.current - scrollProg.current;
+      const isMoving = Math.abs(diff) > 0.0001;
+
+      if (isMoving) {
+        const lerpFactor = isMobile ? 0.2 : 0.09;
+        scrollProg.current += diff * lerpFactor;
+      } else {
+        scrollProg.current = targetScrollProg.current;
+      }
+
       const frameIndex = Math.min(FRAME_COUNT - 1, Math.max(0, Math.floor(scrollProg.current * FRAME_COUNT)));
 
-      // Buffer upcoming frames
-      const BUFFER_AHEAD = 12;
-      const targetEnd = Math.min(FRAME_COUNT, frameIndex + BUFFER_AHEAD);
-      for (let i = frameIndex; i < targetEnd; i++) {
-        if (!images[i]) {
-          const nextImg = new Image();
-          nextImg.src = FRAME_PATH(i);
-          images[i] = nextImg;
-        }
-      }
-
-      let img = images[frameIndex];
-      if (!img || !img.complete || img.naturalWidth === 0) {
-        for (let f = frameIndex - 1; f >= 0; f--) {
-          if (images[f]?.complete && images[f]?.naturalWidth > 0) {
-            img = images[f];
-            break;
+      // Buffer upcoming frames ONLY when user is scrolling into the sequence
+      if (scrollProg.current > 0.001) {
+        const BUFFER_AHEAD = isMobile ? 3 : 8;
+        const targetEnd = Math.min(FRAME_COUNT, frameIndex + BUFFER_AHEAD);
+        for (let i = frameIndex; i < targetEnd; i++) {
+          if (!images[i]) {
+            const nextImg = new Image();
+            nextImg.src = FRAME_PATH(i);
+            images[i] = nextImg;
           }
         }
-        if (!img || !img.complete) {
-          img = images[0];
+      }
+
+      // ONLY redraw canvas when frameIndex has actually changed
+      if (frameIndex !== lastFrame) {
+        let img = images[frameIndex];
+        if (!img || !img.complete || img.naturalWidth === 0) {
+          for (let f = frameIndex - 1; f >= 0; f--) {
+            if (images[f]?.complete && images[f]?.naturalWidth > 0) {
+              img = images[f];
+              break;
+            }
+          }
+          if (!img || !img.complete) {
+            img = images[0];
+          }
+        }
+
+        if (img && img.complete && img.naturalWidth > 0) {
+          ctx.drawImage(img, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+          lastFrame = frameIndex;
         }
       }
 
-      if (img && img.complete && img.naturalWidth > 0) {
-        ctx.drawImage(img, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-        lastFrame = frameIndex;
+      // CRITICAL FOR MOBILE SAFARI: ONLY trigger React state update when frame actually changes
+      if (frameIndex !== lastReportedFrame) {
+        lastReportedFrame = frameIndex;
+        setCurrentFrame(frameIndex);
       }
 
-      setCurrentFrame(frameIndex);
       rafId = requestAnimationFrame(render);
     };
 
@@ -222,7 +244,7 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
 
         {/* Initial Hero Welcome Panel - Focused Luxury Editorial: Single Headline with CTAs */}
         <div className={`absolute inset-0 z-20 flex flex-col items-center justify-center px-4 sm:px-6 text-center transition-all duration-700 pointer-events-none ${currentFrame <= 15 ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-6"}`}>
-            <div className="max-w-4xl space-y-4 sm:space-y-6 relative py-4 px-2">
+            <div className="max-w-4xl space-y-4 sm:space-y-6 relative py-4 px-2 pointer-events-auto">
                 {/* Soft feathered dark aura directly behind the headline and CTAs */}
                 <div className="absolute inset-0 bg-navy-950/50 rounded-full blur-3xl -z-10 scale-110 pointer-events-none" />
                 
@@ -239,18 +261,34 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
                     <span className="text-[#F6D57E] italic font-serif">Becomes a Privilege.</span>
                 </h2>
 
-                {/* Dual Luxury Action CTAs */}
-                <div className="flex flex-row items-center justify-center gap-3 sm:gap-5 pointer-events-auto w-full max-w-sm sm:max-w-md mx-auto pt-2 sm:pt-4">
+                {/* Dual Luxury Action CTAs with Instant Touch Response */}
+                <div className="flex flex-row items-center justify-center gap-3 sm:gap-5 pointer-events-auto relative z-30 w-full max-w-sm sm:max-w-md mx-auto pt-2 sm:pt-4 touch-manipulation">
                     <a
                         href="#Overview"
-                        className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-5 py-3.5 sm:px-8 sm:py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-bold text-[11px] sm:text-xs uppercase tracking-[0.16em] sm:tracking-[0.18em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.45)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.6)] transition-all active:scale-95 cursor-pointer whitespace-nowrap"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            const el = document.getElementById("Overview");
+                            if (el) {
+                                el.scrollIntoView({ behavior: "smooth" });
+                            } else {
+                                const h = window.innerHeight;
+                                const isMobile = window.innerWidth < 768;
+                                window.scrollTo({ top: h * (isMobile ? 6 : 12) + 50, behavior: "smooth" });
+                            }
+                        }}
+                        className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-5 py-3.5 sm:px-8 sm:py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-bold text-[11px] sm:text-xs uppercase tracking-[0.16em] sm:tracking-[0.18em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.45)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.6)] transition-all active:scale-95 cursor-pointer whitespace-nowrap touch-manipulation select-none min-h-[44px]"
                     >
                         <span>Explore Grand Forest Privé</span>
                         <ArrowRight size={14} className="hidden sm:inline" />
                     </a>
                     <button
-                        onClick={() => modalState.open("NeoLiv Grand Forest Privé - Enquiry")}
-                        className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-5 py-3.5 sm:px-8 sm:py-4 bg-black/60 hover:bg-black/80 text-white border border-gold-400/60 hover:border-gold-400 text-[11px] sm:text-xs uppercase tracking-[0.16em] sm:tracking-[0.18em] font-semibold rounded-full backdrop-blur-md shadow-[0_4px_25px_rgba(0,0,0,0.6)] hover:shadow-[0_6px_30px_rgba(212,175,55,0.3)] transition-all active:scale-95 cursor-pointer whitespace-nowrap"
+                        type="button"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            modalState.open("NeoLiv Grand Forest Privé - Enquiry");
+                        }}
+                        className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-5 py-3.5 sm:px-8 sm:py-4 bg-black/60 hover:bg-black/80 active:bg-black/90 text-white border border-gold-400/60 hover:border-gold-400 text-[11px] sm:text-xs uppercase tracking-[0.16em] sm:tracking-[0.18em] font-semibold rounded-full backdrop-blur-md shadow-[0_4px_25px_rgba(0,0,0,0.6)] hover:shadow-[0_6px_30px_rgba(212,175,55,0.3)] transition-all active:scale-95 cursor-pointer whitespace-nowrap touch-manipulation select-none min-h-[44px]"
                     >
                         Enquire Now
                     </button>

@@ -21,7 +21,7 @@ function App() {
 
   // OPTIMIZATION: Instant Hero LCP with gentle deferred mounting for below-the-fold sections
   useEffect(() => {
-    if (window.scrollY > 50) {
+    if (window.scrollY > 20) {
       setShouldRenderContent(true);
       return;
     }
@@ -30,19 +30,22 @@ function App() {
       setShouldRenderContent(true);
       window.removeEventListener('scroll', handleFirstInteraction);
       window.removeEventListener('touchstart', handleFirstInteraction);
+      window.removeEventListener('click', handleFirstInteraction);
     };
 
     window.addEventListener('scroll', handleFirstInteraction, { passive: true });
     window.addEventListener('touchstart', handleFirstInteraction, { passive: true });
+    window.addEventListener('click', handleFirstInteraction, { passive: true });
 
     const timer = setTimeout(() => {
       setShouldRenderContent(true);
-    }, 200);
+    }, 1200);
 
     return () => {
       clearTimeout(timer);
       window.removeEventListener('scroll', handleFirstInteraction);
       window.removeEventListener('touchstart', handleFirstInteraction);
+      window.removeEventListener('click', handleFirstInteraction);
     };
   }, []);
 

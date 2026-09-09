@@ -69,20 +69,20 @@ export const FloatingCTA: React.FC = () => {
         </button>
       </div>
 
-      {/* MOBILE: App-Style Floating Bottom Dock */}
+      {/* MOBILE: App-Style Floating Bottom Dock with Instant Touch Response */}
       <div
-        className={`md:hidden fixed bottom-3 left-3 right-3 z-[250] bg-navy-950/92 backdrop-blur-xl border border-gold-400/30 rounded-2xl shadow-[0_10px_35px_rgba(0,0,0,0.85)] p-1.5 flex items-center justify-between gap-1.5 transition-all duration-500 ${
+        className={`md:hidden fixed bottom-3 left-3 right-3 z-[250] bg-navy-950/92 backdrop-blur-xl border border-gold-400/30 rounded-2xl shadow-[0_10px_35px_rgba(0,0,0,0.85)] p-1.5 flex items-center justify-between gap-1.5 transition-all duration-500 touch-manipulation select-none ${
           isVisible
-            ? "translate-y-0 opacity-100"
+            ? "translate-y-0 opacity-100 pointer-events-auto"
             : "translate-y-16 opacity-0 pointer-events-none"
         }`}
       >
         {/* 1. Call Now */}
         <a
           href="tel:+917607608555"
-          className="flex-1 py-2.5 px-2 flex items-center justify-center gap-1.5 rounded-xl text-gray-200 hover:text-gold-400 active:bg-white/10 transition-all font-medium text-[10px] uppercase tracking-wider"
+          className="flex-1 py-3 px-2 flex items-center justify-center gap-1.5 rounded-xl text-gray-200 hover:text-gold-400 active:bg-white/15 transition-all font-medium text-[10px] uppercase tracking-wider touch-manipulation min-h-[44px]"
         >
-          <Phone size={13} className="text-gold-400" />
+          <Phone size={14} className="text-gold-400" />
           <span>Call Now</span>
         </a>
 
@@ -93,9 +93,9 @@ export const FloatingCTA: React.FC = () => {
           href="https://wa.me/917607608555?text=Hi%2C%20I%20am%20interested%20in%20Grand%20Forest%20Priv%C3%A9."
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-1 py-2.5 px-2 flex items-center justify-center gap-1.5 rounded-xl text-gray-200 hover:text-emerald-400 active:bg-white/10 transition-all font-medium text-[10px] uppercase tracking-wider"
+          className="flex-1 py-3 px-2 flex items-center justify-center gap-1.5 rounded-xl text-gray-200 hover:text-emerald-400 active:bg-white/15 transition-all font-medium text-[10px] uppercase tracking-wider touch-manipulation min-h-[44px]"
         >
-          <MessageCircle size={13} className="text-emerald-400" />
+          <MessageCircle size={14} className="text-emerald-400" />
           <span>WhatsApp</span>
         </a>
 
@@ -103,10 +103,14 @@ export const FloatingCTA: React.FC = () => {
 
         {/* 3. Enquire */}
         <button
-          onClick={() => openEnquiry("NeoLiv Grand Forest Privé - Enquiry")}
-          className="flex-1 py-2.5 px-2 flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 text-navy-950 font-bold shadow-md active:scale-95 transition-all text-[10px] uppercase tracking-wider cursor-pointer"
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            openEnquiry("NeoLiv Grand Forest Privé - Enquiry");
+          }}
+          className="flex-1 py-3 px-2 flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 text-navy-950 font-bold shadow-md active:scale-95 transition-all text-[10px] uppercase tracking-wider cursor-pointer touch-manipulation min-h-[44px]"
         >
-          <Send size={12} className="text-navy-950" />
+          <Send size={13} className="text-navy-950" />
           <span>Enquire</span>
         </button>
       </div>

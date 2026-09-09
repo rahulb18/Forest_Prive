@@ -152,31 +152,34 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
     };
 
     return (
-        <div className="fixed inset-0 z-[99999] overflow-y-auto flex flex-col items-center justify-center p-3 sm:p-6 pt-16 sm:pt-6 pb-6">
-            {/* Full Viewport Dark Backdrop - Completely covers screen and mobile navbar */}
-            <div className="fixed inset-0 bg-navy-950/98 backdrop-blur-xl z-0" onClick={handleClose} />
+        <div className="fixed inset-0 z-[99999] flex items-center justify-center p-3.5 sm:p-6 overflow-hidden">
+            {/* Full Viewport Dark Backdrop */}
+            <div className="fixed inset-0 bg-navy-950/95 backdrop-blur-xl z-0" onClick={handleClose} />
 
             {/* Modal Dialog Card */}
-            <div className="relative z-10 bg-navy-900 border border-gold-400/30 w-full max-w-lg rounded-3xl shadow-[0_25px_70px_rgba(0,0,0,0.98)] max-h-[88dvh] flex flex-col my-auto overflow-hidden animate-in fade-in zoom-in duration-300">
+            <div className="relative z-10 bg-navy-900 border border-gold-400/30 w-full max-w-lg rounded-3xl shadow-[0_25px_70px_rgba(0,0,0,0.98)] max-h-[92dvh] flex flex-col overflow-hidden animate-in fade-in zoom-in duration-300">
                 
                 {/* Header with High-Contrast Touch Target Close Button */}
-                <div className="pt-6 sm:pt-8 pb-3 px-6 flex flex-col items-center relative border-b border-white/5 shrink-0">
+                <div className="pt-6 pb-3 px-6 flex flex-col items-center relative border-b border-white/5 shrink-0">
                     <button
                         onClick={handleClose}
-                        className="absolute right-4 sm:right-6 top-4 sm:top-6 w-10 h-10 rounded-full bg-white/10 hover:bg-gold-400 hover:text-navy-950 text-gray-300 flex items-center justify-center transition-all cursor-pointer shadow-lg active:scale-95 z-20"
+                        className="absolute right-4 sm:right-5 top-4 sm:top-5 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/10 hover:bg-gold-400 hover:text-navy-950 text-gray-300 flex items-center justify-center transition-all cursor-pointer shadow-lg active:scale-95 z-20 border border-white/10"
                         aria-label="Close modal"
                     >
-                        <X size={20} />
+                        <X size={18} className="sm:w-5 sm:h-5" />
                     </button>
-                    <p className="text-gold-400 font-mono text-[9px] uppercase tracking-[0.3em] mb-1">Neoliv Plotted Living</p>
-                    <h3 className="text-white font-serif text-lg sm:text-xl tracking-[0.15em] uppercase text-center px-8">
-                        {title}
+                    <img 
+                        src="assets/logo.png" 
+                        alt="NeoLiv" 
+                        className="h-6 sm:h-7 w-auto mb-2 opacity-95 brightness-110 drop-shadow-md" 
+                    />
+                    <h3 className="font-serif text-sm sm:text-base md:text-lg tracking-[0.22em] text-white uppercase font-bold leading-tight whitespace-nowrap">
+                        GRAND FOREST <span className="text-gold-400">PRIVÉ</span>
                     </h3>
-                    <div className="w-12 h-px bg-gold-400/50 mt-2"></div>
                 </div>
 
-                {/* Modal Scrollable Body */}
-                <div className="p-6 sm:p-8 pt-4 overflow-y-auto flex-1">
+                {/* Modal Body with hidden scrollbar */}
+                <div className="p-5 sm:p-7 pt-3 sm:pt-4 overflow-y-auto hide-scrollbar flex-1">
                     {isLocalSubmitted ? (
                         <div className="text-center py-6 sm:py-8 animate-in fade-in zoom-in duration-500">
                             <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gold-400/10 text-gold-400 rounded-full flex items-center justify-center mx-auto mb-5 sm:mb-6 shadow-2xl shadow-gold-400/20 border border-gold-400/30">
@@ -195,10 +198,10 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                         </div>
                     ) : (
                         <>
-                            <p className="text-gray-400 text-[10px] sm:text-[11px] uppercase tracking-widest mb-5 text-center">
+                            <p className="text-gray-400 text-[10px] sm:text-[11px] uppercase tracking-widest mb-3.5 text-center">
                                 Connect with our luxury property advisors
                             </p>
-                            <form className="space-y-3.5 sm:space-y-4" onSubmit={(e) => { e.preventDefault(); handleSubmit('callback'); }}>
+                            <form className="space-y-3 sm:space-y-3.5" onSubmit={(e) => { e.preventDefault(); handleSubmit('callback'); }}>
                                 <div className="space-y-1">
                                     <input
                                         type="text"
@@ -206,7 +209,7 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                                         value={formData.name}
                                         onChange={handleInputChange}
                                         placeholder="FULL NAME*"
-                                        className={`w-full bg-navy-950/70 border ${errors.name ? 'border-red-500/50' : 'border-white/10'} rounded-xl py-3 px-4 text-white focus:border-gold-400/50 focus:outline-none transition-all placeholder:text-gray-500 text-base sm:text-xs tracking-wider font-medium`}
+                                        className={`w-full bg-navy-950/70 border ${errors.name ? 'border-red-500/50' : 'border-white/10'} rounded-xl py-2.5 sm:py-3 px-3.5 text-white focus:border-gold-400/50 focus:outline-none transition-all placeholder:text-gray-500 text-sm sm:text-xs tracking-wider font-medium`}
                                     />
                                     {errors.name && <p className="text-[9px] text-red-400 flex items-center gap-1 ml-1"><AlertCircle size={8} /> {errors.name}</p>}
                                 </div>
@@ -219,7 +222,7 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                                         value={formData.phone}
                                         onChange={handleInputChange}
                                         placeholder="98765 43210"
-                                        className={`w-full bg-navy-950/70 border ${errors.phone ? 'border-red-500/50' : 'border-white/10'} rounded-xl py-3 px-4 text-white focus:border-gold-400/50 focus:outline-none transition-all placeholder:text-gray-500 text-base sm:text-xs tracking-wider font-medium`}
+                                        className={`w-full bg-navy-950/70 border ${errors.phone ? 'border-red-500/50' : 'border-white/10'} rounded-xl py-2.5 sm:py-3 px-3.5 text-white focus:border-gold-400/50 focus:outline-none transition-all placeholder:text-gray-500 text-sm sm:text-xs tracking-wider font-medium`}
                                     />
                                     {errors.phone && <p className="text-[9px] text-red-400 flex items-center gap-1 ml-1"><AlertCircle size={8} /> {errors.phone}</p>}
                                 </div>
@@ -231,12 +234,12 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                                         value={formData.email}
                                         onChange={handleInputChange}
                                         placeholder="EMAIL ADDRESS*"
-                                        className={`w-full bg-navy-950/70 border ${errors.email ? 'border-red-500/50' : 'border-white/10'} rounded-xl py-3 px-4 text-white focus:border-gold-400/50 focus:outline-none transition-all placeholder:text-gray-500 text-base sm:text-xs tracking-wider font-medium`}
+                                        className={`w-full bg-navy-950/70 border ${errors.email ? 'border-red-500/50' : 'border-white/10'} rounded-xl py-2.5 sm:py-3 px-3.5 text-white focus:border-gold-400/50 focus:outline-none transition-all placeholder:text-gray-500 text-sm sm:text-xs tracking-wider font-medium`}
                                     />
                                     {errors.email && <p className="text-[9px] text-red-400 flex items-center gap-1 ml-1"><AlertCircle size={8} /> {errors.email}</p>}
                                 </div>
 
-                                <div className="pt-1">
+                                <div className="pt-0.5">
                                     <label className="flex items-start gap-2.5 cursor-pointer select-none">
                                         <input
                                             type="checkbox"
@@ -251,7 +254,7 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                                                     });
                                                 }
                                             }}
-                                            className="mt-0.5 rounded border-white/20 bg-navy-950 text-gold-400 focus:ring-gold-400/40 w-3.5 h-3.5 cursor-pointer accent-amber-400"
+                                            className="mt-0.5 rounded border-white/20 bg-navy-950 text-gold-400 focus:ring-gold-400/40 w-3.5 h-3.5 cursor-pointer accent-amber-400 shrink-0"
                                         />
                                         <span className="text-[9.5px] sm:text-[10px] text-gray-300 leading-relaxed font-light">
                                             I authorize Grand Forest Privé and its representatives to contact me via Call, SMS, or WhatsApp regarding project updates.
@@ -260,18 +263,18 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                                     {errors.consent && <p className="text-[9px] text-red-400 flex items-center gap-1 ml-1 mt-0.5"><AlertCircle size={8} /> {errors.consent}</p>}
                                 </div>
 
-                                <div className="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div className="pt-1.5 grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
                                     <button
                                         type="button"
                                         disabled={loading}
                                         onClick={() => handleSubmit('callback')}
-                                        className="w-full bg-gold-400 text-navy-950 font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 hover:bg-gold-300 transition-all shadow-lg shadow-gold-400/10 uppercase tracking-wider text-[11px] disabled:opacity-50 active:scale-95 cursor-pointer"
+                                        className="w-full bg-gold-400 text-navy-950 font-bold py-3 sm:py-3.5 rounded-xl flex items-center justify-center gap-2 hover:bg-gold-300 transition-all shadow-lg shadow-gold-400/10 uppercase tracking-wider text-[11px] disabled:opacity-50 active:scale-95 cursor-pointer"
                                     >
                                         {loading && actionType === 'callback' ? (
                                             <div className="w-4 h-4 border-2 border-navy-900/30 border-t-navy-900 rounded-full animate-spin" />
                                         ) : (
                                             <>
-                                                <PhoneCall size={14} />
+                                                <PhoneCall size={13} />
                                                 Request Call Back
                                             </>
                                         )}
@@ -281,13 +284,13 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                                         type="button"
                                         disabled={loading}
                                         onClick={() => handleSubmit('visit')}
-                                        className="w-full bg-white/10 text-white border border-white/20 font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 hover:bg-white/15 transition-all uppercase tracking-wider text-[11px] disabled:opacity-50 active:scale-95 cursor-pointer"
+                                        className="w-full bg-white/10 text-white border border-white/20 font-bold py-3 sm:py-3.5 rounded-xl flex items-center justify-center gap-2 hover:bg-white/15 transition-all uppercase tracking-wider text-[11px] disabled:opacity-50 active:scale-95 cursor-pointer"
                                     >
                                         {loading && actionType === 'visit' ? (
                                             <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                                         ) : (
                                             <>
-                                                <Calendar size={14} />
+                                                <Calendar size={13} />
                                                 Schedule Visit
                                             </>
                                         )}

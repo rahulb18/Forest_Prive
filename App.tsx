@@ -34,7 +34,7 @@ function App() {
     <>
       <Preloader onComplete={() => setLoading(false)} progress={loadingProgress} />
       
-      <main className={`w-full min-h-screen bg-transparent selection:bg-gold-400 selection:text-navy-900 transition-opacity duration-1000 ${loading ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100'}`}>
+      <main className={`w-full min-h-screen bg-transparent selection:bg-gold-400 selection:text-navy-900 ${loading ? 'pointer-events-none' : 'pointer-events-auto'}`}>
         {/* Section 1: Header & Navigation */}
         <Navbar />
 

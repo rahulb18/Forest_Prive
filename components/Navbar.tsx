@@ -25,6 +25,18 @@ export const Navbar: React.FC = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    // Lock body scroll when mobile menu is open
+    useEffect(() => {
+        if (isMobileMenuOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [isMobileMenuOpen]);
+
     const navLinks = [
         { name: 'Overview', href: '#Overview' },
         { name: 'Lifestyle', href: '#Lifestyle' },
@@ -83,48 +95,60 @@ export const Navbar: React.FC = () => {
             </nav>
 
             {/* Mobile Menu Overlay */}
-            <div className={`fixed inset-0 z-[200] bg-navy-950 overflow-y-auto transition-transform duration-500 ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'} xl:hidden`}>
-                <div className="flex flex-col min-h-screen p-6 md:p-8">
-                    <div className="flex justify-between items-center mb-10">
-                        <div className="flex items-center gap-3 shrink-0">
-                            <img src="assets/logo.png" alt="NeoLiv" className="h-7 w-auto shrink-0" />
-                            <div className="w-px h-5 bg-gold-400/30 shrink-0" />
-                            <span className="font-serif text-xs tracking-[0.18em] text-white uppercase font-bold whitespace-nowrap leading-none">
-                                GRAND FOREST <span className="text-gold-400">PRIVÉ</span>
-                            </span>
-                        </div>
-                        <button onClick={() => setIsMobileMenuOpen(false)} className="text-gold-400 p-3 bg-white/5 rounded-full border border-white/10 cursor-pointer">
-                            <X size={24} />
-                        </button>
-                    </div>
+            <div 
+                className={`fixed inset-0 z-[200] bg-gradient-to-b from-[#070e1e] via-[#091224] to-[#050a16] transition-all duration-300 ease-out ${
+                    isMobileMenuOpen ? 'opacity-100 pointer-events-auto translate-x-0' : 'opacity-0 pointer-events-none translate-x-full'
+                } xl:hidden flex flex-col h-[100dvh] max-h-[100dvh] overflow-hidden`}
+            >
+                {/* Subtle Background Glow */}
+                <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-gold-400/5 rounded-full blur-[100px] pointer-events-none" />
 
-                    <div className="flex flex-col gap-5 text-center mb-12">
-                        {navLinks.map((link) => (
-                            <a
-                                key={link.name}
-                                href={link.href}
-                                onClick={() => setIsMobileMenuOpen(false)}
-                                className="text-lg font-serif text-white hover:text-gold-400 transition-colors uppercase tracking-widest"
-                            >
-                                {link.name}
-                            </a>
-                        ))}
-                    </div>
-
-                    <div className="mt-auto pt-8 border-t border-white/10 text-center pb-8">
-                        <p className="text-white font-serif text-base mb-6 tracking-[0.22em] uppercase font-bold">
+                {/* Header with Logo & Refined Close Button */}
+                <div className="relative z-10 flex justify-between items-center px-6 py-5 border-b border-white/10 shrink-0 bg-navy-950/40 backdrop-blur-md">
+                    <div className="flex items-center gap-3 shrink-0">
+                        <img src="assets/logo.png" alt="NeoLiv" className="h-6 sm:h-7 w-auto shrink-0" />
+                        <div className="w-px h-4 sm:h-5 bg-gold-400/30 shrink-0" />
+                        <span className="font-serif text-xs tracking-[0.18em] text-white uppercase font-bold whitespace-nowrap leading-none">
                             GRAND FOREST <span className="text-gold-400">PRIVÉ</span>
-                        </p>
-                        <button
-                            onClick={() => {
-                                setIsMobileMenuOpen(false);
-                                modalState.open("NeoLiv Grand Forest Privé - Enquiry");
-                            }}
-                            className="w-full bg-gold-400 text-navy-900 py-4 rounded-xl font-bold uppercase tracking-widest shadow-xl shadow-gold-400/20 active:scale-95 transition-all cursor-pointer"
-                        >
-                            Enquire Now
-                        </button>
+                        </span>
                     </div>
+                    <button 
+                        onClick={() => setIsMobileMenuOpen(false)} 
+                        className="w-10 h-10 rounded-full flex items-center justify-center bg-white/5 hover:bg-white/10 active:scale-90 border border-gold-400/40 text-gold-400 transition-all cursor-pointer shadow-lg shadow-black/40"
+                        aria-label="Close navigation menu"
+                    >
+                        <X size={20} className="stroke-[2.2]" />
+                    </button>
+                </div>
+
+                {/* Central Navigation Links - Centered vertically to prevent any vertical scroll */}
+                <div className="relative z-10 flex-1 flex flex-col justify-center items-center gap-5 sm:gap-6 px-6 py-4 overflow-y-auto hide-scrollbar">
+                    {navLinks.map((link) => (
+                        <a
+                            key={link.name}
+                            href={link.href}
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="font-serif text-lg sm:text-xl text-white hover:text-gold-400 active:text-gold-300 transition-colors uppercase tracking-[0.22em] font-medium active:scale-95 py-1 text-center drop-shadow-md"
+                        >
+                            {link.name}
+                        </a>
+                    ))}
+                </div>
+
+                {/* Bottom Action Section - Pinned and fully visible */}
+                <div className="relative z-10 px-6 pt-4 pb-7 border-t border-white/10 text-center shrink-0 bg-navy-950/80 backdrop-blur-md">
+                    <p className="text-[10px] tracking-[0.25em] text-gold-400/90 font-mono uppercase mb-3">
+                        GRAND FOREST <span className="text-white font-serif font-bold">PRIVÉ</span>
+                    </p>
+                    <button
+                        onClick={() => {
+                            setIsMobileMenuOpen(false);
+                            modalState.open("NeoLiv Grand Forest Privé - Mobile Menu Enquiry");
+                        }}
+                        className="w-full bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-bold py-3.5 rounded-full text-xs uppercase tracking-[0.2em] shadow-[0_4px_20px_rgba(212,175,55,0.35)] active:scale-95 transition-all cursor-pointer"
+                    >
+                        Enquire Now
+                    </button>
                 </div>
             </div>
         </>

@@ -12,6 +12,26 @@ export default defineConfig(({ mode }) => {
         host: '0.0.0.0',
       },
       plugins: [react()],
+      build: {
+        rollupOptions: {
+          output: {
+            manualChunks(id) {
+              if (id.includes('node_modules/framer-motion')) {
+                return 'vendor-framer';
+              }
+              if (id.includes('node_modules/yet-another-react-lightbox')) {
+                return 'vendor-lightbox';
+              }
+              if (id.includes('node_modules/lucide-react')) {
+                return 'vendor-icons';
+              }
+              if (id.includes('node_modules/react') || id.includes('node_modules/react-dom') || id.includes('node_modules/scheduler')) {
+                return 'vendor-react';
+              }
+            }
+          }
+        }
+      },
       define: {
         'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
         'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)

@@ -98,7 +98,7 @@ export const Location: React.FC = () => {
                             {/* Exact CTA: View Location */}
                             <div className="pt-4 sm:pt-6">
                                 <a
-                                    href="https://maps.google.com/?q=Mumbai+Pune+Expressway"
+                                    href="https://www.google.com/maps/search/?api=1&query=Neoliv+Grand+Forest+Prive"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-3.5 sm:py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-bold text-xs uppercase tracking-[0.22em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.35)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.5)] transition-all active:scale-95 cursor-pointer text-center"
@@ -117,7 +117,7 @@ export const Location: React.FC = () => {
                             <div className="rounded-3xl overflow-hidden border border-gold-400/30 shadow-2xl bg-navy-950 relative h-full min-h-[380px] sm:min-h-[480px] lg:min-h-[540px]">
                                 <iframe
                                     title="Grand Forest Privé Location Map"
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d120638.16347318534!2d73.10986756858277!3d18.99770020163304!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7e8412674e14f%3A0x8e57929d29f8a329!2sMumbai%20-%20Pune%20Hwy!5e0!3m2!1sen!2sin!4v1714240000000!5m2!1sen!2sin"
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15110.845144223644!2d73.26792924699073!3d18.76642888508099!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be809005cc1bf1b%3A0x48c68ae38264124!2sNeoliv%20Grand%20Forest%20Prive!5e0!3m2!1sen!2sin!4v1788931042582!5m2!1sen!2sin"
                                     width="100%"
                                     height="100%"
                                     style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg) contrast(115%)' }}
@@ -140,16 +140,6 @@ export const Location: React.FC = () => {
                                     </div>
                                 )}
 
-                                {/* Interactive Overlay Badge */}
-                                <div className="absolute top-4 left-4 bg-navy-950/90 backdrop-blur-md border border-gold-400/30 px-3.5 py-2 rounded-xl shadow-xl pointer-events-none z-10">
-                                    <div className="flex items-center gap-2 text-gold-400 text-[11px] sm:text-xs font-serif font-bold">
-                                        <MapPin size={12} />
-                                        <span>Grand Forest Privé Strategic Corridor</span>
-                                    </div>
-                                    <p className="text-gray-400 text-[9px] sm:text-[10px] font-mono mt-0.5">
-                                        Approx. 7 mins* to Mumbai–Pune Expressway
-                                    </p>
-                                </div>
                             </div>
                         </RevealOnScroll>
                     </div>

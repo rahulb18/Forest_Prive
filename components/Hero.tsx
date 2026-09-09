@@ -261,10 +261,20 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
 
   return (
     <div id="home" className="relative w-full h-[100dvh] bg-navy-950 overflow-hidden will-change-transform">
-        <canvas ref={canvasRef} className="absolute inset-0 w-full h-full object-cover" />
+        {/* Instant LCP Visual Anchor - Frame 0 rendered immediately by browser */}
+        <img
+          src="assets/sequenceLandscape/frame_001.jpg"
+          alt="NeoLiv Grand Forest Privé"
+          fetchPriority="high"
+          decoding="async"
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 pointer-events-none ${
+            currentFrame > 0 ? "opacity-0" : "opacity-100"
+          }`}
+        />
+        <canvas ref={canvasRef} className="absolute inset-0 w-full h-full object-cover z-0" />
 
         {/* Contrast Scrim ONLY on Initial Hero (Slide 1), completely fades out from second slide onward */}
-        <div className={`absolute inset-0 pointer-events-none transition-opacity duration-700 ${currentFrame <= 15 ? "opacity-100" : "opacity-0"}`}>
+        <div className={`absolute inset-0 pointer-events-none transition-opacity duration-700 z-10 ${currentFrame <= 15 ? "opacity-100" : "opacity-0"}`}>
             {/* Base gradient ensuring top brand lockup, paragraph, and CTAs are crisp */}
             <div className="absolute inset-0 bg-gradient-to-b from-navy-950/85 via-navy-950/50 to-navy-950/90" />
             {/* Central radial vignette ensuring central text zone readability against video brightness */}
@@ -280,7 +290,7 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
         </div>
 
         {/* Initial Hero Welcome Panel */}
-        <div className={`absolute inset-0 z-25 flex flex-col items-center justify-center px-4 sm:px-6 text-center transition-all duration-700 pointer-events-none ${currentFrame <= 15 ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-6"}`}>
+        <div className={`absolute inset-0 z-20 flex flex-col items-center justify-center px-4 sm:px-6 text-center transition-all duration-700 pointer-events-none ${currentFrame <= 15 ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-6"}`}>
             <div className="max-w-3xl space-y-3 sm:space-y-4 pt-10 sm:pt-14 md:pt-16">
                 
                 {/* Refined Eyebrow */}
@@ -399,7 +409,7 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
         </div>
 
         {/* Scroll Indicator with safe clearance & readability */}
-        <div className={`absolute bottom-3 sm:bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-white transition-opacity duration-700 pointer-events-none ${currentFrame > 5 ? "opacity-0" : "opacity-90"}`}>
+        <div className={`absolute bottom-3 sm:bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 text-white transition-opacity duration-700 pointer-events-none ${currentFrame > 5 ? "opacity-0" : "opacity-90"}`}>
             <span className="px-3 py-1 rounded-full bg-navy-950/75 border border-gold-400/30 backdrop-blur-sm text-[8px] sm:text-[9px] uppercase tracking-[0.35em] text-gold-300 font-medium shadow-md">
                 Scroll to Explore
             </span>

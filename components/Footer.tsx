@@ -73,7 +73,7 @@ export const Footer: React.FC = () => {
             <strong className="text-white font-medium">Artistic Impression Disclaimer:</strong> Visual representations including architectural renders, landscapes, interior concepts, and club facilities represent artistic impressions and may differ from the actual completed development.
           </p>
           <p className="text-gray-500 text-[9px]">
-            Privacy & Authorization: By submitting your contact details on this website, you authorize Grand Forest Privé, NeoLiv, and their authorized partners to contact you via phone call, SMS, or WhatsApp regarding project updates, overriding any national or international DND registration.
+            Privacy & Authorization: By submitting your contact details on this website, you authorize Grand Forest Privé and NeoLiv to contact you via phone call, SMS, or WhatsApp regarding project updates, overriding any national or international DND registration.
           </p>
         </div>
 

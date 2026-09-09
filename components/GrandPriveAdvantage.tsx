@@ -20,7 +20,7 @@ const COMMERCIAL_METRICS = [
         icon: TrendingUp
     },
     {
-        value: "1,200 sq. ft. onwards*",
+        value: "1,500 sq. ft. onwards*",
         label: "Available Inventory",
         highlight: false,
         icon: Award

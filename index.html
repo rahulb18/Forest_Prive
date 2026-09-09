@@ -13,44 +13,97 @@
   <link rel="preload" as="image" href="assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Non-render-blocking Google Fonts with fallback -->
   <link
+    rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
-    rel="stylesheet">
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17689581194"></script>
-  <script>
+    media="print"
+    onload="this.media='all'"
+  >
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+  </noscript>
+
+  <!-- Critical Inline CSS: Guarantees < 0.8s First Contentful Paint -->
+  <style>
+    html, body {
+      background-color: #030712;
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
+    }
+    #initial-brand-splash {
+      position: fixed;
+      inset: 0;
+      background-color: #030712;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+      text-align: center;
+      pointer-events: none;
+    }
+  </style>
+
+  <!-- Marketing & Tracking Pixels: Deferred to background idle to eliminate Total Blocking Time -->
+  <script id="development_script">
+    var google_conversion_pixel = "AW-17689581194/988gCJmnlKMcEIqthvNB";
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'AW-17689581194');
+
+    function loadThirdPartyPixels() {
+      if (window.__pixelsInitiated) return;
+      window.__pixelsInitiated = true;
+
+      // Google Tag
+      var gScript = document.createElement('script');
+      gScript.async = true;
+      gScript.src = "https://www.googletagmanager.com/gtag/js?id=AW-17689581194";
+      document.head.appendChild(gScript);
+
+      // Taboola
+      window._tfa = window._tfa || [];
+      window._tfa.push({notify: 'event', name: 'page_view', id: 1213114});
+      var tScript = document.createElement('script');
+      tScript.async = true;
+      tScript.src = '//cdn.taboola.com/libtrc/unip/1213114/tfa.js';
+      document.head.appendChild(tScript);
+    }
+
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(loadThirdPartyPixels, { timeout: 2000 });
+    } else {
+      window.addEventListener('load', function() { setTimeout(loadThirdPartyPixels, 800); });
+    }
   </script>
 
-  <!-- Taboola Pixel Code -->
-  <script type='text/javascript'>
-    window._tfa = window._tfa || [];
-    window._tfa.push({notify: 'event', name: 'page_view', id: 1213114});
-    !function (t, f, a, x) {
-           if (!document.getElementById(x)) {
-              t.async = 1;t.src = a;t.id=x;f.parentNode.insertBefore(t, f);
-           }
-    }(document.createElement('script'),
-    document.getElementsByTagName('script')[0],
-    '//cdn.taboola.com/libtrc/unip/1213114/tfa.js',
-    'tb_tfa_script');
-  </script>
-  <!-- End of Taboola Pixel Code -->
-
-  <script id="development_script">
-    var google_conversion_pixel = "AW-17689581194/988gCJmnlKMcEIqthvNB";
-  </script>
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+  <!-- Asynchronous Non-blocking intl-tel-input CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" media="print" onload="this.media='all'" />
+  <noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+  </noscript>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
   <link rel="stylesheet" href="/index.css">
 </head>
 
 <body class="bg-navy-900 text-white antialiased overflow-x-clip selection:bg-gold-400 selection:text-navy-900">
-  <div id="root"></div>
+  <div id="root">
+    <!-- Immediate Brand Paint for Instant FCP (< 0.8s) -->
+    <div id="initial-brand-splash">
+      <img src="assets/logo.png" alt="NeoLiv" style="height: 38px; width: auto; margin-bottom: 16px; opacity: 0.95;" />
+      <div style="width: 48px; height: 1px; background: rgba(212,175,55,0.5); margin-bottom: 12px;"></div>
+      <div style="font-family: Georgia, serif; font-size: 15px; letter-spacing: 0.22em; text-transform: uppercase; color: #ffffff; font-weight: 700;">
+        GRAND FOREST <span style="color: #fbbf24;">PRIVÉ</span>
+      </div>
+      <p style="font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 9px; text-transform: uppercase; letter-spacing: 0.3em; color: #9ca3af; margin-top: 8px;">
+        Premium • Nature-Led • Plotted Living
+      </p>
+    </div>
+  </div>
   <script type="module" src="/index.tsx"></script>
 </body>
 

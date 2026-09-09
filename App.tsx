@@ -32,7 +32,7 @@ function App() {
 
     const timer = setTimeout(() => {
       setShouldRenderContent(true);
-    }, 2500);
+    }, 3500);
 
     return () => {
       clearTimeout(timer);

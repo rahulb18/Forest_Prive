@@ -141,14 +141,16 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
       const frameIndex = Math.min(FRAME_COUNT - 1, Math.max(0, Math.floor(scrollProg.current * FRAME_COUNT)));
 
       if (frameIndex !== lastFrame) {
-        // Sliding window: dynamically buffer 16 frames ahead of scroll position
-        const BUFFER_AHEAD = 16;
-        const targetEnd = Math.min(FRAME_COUNT, frameIndex + BUFFER_AHEAD);
-        for (let i = frameIndex; i < targetEnd; i++) {
-          if (!imagesRef.current[i]) {
-            const nextImg = new Image();
-            nextImg.src = FRAME_PATH(i);
-            imagesRef.current[i] = nextImg;
+        // Sliding window: ONLY buffer future frames when the user actually scrolls past frame 0!
+        if (frameIndex > 0) {
+          const BUFFER_AHEAD = 12;
+          const targetEnd = Math.min(FRAME_COUNT, frameIndex + BUFFER_AHEAD);
+          for (let i = frameIndex; i < targetEnd; i++) {
+            if (!imagesRef.current[i]) {
+              const nextImg = new Image();
+              nextImg.src = FRAME_PATH(i);
+              imagesRef.current[i] = nextImg;
+            }
           }
         }
 

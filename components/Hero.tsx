@@ -48,13 +48,21 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
   const scrollProg = useRef(0);
   const targetScrollProg = useRef(0);
 
-  // --- HIGH-PERFORMANCE ZERO-DELAY LCP & SLIDING-WINDOW STREAMER ---
+  // --- UNIFIED HIGH-PERFORMANCE RENDER LIFECYCLE (SAFARI & CHROME COMPATIBLE) ---
   useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    canvas.width = CANVAS_WIDTH;
+    canvas.height = CANVAS_HEIGHT;
+    ctx.imageSmoothingEnabled = false;
+
     const images: HTMLImageElement[] = new Array(FRAME_COUNT);
     imagesRef.current = images;
     let isExperienceReady = false;
 
-    // Trigger instant LCP display
     const triggerExperienceReady = () => {
       if (!isExperienceReady) {
         isExperienceReady = true;
@@ -63,60 +71,54 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
       }
     };
 
-    // 1. Instantly Render Frame 0 (Preloaded in index.html for <0.8s LCP)
+    // 1. Instantly paint Frame 0
     const firstImg = new Image();
     firstImg.src = FRAME_PATH(0);
     images[0] = firstImg;
 
-    const renderFirstFrame = () => {
-      if (canvasRef.current && images[0]?.complete) {
-        const ctx = canvasRef.current.getContext("2d");
-        if (ctx) {
-          ctx.drawImage(images[0], 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-        }
+    const paintInitial = () => {
+      if (firstImg.complete && firstImg.naturalWidth > 0) {
+        ctx.drawImage(firstImg, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+        triggerExperienceReady();
       }
-      triggerExperienceReady();
     };
+
+    if (firstImg.complete) {
+      paintInitial();
+    } else {
+      firstImg.onload = paintInitial;
+    }
 
     (async () => {
       try {
         if ('decode' in firstImg) {
-          await (firstImg as HTMLImageElement).decode();
+          await firstImg.decode();
+          paintInitial();
         }
       } catch {
-        // Fallback
-      } finally {
-        renderFirstFrame();
+        // Fallback handled by onload
       }
     })();
 
-    // Safety timeout: Never hold ready signal past 300ms
+    // 2. Pre-buffer initial frames (1-10) after 200ms so scroll is smooth from pixel 1
+    const bufferTimer = setTimeout(() => {
+      for (let i = 1; i <= 10 && i < FRAME_COUNT; i++) {
+        if (!images[i]) {
+          const img = new Image();
+          img.src = FRAME_PATH(i);
+          images[i] = img;
+        }
+      }
+    }, 200);
+
     const readyTimer = setTimeout(triggerExperienceReady, 300);
 
-    return () => {
-      clearTimeout(readyTimer);
-    };
-  }, []);
-
-  // --- RENDER LOOP ---
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d", { alpha: false }); // Perf: Disable alpha for opaque sequence
-    if (!ctx) return;
-
-    canvas.width = CANVAS_WIDTH;
-    canvas.height = CANVAS_HEIGHT;
-    
-    // Perf: Optimized context settings
-    ctx.imageSmoothingEnabled = false; 
-
+    // Scroll calculation
     const handleScroll = () => {
       const h = window.innerHeight;
       const isMobile = window.innerWidth < 768;
-      const maxScroll = h * (isMobile ? 6 : 12); 
+      const maxScroll = h * (isMobile ? 6 : 12);
       const currentScroll = window.pageYOffset || document.documentElement.scrollTop || window.scrollY || 0;
-      
       const progress = Math.min(1, Math.max(0, currentScroll / maxScroll));
       targetScrollProg.current = progress;
     };
@@ -127,74 +129,61 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
 
     let rafId = 0;
     let lastFrame = -1;
-    let isVisible = true;
 
     const render = () => {
-      if (!isVisible) {
-        rafId = 0;
+      const h = window.innerHeight;
+      const isMobile = window.innerWidth < 768;
+      const maxScroll = h * (isMobile ? 6 : 12);
+      const currentScroll = window.pageYOffset || document.documentElement.scrollTop || window.scrollY || 0;
+
+      // When user is scrolled far past Hero, pause GPU draw calls
+      if (currentScroll > maxScroll + h * 1.5) {
+        rafId = requestAnimationFrame(render);
         return;
       }
 
-      const lerpFactor = window.innerWidth < 768 ? 0.12 : 0.08; 
+      const lerpFactor = isMobile ? 0.14 : 0.09;
       scrollProg.current += (targetScrollProg.current - scrollProg.current) * lerpFactor;
-      
       const frameIndex = Math.min(FRAME_COUNT - 1, Math.max(0, Math.floor(scrollProg.current * FRAME_COUNT)));
 
-      if (frameIndex !== lastFrame) {
-        // Sliding window: ONLY buffer future frames when the user actually scrolls past frame 0!
-        if (frameIndex > 0) {
-          const BUFFER_AHEAD = 12;
-          const targetEnd = Math.min(FRAME_COUNT, frameIndex + BUFFER_AHEAD);
-          for (let i = frameIndex; i < targetEnd; i++) {
-            if (!imagesRef.current[i]) {
-              const nextImg = new Image();
-              nextImg.src = FRAME_PATH(i);
-              imagesRef.current[i] = nextImg;
-            }
-          }
+      // Buffer upcoming frames
+      const BUFFER_AHEAD = 12;
+      const targetEnd = Math.min(FRAME_COUNT, frameIndex + BUFFER_AHEAD);
+      for (let i = frameIndex; i < targetEnd; i++) {
+        if (!images[i]) {
+          const nextImg = new Image();
+          nextImg.src = FRAME_PATH(i);
+          images[i] = nextImg;
         }
-
-        let img = imagesRef.current[frameIndex];
-
-        // Seamless fallback: if the requested frame is still buffering during super-fast scroll,
-        // search backward for the closest already decoded frame so the canvas never drops or flickers
-        if (!img || !img.complete) {
-          for (let f = frameIndex - 1; f >= 0; f--) {
-            if (imagesRef.current[f]?.complete) {
-              img = imagesRef.current[f];
-              break;
-            }
-          }
-          if (!img || !img.complete) {
-            img = imagesRef.current[0];
-          }
-        }
-
-        if (img && img.complete) {
-          ctx.drawImage(img, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-        }
-        lastFrame = frameIndex;
-        setCurrentFrame(frameIndex);
       }
+
+      let img = images[frameIndex];
+      if (!img || !img.complete || img.naturalWidth === 0) {
+        for (let f = frameIndex - 1; f >= 0; f--) {
+          if (images[f]?.complete && images[f]?.naturalWidth > 0) {
+            img = images[f];
+            break;
+          }
+        }
+        if (!img || !img.complete) {
+          img = images[0];
+        }
+      }
+
+      if (img && img.complete && img.naturalWidth > 0) {
+        ctx.drawImage(img, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+        lastFrame = frameIndex;
+      }
+
+      setCurrentFrame(frameIndex);
       rafId = requestAnimationFrame(render);
     };
-
-    // OPTIMIZATION: Pause RAF render loop when Hero is out of viewport
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        isVisible = entry.isIntersecting;
-        if (isVisible && !rafId) {
-          rafId = requestAnimationFrame(render);
-        }
-      },
-      { threshold: 0.01 }
-    );
-    observer.observe(canvas);
 
     rafId = requestAnimationFrame(render);
 
     return () => {
-      observer.disconnect();
+      clearTimeout(readyTimer);
+      clearTimeout(bufferTimer);
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
       if (rafId) cancelAnimationFrame(rafId);
@@ -208,10 +197,8 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
           src="assets/sequenceLandscape/frame_001.jpg"
           alt="NeoLiv Grand Forest Privé"
           fetchPriority="high"
-          decoding="async"
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 pointer-events-none ${
-            currentFrame > 0 ? "opacity-0" : "opacity-100"
-          }`}
+          decoding="sync"
+          className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
         />
         <canvas ref={canvasRef} className="absolute inset-0 w-full h-full object-cover z-0" />
 

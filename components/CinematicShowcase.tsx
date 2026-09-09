@@ -1,5 +1,5 @@
-import React, { useRef, useMemo } from 'react';
-import { motion, useScroll, useTransform, useSpring, MotionValue, AnimatePresence } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
 
 const SCENES = [
   {
@@ -39,72 +39,48 @@ const Scene: React.FC<SceneProps> = ({ scene, index, totalScenes, scrollYProgres
   const start = index / totalScenes;
   const end = (index + 1) / totalScenes;
 
-  // --- Background Motion Logic ---
+  // Background Motion Logic - clean crossfade between scenes
   const opacity = useTransform(
     scrollYProgress,
-    [start - 0.08, start, end, end + 0.08],
-    [0, 1, 1, 0]
-  );
-
-  const visibility = useTransform(
-    scrollYProgress,
-    (latest: number) => (latest >= start - 0.1 && latest <= end + 0.1 ? 'visible' : 'hidden')
-  );
-
-  const filter = useTransform(
-    scrollYProgress,
-    (latest: number) => {
-      if (latest < start - 0.1 || latest > end + 0.1) return 'none';
-      if (latest >= start && latest <= end) return 'none';
-      if (latest < start) {
-        const b = Math.round(20 * (1 - (latest - (start - 0.1)) / 0.1));
-        return b > 0 ? `blur(${b}px)` : 'none';
-      }
-      const b = Math.round(20 * ((latest - end) / 0.1));
-      return b > 0 ? `blur(${b}px)` : 'none';
-    }
-  );
-
-  // Panoramic Panning Effect - Subtle for Mobile
-  const panX = useTransform(
-    scrollYProgress,
-    [start, end],
-    scene.type === "panoramic" ? ["-5%", "5%"] : ["0%", "0%"]
+    index === 0
+      ? [0, end - 0.04, end]
+      : [start - 0.04, start, end - 0.04, end],
+    index === 0
+      ? [1, 1, 0]
+      : [0, 1, 1, 0]
   );
 
   const scale = useTransform(
     scrollYProgress,
     [start, end],
-    scene.type === "zoom" ? [1.1, 1.0] : [1.05, 1.1]
+    scene.type === "zoom" ? [1.08, 1.0] : [1.0, 1.06]
   );
 
   return (
     <motion.div
       style={{ 
         opacity,
-        visibility,
         zIndex: index + 10,
-        filter,
-        willChange: "opacity, transform"
+        WebkitBackfaceVisibility: 'hidden',
+        backfaceVisibility: 'hidden',
       }}
-      className="absolute inset-0 w-full h-full"
+      className="absolute inset-0 w-full h-full pointer-events-none"
     >
       <motion.div
         style={{ 
-            scale,
-            x: panX,
-            willChange: "transform"
+          scale,
+          WebkitBackfaceVisibility: 'hidden',
+          backfaceVisibility: 'hidden',
         }}
-        className="absolute inset-[-10%] w-[120%] h-[120%]"
+        className="absolute inset-0 w-full h-full"
       >
         <img
           src={scene.src}
-          alt=""
-          loading="lazy"
-          decoding="async"
+          alt="NeoLiv Grand Forest Privé"
+          decoding="sync"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-navy-950/30 via-transparent to-navy-950/50" />
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-950/40 via-transparent to-navy-950/60" />
       </motion.div>
     </motion.div>
   );
@@ -117,12 +93,6 @@ export const CinematicShowcase: React.FC = () => {
     offset: ["start start", "end end"]
   });
 
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 40,
-    damping: 30,
-    restDelta: 0.001
-  });
-
   return (
     <section ref={containerRef} className="relative h-[600vh] md:h-[1200vh] bg-navy-950">
       <div className="sticky top-0 h-screen w-full overflow-hidden">
@@ -132,7 +102,7 @@ export const CinematicShowcase: React.FC = () => {
             scene={scene} 
             index={index} 
             totalScenes={SCENES.length} 
-            scrollYProgress={smoothProgress} 
+            scrollYProgress={scrollYProgress} 
           />
         ))}
 
@@ -148,21 +118,25 @@ export const CinematicShowcase: React.FC = () => {
           {SCENES.map((_, i) => {
             const start = i / SCENES.length;
             const end = (i + 1) / SCENES.length;
-            const isActive = useTransform(smoothProgress, [start - 0.05, start, end, end + 0.05], [0, 1, 1, 0]);
+            const isActive = useTransform(
+              scrollYProgress, 
+              i === 0 ? [0, end - 0.04, end] : [start - 0.04, start, end - 0.04, end], 
+              i === 0 ? [1, 1, 0] : [0, 1, 1, 0]
+            );
 
             return (
               <div key={i} className="group relative flex items-center">
                 <motion.div 
-                    style={{ scaleX: isActive, opacity: isActive }}
-                    className="absolute left-full ml-3 md:ml-4 text-gold-400 font-serif text-lg md:text-2xl font-bold"
+                    style={{ opacity: isActive }}
+                    className="absolute left-full ml-3 md:ml-4 text-gold-400 font-serif text-lg md:text-2xl font-bold select-none"
                 >
                     0{i + 1}
                 </motion.div>
                 
-                <div className="w-[1.5px] md:w-[2px] h-8 md:h-12 bg-white/10 relative overflow-hidden rounded-full">
+                <div className="w-[1.5px] md:w-[2px] h-8 md:h-12 bg-white/15 relative overflow-hidden rounded-full">
                     <motion.div 
                         style={{ 
-                            scaleY: useTransform(smoothProgress, [start, end], [0, 1]),
+                            scaleY: useTransform(scrollYProgress, [start, end], [0, 1]),
                             opacity: isActive
                         }}
                         className="absolute inset-0 bg-gold-400 origin-top"

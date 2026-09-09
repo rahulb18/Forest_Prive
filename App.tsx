@@ -21,6 +21,11 @@ function App() {
 
   // OPTIMIZATION: Instant Hero LCP with gentle deferred mounting for below-the-fold sections
   useEffect(() => {
+    if (window.scrollY > 50) {
+      setShouldRenderContent(true);
+      return;
+    }
+
     const handleFirstInteraction = () => {
       setShouldRenderContent(true);
       window.removeEventListener('scroll', handleFirstInteraction);
@@ -32,7 +37,7 @@ function App() {
 
     const timer = setTimeout(() => {
       setShouldRenderContent(true);
-    }, 3500);
+    }, 200);
 
     return () => {
       clearTimeout(timer);

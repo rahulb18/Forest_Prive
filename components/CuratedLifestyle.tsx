@@ -63,8 +63,8 @@ export const CuratedLifestyle: React.FC = () => {
                 <div className="relative rounded-3xl overflow-hidden border border-gold-400/30 shadow-[0_20px_50px_rgba(0,0,0,0.8)] group">
                   <div className="aspect-[4/3] w-full relative overflow-hidden bg-navy-900">
                     <img
-                      src="assets/grand_forest_optimized/lifestyle-waterbody.webp"
-                      alt="Grand Forest Privé Waterbody & Nature Walk"
+                      src="assets/client/amenities-3.jpg"
+                      alt="Grand Forest Privé Multi-Sport Arena & Forest Trails"
                       loading="lazy"
                       decoding="async"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
@@ -82,10 +82,10 @@ export const CuratedLifestyle: React.FC = () => {
                     <div className="absolute bottom-6 left-6 right-6 z-20">
                       <div className="flex items-center gap-2 text-gold-400 text-xs uppercase tracking-[0.25em] font-semibold mb-1">
                         <Mountain size={14} />
-                        <span>Mountain Panorama</span>
+                        <span>Active Recreation & Trails</span>
                       </div>
                       <p className="text-white font-serif text-lg sm:text-xl">
-                        A Setting That Makes Every Day Extraordinary
+                        Sport Courts Embraced by Forest Canopies
                       </p>
                     </div>
                   </div>
@@ -95,8 +95,8 @@ export const CuratedLifestyle: React.FC = () => {
                 <div className="hidden sm:block absolute -bottom-8 -left-8 w-48 lg:w-56 rounded-2xl overflow-hidden border-2 border-gold-400/40 shadow-2xl z-30 bg-navy-900">
                   <div className="aspect-square relative">
                     <img
-                      src="assets/grand_forest_optimized/lifestyle-butterfly-garden.webp"
-                      alt="Butterfly & Fragrance Garden"
+                      src="assets/client/amenities-2.jpg"
+                      alt="Forest-View Fitness & Wellness Center"
                       loading="lazy"
                       decoding="async"
                       className="w-full h-full object-cover"
@@ -104,10 +104,10 @@ export const CuratedLifestyle: React.FC = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-transparent to-transparent" />
                     <div className="absolute bottom-3 left-3 right-3">
                       <span className="text-[8px] uppercase tracking-widest text-gold-300 font-bold block">
-                        Butterfly Garden
+                        Fitness Studio
                       </span>
                       <span className="text-[10px] text-white font-serif">
-                        Fragrance Circle
+                        Panoramic Nature Views
                       </span>
                     </div>
                   </div>

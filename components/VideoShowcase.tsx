@@ -60,7 +60,7 @@ export const VideoShowcase: React.FC = () => {
                                     muted
                                     loop
                                     playsInline
-                                    poster="assets/grand_forest_optimized/overview-masterplan-backdrop.webp"
+                                    poster="assets/client/Gallery-1.jpg"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
                                 

@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const images = [
-  'assets/grand_forest_optimized/overview-masterplan-backdrop.webp',
-  'assets/grand_forest_optimized/lifestyle-waterbody.webp',
-  'assets/grand_forest_optimized/cinematic-club-facade.webp'
+  'assets/client/Gallery-1.jpg',
+  'assets/client/Gallery-3.jpg',
+  'assets/client/Gallery-2.jpg'
 ];
 
 export const HeroBanner: React.FC = () => {

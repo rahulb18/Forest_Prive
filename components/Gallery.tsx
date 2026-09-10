@@ -14,73 +14,38 @@ interface GalleryItem {
 
 const GALLERY_ITEMS: GalleryItem[] = [
     {
-        src: 'assets/grand_forest_optimized/gallery-clubhouse-lawns.webp',
-        title: 'Modern Two-Story Clubhouse & Lawns',
+        src: 'assets/client/Gallery-1.jpg',
+        title: 'Sunset Infinity Pool & Mountain Horizon',
         badge: 'ARTISTIC IMPRESSION',
     },
     {
-        src: 'assets/grand_forest_optimized/gallery-outdoor-dining.webp',
-        title: 'Clubhouse Outdoor Dining & Banquet Lawn',
+        src: 'assets/client/Gallery-2.jpg',
+        title: 'Neo Club Twilight Facade & Reflection Pool',
         badge: 'ARTISTIC IMPRESSION',
     },
     {
-        src: 'assets/grand_forest_optimized/gallery-sports-court.webp',
-        title: 'Multiplay Sports & Tennis Courts',
+        src: 'assets/client/Gallery-3.jpg',
+        title: '360° Mountain Township & Plotted Living View',
         badge: 'ARTISTIC IMPRESSION',
     },
     {
-        src: 'assets/grand_forest_optimized/gallery-water-pavilion.webp',
-        title: 'Water Pavilion & Blooming Gazebo',
+        src: 'assets/client/Clubhouse-amenities.jpg',
+        title: 'Grand Glasshouse Clubhouse Architecture',
         badge: 'ARTISTIC IMPRESSION',
     },
     {
-        src: 'assets/grand_forest_optimized/gallery-stepping-stones.webp',
-        title: 'Reflection Pond & Stepping Stones',
+        src: 'assets/client/amenities-2.jpg',
+        title: 'Panoramic Forest-View Fitness Center & Studio',
         badge: 'ARTISTIC IMPRESSION',
     },
     {
-        src: 'assets/grand_forest_optimized/gallery-pet-park.webp',
-        title: 'Dedicated Pet Park & Agility Mounds',
+        src: 'assets/client/amenities-3.jpg',
+        title: 'Multiplay Sports Courts & Verdant Canopies',
         badge: 'ARTISTIC IMPRESSION',
     },
     {
-        src: 'assets/grand_forest_optimized/gallery-kids-play.webp',
-        title: "Kid's Play Area & Activity Zone",
-        badge: 'ARTISTIC IMPRESSION',
-    },
-    {
-        src: 'assets/grand_forest_optimized/gallery-sunset-pavilion.webp',
-        title: 'Sunset Lake Pavilion',
-        badge: 'ARTISTIC IMPRESSION',
-    },
-    {
-        src: 'assets/grand_forest_optimized/gallery-club-lounge.webp',
-        title: 'Club Forest Luxury Lounge & Fireplace',
-        badge: 'ARTISTIC IMPRESSION',
-    },
-    {
-        src: 'assets/grand_forest_optimized/gallery-business-center.webp',
-        title: 'Business Center & Meeting Suites',
-        badge: 'ARTISTIC IMPRESSION',
-    },
-    {
-        src: 'assets/grand_forest_optimized/gallery-banquet-hall.webp',
-        title: 'Grand Banquet & Private Dining Hall',
-        badge: 'ARTISTIC IMPRESSION',
-    },
-    {
-        src: 'assets/grand_forest_optimized/gallery-restaurant.webp',
-        title: 'Club Forest Fine Dining Restaurant',
-        badge: 'ARTISTIC IMPRESSION',
-    },
-    {
-        src: 'assets/grand_forest_optimized/gallery-indoor-pool.webp',
-        title: 'Indoor Pool Deck & Cabana Lounge',
-        badge: 'ARTISTIC IMPRESSION',
-    },
-    {
-        src: 'assets/grand_forest_optimized/gallery-indoor-games.webp',
-        title: 'Indoor Games & Billiards Lounge',
+        src: 'assets/client/Masterplan.jpg',
+        title: 'Architectural Master Development Layout',
         badge: 'ARTISTIC IMPRESSION',
     }
 ];
@@ -230,7 +195,8 @@ export const Gallery: React.FC = () => {
                         dragConstraints={{ left: 0, right: 0 }}
                         dragElastic={0.15}
                         onDragEnd={handleDragEnd}
-                        className="cursor-grab active:cursor-grabbing"
+                        className="cursor-grab active:cursor-grabbing touch-pan-y"
+                        style={{ touchAction: 'pan-y' }}
                     >
                         <motion.div
                             animate={{

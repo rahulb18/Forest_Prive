@@ -1,28 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { modalState } from '../lib/modal-state';
+import { scrollPresentation } from '../lib/scroll-presentation';
 
 export const Navbar: React.FC = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     useEffect(() => {
-        let ticking = false;
+        const unsubscribe = scrollPresentation.subscribe((state) => {
+            setIsScrolled(state.section === "content");
+        });
+
         const handleScroll = () => {
-            if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    const h = window.innerHeight;
-                    const threshold = window.innerWidth < 768 ? h * 5.8 : h * 11.8;
-                    setIsScrolled(window.scrollY > threshold);
-                    ticking = false;
-                });
-                ticking = true;
+            const h = window.innerHeight;
+            const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+            if (scrollY >= h * 1.5) {
+                setIsScrolled(true);
+            } else if (scrollPresentation.getSection() !== "content") {
+                setIsScrolled(false);
             }
         };
 
         window.addEventListener('scroll', handleScroll, { passive: true });
-        handleScroll();
-        return () => window.removeEventListener('scroll', handleScroll);
+        return () => {
+            unsubscribe();
+            window.removeEventListener('scroll', handleScroll);
+        };
     }, []);
 
     // Lock body scroll when mobile menu is open
@@ -56,7 +60,14 @@ export const Navbar: React.FC = () => {
             >
                 <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center gap-6">
                     {/* Logo & Project Title */}
-                    <a href="#" className="flex items-center gap-3 md:gap-3.5 group shrink-0">
+                    <a
+                        href="#home"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            scrollPresentation.resetToHero();
+                        }}
+                        className="flex items-center gap-3 md:gap-3.5 group shrink-0"
+                    >
                         <img src="assets/logo.png" alt="NeoLiv" width={113} height={32} className="h-7 md:h-8 w-auto shrink-0 transition-transform group-hover:scale-105 duration-300" />
                         <div className="w-px h-5 md:h-6 bg-gold-400/30 shrink-0" />
                         <span className="font-serif text-xs md:text-sm tracking-[0.2em] text-white uppercase font-bold leading-none whitespace-nowrap shrink-0">
@@ -70,6 +81,7 @@ export const Navbar: React.FC = () => {
                             <a
                                 key={link.name}
                                 href={link.href}
+                                onClick={() => scrollPresentation.setSection("content")}
                                 className="text-[9px] uppercase tracking-[0.25em] text-gray-300 hover:text-gold-400 transition-all duration-300 font-medium hover:tracking-[0.3em]"
                             >
                                 {link.name}

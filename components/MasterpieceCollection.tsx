@@ -6,19 +6,19 @@ const masterpieceData = [
     title: "Bespoke Grandeur",
     subtitle: "A Masterclass in Luxury",
     description: "Every dimension of your estate is meticulously sculpted to reflect your taste. This is where architectural brilliance meets natural splendor, creating a sanctuary of unparalleled elegance.",
-    image: "assets/grand_forest_optimized/lifestyle-waterbody.webp",
+    image: "assets/client/Gallery-1.jpg",
   },
   {
     title: "Curated Vistas",
     subtitle: "Panoramic Mountain Frontage",
     description: "Wake up to infinite expanses of rolling green valleys and mountain vistas. The spectacular forest views are not just a backdrop, but an integral part of your daily living experience.",
-    image: "assets/grand_forest_optimized/overview-masterplan-backdrop.webp",
+    image: "assets/client/Gallery-3.jpg",
   },
   {
     title: "Exclusive Enclave",
     subtitle: "An Address of Distinction",
     description: "Join a community of the discerning few. With world-class amenities and unparalleled privacy, this is a legacy designed to be cherished for generations.",
-    image: "assets/grand_forest_optimized/cinematic-club-facade.webp",
+    image: "assets/client/Gallery-2.jpg",
   }
 ];
 

@@ -183,8 +183,8 @@ export const Amenities: React.FC = () => {
                                     <div className="relative rounded-2xl overflow-hidden border border-gold-400/30 shadow-2xl group">
                                         <div className="aspect-[4/3] relative bg-navy-950">
                                             <img
-                                                src="assets/grand_forest_optimized/amenities-club-deck.webp"
-                                                alt="Grand Forest Privé Club Experience"
+                                                src="assets/client/Clubhouse-amenities.jpg"
+                                                alt="Grand Forest Privé Neo Club Glass Pavilion"
                                                 loading="lazy"
                                                 decoding="async"
                                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"

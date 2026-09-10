@@ -10,12 +10,12 @@ const videos = [
   { 
     id: 2, 
     src: "assets/videos_optimized/Video_Generation_Complete.mp4",
-    poster: "assets/grand_forest_optimized/overview-masterplan-backdrop.webp"
+    poster: "assets/client/Masterplan.jpg"
   },
   { 
     id: 3, 
     src: "assets/videos_optimized/Video_Generation_Complete (1).mp4",
-    poster: "assets/grand_forest_optimized/cinematic-club-facade.webp"
+    poster: "assets/client/Clubhouse-amenities.jpg"
   },
   { 
     id: 4, 

@@ -216,7 +216,7 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                                         value={formData.name}
                                         onChange={handleInputChange}
                                         placeholder="FULL NAME*"
-                                        className={`w-full bg-navy-950/70 border ${errors.name ? 'border-red-500/50' : 'border-white/10'} rounded-xl py-2.5 sm:py-3 px-3.5 text-white focus:border-gold-400/50 focus:outline-none transition-all placeholder:text-gray-400 text-sm sm:text-xs tracking-wider font-medium`}
+                                        className={`w-full bg-navy-950/70 border ${errors.name ? 'border-red-500/50' : 'border-white/10'} rounded-xl py-2.5 sm:py-3 px-3.5 text-white focus:border-gold-400/50 focus:outline-none transition-all placeholder:text-gray-400 text-base sm:text-xs tracking-wider font-medium`}
                                     />
                                     {errors.name && <p className="text-[9px] text-red-400 flex items-center gap-1 ml-1"><AlertCircle size={8} /> {errors.name}</p>}
                                 </div>
@@ -229,7 +229,7 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                                         value={formData.phone}
                                         onChange={handleInputChange}
                                         placeholder="98765 43210"
-                                        className={`w-full bg-navy-950/70 border ${errors.phone ? 'border-red-500/50' : 'border-white/10'} rounded-xl py-2.5 sm:py-3 px-3.5 text-white focus:border-gold-400/50 focus:outline-none transition-all placeholder:text-gray-400 text-sm sm:text-xs tracking-wider font-medium`}
+                                        className={`w-full bg-navy-950/70 border ${errors.phone ? 'border-red-500/50' : 'border-white/10'} rounded-xl py-2.5 sm:py-3 px-3.5 text-white focus:border-gold-400/50 focus:outline-none transition-all placeholder:text-gray-400 text-base sm:text-xs tracking-wider font-medium`}
                                     />
                                     {errors.phone && <p className="text-[9px] text-red-400 flex items-center gap-1 ml-1"><AlertCircle size={8} /> {errors.phone}</p>}
                                 </div>
@@ -241,7 +241,7 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                                         value={formData.email}
                                         onChange={handleInputChange}
                                         placeholder="EMAIL ADDRESS*"
-                                        className={`w-full bg-navy-950/70 border ${errors.email ? 'border-red-500/50' : 'border-white/10'} rounded-xl py-2.5 sm:py-3 px-3.5 text-white focus:border-gold-400/50 focus:outline-none transition-all placeholder:text-gray-400 text-sm sm:text-xs tracking-wider font-medium`}
+                                        className={`w-full bg-navy-950/70 border ${errors.email ? 'border-red-500/50' : 'border-white/10'} rounded-xl py-2.5 sm:py-3 px-3.5 text-white focus:border-gold-400/50 focus:outline-none transition-all placeholder:text-gray-400 text-base sm:text-xs tracking-wider font-medium`}
                                     />
                                     {errors.email && <p className="text-[9px] text-red-400 flex items-center gap-1 ml-1"><AlertCircle size={8} /> {errors.email}</p>}
                                 </div>

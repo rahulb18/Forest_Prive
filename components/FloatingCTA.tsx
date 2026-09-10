@@ -1,49 +1,35 @@
 import React, { useState, useEffect } from "react";
 import { Phone, MessageCircle, FileText, Send } from "lucide-react";
 import { modalState } from "../lib/modal-state";
+import { scrollPresentation } from "../lib/scroll-presentation";
 
 export const FloatingCTA: React.FC = () => {
   const [isDesktopVisible, setIsDesktopVisible] = useState(false);
   const [isMobileVisible, setIsMobileVisible] = useState(false);
 
   useEffect(() => {
-    let ticking = false;
+    const unsubscribe = scrollPresentation.subscribe((state) => {
+      const inContent = state.section === "content";
+      setIsDesktopVisible(inContent);
+      setIsMobileVisible(inContent);
+    });
+
     const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const scrollY = window.scrollY;
-
-          // DESKTOP: Side edge tabs appear after initial 200px scroll
-          setIsDesktopVisible(scrollY > 200);
-
-          // MOBILE ONLY: Bottom action dock should only appear after second section (starting from Overview)
-          const isMobile = window.innerWidth < 768;
-          if (isMobile) {
-            const overviewEl = document.getElementById("Overview");
-            if (overviewEl) {
-              const rect = overviewEl.getBoundingClientRect();
-              // Show once Overview enters viewport, hide if scrolled back up into Hero or Cinematic Showcase
-              setIsMobileVisible(rect.top <= window.innerHeight * 0.85);
-            } else {
-              // Fallback threshold: Hero (600vh) + Cinematic Showcase (600vh) = 1200vh
-              const h = window.innerHeight;
-              setIsMobileVisible(scrollY > h * 11.5);
-            }
-          }
-
-          ticking = false;
-        });
-        ticking = true;
+      const h = window.innerHeight;
+      const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+      if (scrollY >= h * 1.5) {
+        setIsDesktopVisible(true);
+        setIsMobileVisible(true);
+      } else if (scrollPresentation.getSection() !== "content") {
+        setIsDesktopVisible(false);
+        setIsMobileVisible(false);
       }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleScroll, { passive: true });
-    handleScroll();
-
     return () => {
+      unsubscribe();
       window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
     };
   }, []);
 
@@ -92,12 +78,12 @@ export const FloatingCTA: React.FC = () => {
         </button>
       </div>
 
-      {/* MOBILE: App-Style Floating Bottom Dock - Appears ONLY after second section */}
+      {/* MOBILE: App-Style Floating Bottom Dock - Appears ONLY after second section with iOS Safe Area support */}
       <div
-        className={`md:hidden fixed bottom-3 left-3 right-3 z-[250] bg-navy-950/92 backdrop-blur-xl border border-gold-400/30 rounded-2xl shadow-[0_10px_35px_rgba(0,0,0,0.85)] p-1.5 flex items-center justify-between gap-1.5 transition-all duration-500 touch-manipulation select-none ${
+        className={`md:hidden fixed bottom-[max(0.75rem,env(safe-area-inset-bottom))] left-3 right-3 z-[250] bg-navy-950/92 backdrop-blur-xl border border-gold-400/30 rounded-2xl shadow-[0_10px_35px_rgba(0,0,0,0.85)] p-1.5 flex items-center justify-between gap-1.5 transition-all duration-500 touch-manipulation select-none ${
           isMobileVisible
             ? "translate-y-0 opacity-100 pointer-events-auto"
-            : "translate-y-16 opacity-0 pointer-events-none"
+            : "translate-y-24 opacity-0 pointer-events-none"
         }`}
       >
         {/* 1. Call Now */}

@@ -58,7 +58,7 @@ export const Overview: React.FC = () => {
             transition={{ duration: 0.8 }}
           >
             <img 
-              src="assets/grand_forest_optimized/amenities-club-deck.webp" 
+              src="assets/client/Clubhouse-amenities.jpg" 
               alt="Grand Forest Privé Club Experience" 
               className="absolute inset-0 w-full h-full object-cover"
             />

@@ -5,6 +5,7 @@ import { FloatingCTA } from './components/FloatingCTA';
 import { CinematicShowcase } from './components/CinematicShowcase';
 import { AboutNeoLiv } from './components/AboutNeoLiv';
 import { EnquiryModal } from './components/EnquiryModal';
+import { usePresentationScroll } from './lib/scroll-presentation';
 // Lazy Load heavier components
 const CuratedLifestyle = lazy(() => import('./components/CuratedLifestyle').then(m => ({ default: m.CuratedLifestyle })));
 const Amenities = lazy(() => import('./components/Amenities').then(m => ({ default: m.Amenities })));
@@ -17,23 +18,24 @@ const ContactForm = lazy(() => import('./components/ContactForm').then(m => ({ d
 const Footer = lazy(() => import('./components/Footer').then(m => ({ default: m.Footer })));
 
 function App() {
+  usePresentationScroll();
   return (
     <>
       <main className="w-full min-h-screen bg-transparent selection:bg-gold-400 selection:text-navy-900 pointer-events-auto">
         {/* Section 1: Header & Navigation */}
         <Navbar />
 
-        {/* Section 2: Hero Section with Full Sticky Viewport Pinning */}
-        <div className="relative w-full h-[600vh] md:h-[1200vh]">
-          <div className="sticky top-0 h-screen h-[100dvh] w-full overflow-hidden">
-            <Hero />
-          </div>
+        {/* Section 2: Hero Section (100dvh Full Viewport) */}
+        <div id="home" className="relative w-full h-screen h-[100dvh] overflow-hidden">
+          <Hero />
         </div>
 
         {/* Content Layer: Stable Document Flow with Suspense Lazy Loading */}
         <div className="relative z-10 bg-navy-900">
-          {/* Cinematic Background Showcase */}
-          <div id="Cinematic"><CinematicShowcase /></div>
+          {/* Cinematic Background Showcase (100dvh Full Viewport) */}
+          <div id="Cinematic" className="relative w-full h-screen h-[100dvh] overflow-hidden">
+            <CinematicShowcase />
+          </div>
 
           {/* Section 02 & 03: Project Introduction & Project Highlights */}
           <div id="Overview"><AboutNeoLiv /></div>

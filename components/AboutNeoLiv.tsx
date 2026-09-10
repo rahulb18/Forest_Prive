@@ -58,11 +58,11 @@ export const AboutNeoLiv: React.FC = () => {
       {/* Environmental Landscape Backdrop (Direct visual grounding in the mountain & nature landscape) */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none">
         <img
-          src="assets/grand_forest_optimized/overview-masterplan-backdrop.webp"
-          alt=""
+          src="assets/client/Masterplan.jpg"
+          alt="NeoLiv Grand Forest Privé Masterplan"
           loading="lazy"
           decoding="async"
-          className="w-full h-full object-cover object-center opacity-20 scale-105 filter blur-[1px]"
+          className="w-full h-full object-cover object-center opacity-25 scale-105 filter blur-[0.5px]"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-navy-950/90 to-navy-950" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(15,23,42,0.4)_0%,rgba(15,23,42,0.95)_100%)]" />

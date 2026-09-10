@@ -1,225 +1,199 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { scrollPresentation } from '../lib/scroll-presentation';
 
-const SCENES = [
+export interface CinematicScene {
+  src: string;
+  title: string;
+  subtitle: string;
+  badge: string;
+  type: "zoom" | "panoramic";
+}
+
+const SCENES: CinematicScene[] = [
   {
-    src: "assets/grand_forest_optimized/cinematic-club-facade.webp",
-    type: "panoramic"
-  },
-  {
-    src: "assets/grand_forest_optimized/cinematic-pool-clubhouse.webp",
+    src: "assets/client/Gallery-1.jpg",
+    title: "Sunset Poolside Deck",
+    subtitle: "Infinity waters meeting untouched mountain horizons",
+    badge: "Neo Club • Pool Deck",
     type: "zoom"
   },
   {
-    src: "assets/grand_forest_optimized/cinematic-pergola-jogging.webp",
+    src: "assets/client/Gallery-2.jpg",
+    title: "The Neo Club Sanctuary",
+    subtitle: "Luminous glasshouse pavilion mirrored in tranquil waters",
+    badge: "Clubhouse • Landscape",
     type: "panoramic"
   },
   {
-    src: "assets/grand_forest_optimized/cinematic-reception.webp",
+    src: "assets/client/Gallery-3.jpg",
+    title: "360° Forest Township View",
+    subtitle: "Low-density plotted living cradled in nature's canopy",
+    badge: "Plotted Living • Township",
     type: "zoom"
   },
   {
-    src: "assets/grand_forest_optimized/cinematic-gymnasium.webp",
+    src: "assets/client/Clubhouse-amenities.jpg",
+    title: "Two-Story Glass Pavilion",
+    subtitle: "A luminous architectural centerpiece for the community",
+    badge: "Clubhouse • Architecture",
     type: "panoramic"
   },
   {
-    src: "assets/grand_forest_optimized/cinematic-event-lawns.webp",
+    src: "assets/client/amenities-2.jpg",
+    title: "Panoramic Fitness Studio",
+    subtitle: "State-of-the-art wellness overlooking flowering forest gardens",
+    badge: "Wellness • Gymnasium",
     type: "zoom"
+  },
+  {
+    src: "assets/client/amenities-3.jpg",
+    title: "Multiplay Sports Arena",
+    subtitle: "Active recreation nestled among walking trails and trees",
+    badge: "Sports • Recreation",
+    type: "panoramic"
   }
 ];
 
-interface SceneProps {
-  scene: typeof SCENES[0];
-  index: number;
-  totalScenes: number;
-  scrollYProgress: MotionValue<number>;
-}
+export const CinematicShowcase: React.FC = () => {
+  const [activeScene, setActiveScene] = useState(() => scrollPresentation.getCinematicScene());
 
-const Scene: React.FC<SceneProps> = ({ scene, index, totalScenes, scrollYProgress }) => {
-  const start = index / totalScenes;
-  const end = (index + 1) / totalScenes;
-  const isFirst = index === 0;
-  const isLast = index === totalScenes - 1;
+  // Synchronize reactively with unified presentation controller
+  useEffect(() => {
+    return scrollPresentation.subscribe((state) => {
+      setActiveScene(state.cinematicScene);
+    });
+  }, []);
 
-  // Background Motion Logic - clean crossfade between scenes
-  // For the final scene (06), stay at opacity 1 through scroll progress 1.0 to eliminate any blank gap
-  const opacity = useTransform(
-    scrollYProgress,
-    isFirst
-      ? [0, end - 0.04, end]
-      : isLast
-      ? [start - 0.04, start, 1]
-      : [start - 0.04, start, end - 0.04, end],
-    isFirst
-      ? [1, 1, 0]
-      : isLast
-      ? [0, 1, 1]
-      : [0, 1, 1, 0]
-  );
-
-  const scale = useTransform(
-    scrollYProgress,
-    [start, end],
-    scene.type === "zoom" ? [1.08, 1.0] : [1.0, 1.06]
-  );
-
-  return (
-    <motion.div
-      style={{ 
-        opacity,
-        zIndex: index + 10,
-        WebkitBackfaceVisibility: 'hidden',
-        backfaceVisibility: 'hidden',
-        transform: 'translateZ(0)',
-        WebkitTransform: 'translateZ(0)',
-      }}
-      className="absolute inset-0 w-full h-full pointer-events-none"
-    >
-      <motion.div
-        style={{ 
-          scale,
-          WebkitBackfaceVisibility: 'hidden',
-          backfaceVisibility: 'hidden',
-          transform: 'translateZ(0)',
-          WebkitTransform: 'translateZ(0)',
-        }}
-        className="absolute inset-0 w-full h-full"
-      >
-        <img
-          src={scene.src}
-          alt="NeoLiv Grand Forest Privé"
-          decoding="async"
-          loading={index === 0 ? "eager" : "lazy"}
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-navy-950/40 via-transparent to-navy-950/60" />
-      </motion.div>
-    </motion.div>
-  );
-};
-
-interface ProgressIndicatorItemProps {
-  index: number;
-  totalScenes: number;
-  scrollYProgress: MotionValue<number>;
-  containerRef?: React.RefObject<HTMLDivElement | null>;
-}
-
-const ProgressIndicatorItem: React.FC<ProgressIndicatorItemProps> = ({ 
-  index, 
-  totalScenes, 
-  scrollYProgress,
-  containerRef 
-}) => {
-  const start = index / totalScenes;
-  const end = (index + 1) / totalScenes;
-  const isFirst = index === 0;
-  const isLast = index === totalScenes - 1;
-  const isActive = useTransform(
-    scrollYProgress,
-    isFirst
-      ? [0, end - 0.04, end]
-      : isLast
-      ? [start - 0.04, start, 1]
-      : [start - 0.04, start, end - 0.04, end],
-    isFirst ? [1, 1, 0] : isLast ? [0, 1, 1] : [0, 1, 1, 0]
-  );
-  const scaleY = useTransform(scrollYProgress, [start, end], [0, 1]);
-  const numberOpacity = useTransform(isActive, [0, 1], [0.6, 1]);
-  const numberScale = useTransform(isActive, [0, 1], [0.95, 1.18]);
-  const numberColor = useTransform(isActive, [0, 1], ["#ffffff", "#F6D57E"]);
-
-  const handleClick = () => {
-    if (!containerRef?.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const containerTop = rect.top + scrollTop;
-    const scrollableHeight = containerRef.current.offsetHeight - window.innerHeight;
-    const targetScroll = containerTop + (index / totalScenes) * scrollableHeight + 10;
-    window.scrollTo({ top: targetScroll, behavior: "smooth" });
+  // Jump smoothly to a specific scene (from vertical progress rail)
+  const goToScene = (targetIndex: number) => {
+    scrollPresentation.setCinematicScene(targetIndex);
   };
 
-  return (
-    <button
-      type="button"
-      onClick={handleClick}
-      aria-label={`View scene 0${index + 1}`}
-      className="group relative flex flex-col items-center gap-1 sm:gap-1.5 focus:outline-none cursor-pointer touch-manipulation py-0.5"
-    >
-      {/* High-Contrast Floating Number Indicator - Crisp Serif Typography */}
-      <motion.span
-        style={{
-          opacity: numberOpacity,
-          scale: numberScale,
-          color: numberColor,
-        }}
-        className="font-serif font-bold text-[11px] sm:text-xs md:text-sm tracking-wider select-none [text-shadow:_0_1px_4px_rgba(0,0,0,1),_0_2px_10px_rgba(0,0,0,0.95)] group-hover:text-amber-300 transition-colors duration-300"
-      >
-        0{index + 1}
-      </motion.span>
-
-      {/* Architectural Progress Line Track */}
-      <div className="w-[2px] sm:w-[2.5px] h-6 sm:h-8 md:h-10 bg-white/35 rounded-full relative overflow-hidden shadow-[0_1px_4px_rgba(0,0,0,0.9)] group-hover:bg-white/60 transition-colors duration-300">
-        <motion.div
-          style={{
-            scaleY,
-            opacity: isActive
-          }}
-          className="absolute inset-0 bg-gradient-to-b from-amber-300 via-gold-400 to-amber-500 origin-top rounded-full shadow-[0_0_12px_rgba(212,175,55,1)]"
-        />
-      </div>
-    </button>
-  );
-};
-
-export const CinematicShowcase: React.FC = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
+  const currentSceneData = SCENES[activeScene];
 
   return (
-    <section ref={containerRef} className="relative h-[600vh] md:h-[1200vh] bg-navy-950">
-      <div className="sticky top-0 h-screen h-[100dvh] w-full overflow-hidden">
-        {SCENES.map((scene, index) => (
-          <Scene 
-            key={scene.src} 
-            scene={scene} 
-            index={index} 
-            totalScenes={SCENES.length} 
-            scrollYProgress={scrollYProgress} 
-          />
-        ))}
+    <section className="relative w-full h-full bg-navy-950 select-none overflow-hidden">
+        {/* BACKGROUND SCENES: High-Performance Luxury Crossfade & WebKit GPU Compositing */}
+        {SCENES.map((scene, index) => {
+          const isActive = index === activeScene;
+          return (
+            <div
+              key={scene.src}
+              className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-out pointer-events-none will-change-transform ${
+                isActive ? "opacity-100 z-10" : "opacity-0 z-0"
+              }`}
+              style={{
+                WebkitTransform: 'translate3d(0,0,0)',
+                transform: 'translate3d(0,0,0)',
+                WebkitBackfaceVisibility: 'hidden',
+                backfaceVisibility: 'hidden',
+              }}
+            >
+              <img
+                src={scene.src}
+                alt={scene.title}
+                decoding="async"
+                loading={index <= 1 ? "eager" : "lazy"}
+                className={`w-full h-full object-cover transition-transform duration-[2400ms] ease-out will-change-transform ${
+                  isActive
+                    ? "scale-100"
+                    : scene.type === "zoom"
+                    ? "scale-106"
+                    : "scale-104"
+                }`}
+                style={{
+                  WebkitTransform: isActive
+                    ? 'scale(1) translate3d(0,0,0)'
+                    : scene.type === 'zoom'
+                    ? 'scale(1.06) translate3d(0,0,0)'
+                    : 'scale(1.04) translate3d(0,0,0)',
+                  WebkitBackfaceVisibility: 'hidden',
+                }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-navy-950/60 via-transparent to-navy-950/75" />
+            </div>
+          );
+        })}
 
-        {/* Ambient Left Lens Vignette: Soft feathered darkness ensuring 100% legibility across all bright scenes without an artificial container */}
-        <div className="absolute inset-y-0 left-0 w-40 sm:w-60 md:w-72 bg-gradient-to-r from-black/65 via-black/25 to-transparent pointer-events-none z-[80]" />
+        {/* Ambient Left Lens Vignette for side navigation legibility */}
+        <div className="absolute inset-y-0 left-0 w-40 sm:w-60 md:w-72 bg-gradient-to-r from-black/75 via-black/30 to-transparent pointer-events-none z-20" />
 
         {/* Artistic Impression Overlay Label */}
-        <div className="absolute top-6 right-6 z-[100] pointer-events-none">
+        <div className="absolute top-6 right-6 z-30 pointer-events-none">
           <span className="px-3 py-1 rounded-full bg-navy-950/85 backdrop-blur-md border border-gold-400/30 text-[9px] uppercase tracking-[0.2em] text-amber-300 font-semibold shadow-lg">
             Artistic Impression
           </span>
         </div>
 
-        {/* SIDE PROGRESS NAVIGATION - Floating Minimalist Luxury Rail (NO clunky box/capsule) */}
-        <div className="absolute left-4 sm:left-7 md:left-10 top-1/2 -translate-y-1/2 z-[100] flex flex-col items-center gap-3 sm:gap-4 md:gap-5 select-none">
-          {SCENES.map((_, i) => (
-            <ProgressIndicatorItem
-              key={i}
-              index={i}
-              totalScenes={SCENES.length}
-              scrollYProgress={scrollYProgress}
-              containerRef={containerRef}
-            />
-          ))}
+        {/* SIDE PROGRESS NAVIGATION: Minimalist Luxury Rail */}
+        <div className="absolute left-4 sm:left-7 md:left-10 top-1/2 -translate-y-1/2 z-30 flex flex-col items-center gap-3 sm:gap-4 md:gap-5 select-none">
+          {SCENES.map((_, i) => {
+            const isActive = i === activeScene;
+            return (
+              <button
+                key={i}
+                type="button"
+                onClick={() => goToScene(i)}
+                aria-label={`View scene 0${i + 1}`}
+                className="group relative flex flex-col items-center gap-1 sm:gap-1.5 focus:outline-none cursor-pointer touch-manipulation py-0.5"
+              >
+                {/* Number Indicator */}
+                <span
+                  className={`font-serif font-bold text-[11px] sm:text-xs md:text-sm tracking-wider transition-all duration-300 ${
+                    isActive
+                      ? "text-amber-300 scale-110 [text-shadow:_0_0_12px_rgba(246,213,126,0.8)]"
+                      : "text-white/60 group-hover:text-white"
+                  }`}
+                >
+                  0{i + 1}
+                </span>
+
+                {/* Progress Track Line */}
+                <div className="w-[2px] sm:w-[2.5px] h-6 sm:h-8 md:h-10 bg-white/30 rounded-full relative overflow-hidden group-hover:bg-white/50 transition-colors duration-300">
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-b from-amber-300 via-gold-400 to-amber-500 rounded-full transition-transform duration-500 origin-top ${
+                      isActive ? "scale-y-100 shadow-[0_0_10px_rgba(212,175,55,1)]" : "scale-y-0"
+                    }`}
+                  />
+                </div>
+              </button>
+            );
+          })}
         </div>
 
-        <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute inset-0 opacity-[0.02] mix-blend-overlay bg-grain" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,rgba(0,0,0,0.4)_100%)]" />
+        {/* BOTTOM SCENE EDITORIAL CAPTION CARD */}
+        <div className="absolute bottom-8 sm:bottom-12 left-16 sm:left-24 md:left-32 right-6 max-w-2xl z-30 pointer-events-none">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentSceneData.src}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.28, ease: "easeOut" }}
+              className="space-y-1.5"
+            >
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 border border-gold-400/40 backdrop-blur-md">
+                <span className="w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse" />
+                <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.25em] text-amber-300 font-semibold">
+                  {currentSceneData.badge}
+                </span>
+              </div>
+              <h3 className="font-serif text-xl sm:text-2xl md:text-3xl text-white font-medium drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
+                {currentSceneData.title}
+              </h3>
+              <p className="text-gray-200/90 text-xs sm:text-sm font-light leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+                {currentSceneData.subtitle}
+              </p>
+            </motion.div>
+          </AnimatePresence>
         </div>
-      </div>
+
+        {/* Ambient Subtle Film Grain & Radial Vignette */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 opacity-[0.02] mix-blend-overlay bg-grain" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,rgba(0,0,0,0.45)_100%)]" />
+        </div>
     </section>
   );
 };

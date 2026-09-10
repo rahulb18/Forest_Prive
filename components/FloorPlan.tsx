@@ -3,9 +3,9 @@ import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const floorPlans = [
-  { id: 1, src: 'assets/grand_forest_optimized/overview-masterplan-backdrop.webp', alt: 'Grand Forest Privé Masterplan View' },
-  { id: 2, src: 'assets/grand_forest_optimized/cinematic-club-facade.webp', alt: 'Neo Club Architectural Plan View' },
-  { id: 3, src: 'assets/grand_forest_optimized/cinematic-event-lawns.webp', alt: 'Club Facilities & Lawns View' }
+  { id: 1, src: 'assets/client/Masterplan.jpg', alt: 'Grand Forest Privé Masterplan View' },
+  { id: 2, src: 'assets/client/Clubhouse-amenities.jpg', alt: 'Neo Club Architectural Plan View' },
+  { id: 3, src: 'assets/client/amenities-3.jpg', alt: 'Club Facilities & Lawns View' }
 ];
 
 export const FloorPlan: React.FC = () => {

@@ -1,5 +1,6 @@
 import React from "react";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, ArrowRight } from "lucide-react";
+import { modalState } from "../lib/modal-state";
 
 export interface StorySlideData {
   id: string;
@@ -78,6 +79,10 @@ const STORY_SLIDES: StorySlideData[] = [
 ];
 
 export const VisualStorySections: React.FC = () => {
+  const openEnquiry = (title = "NeoLiv Grand Forest Privé - Enquiry") => {
+    modalState.open(title);
+  };
+
   const scrollToNext = (index: number) => {
     const nextSlide = STORY_SLIDES[index + 1];
     if (nextSlide) {
@@ -117,8 +122,8 @@ export const VisualStorySections: React.FC = () => {
             </div>
 
             {/* ATMOSPHERIC GRADIENT SCRIMS: Preserves brightness of architecture while keeping text crisp */}
-            {/* Soft bottom scrim (only lower 40%) */}
-            <div className="absolute inset-x-0 bottom-0 h-[45%] sm:h-[40%] bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none z-10" />
+            {/* Soft bottom scrim (only lower 42%) */}
+            <div className="absolute inset-x-0 bottom-0 h-[46%] sm:h-[40%] bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none z-10" />
             {/* Subtle bottom-left radial vignette */}
             <div className="absolute inset-y-0 left-0 w-full max-w-2xl bg-[radial-gradient(ellipse_at_bottom_left,rgba(0,0,0,0.75)_0%,rgba(0,0,0,0.25)_50%,transparent_80%)] pointer-events-none z-10" />
             {/* Subtle top edge scrim */}
@@ -146,8 +151,8 @@ export const VisualStorySections: React.FC = () => {
               </div>
             )}
 
-            {/* BOTTOM CONTENT BAR: Clean layout with zero overlaps on mobile & desktop */}
-            <div className="relative z-20 w-full px-5 sm:px-12 md:px-16 pb-6 sm:pb-10 md:pb-12 flex flex-col md:flex-row md:items-end justify-between gap-3.5 sm:gap-6">
+            {/* BOTTOM CONTENT BAR: Editorial Typography on Left + Dual Action Controls on Right */}
+            <div className="relative z-20 w-full px-5 sm:px-12 md:px-16 pb-6 sm:pb-8 md:pb-10 flex flex-col md:flex-row md:items-end justify-between gap-3.5 sm:gap-6">
               {/* BOTTOM-LEFT EDITORIAL TYPOGRAPHY */}
               <div className="max-w-xl text-left pointer-events-auto">
                 {/* Discreet Eyebrow Pill */}
@@ -171,27 +176,31 @@ export const VisualStorySections: React.FC = () => {
                 </p>
               </div>
 
-              {/* SINGLE UNIFIED BOTTOM ACTION: Contextual Next Chapter Pill (No duplicates, no collisions) */}
-              <div className="flex items-center shrink-0 pointer-events-auto self-start md:self-end pt-1 sm:pt-0">
+              {/* DUAL ACTION CONTROLS: Next Destination (Left) + Enquire Now Button (Right - user's highlighted spot) */}
+              <div className="flex items-center gap-2.5 sm:gap-3.5 w-full md:w-auto pointer-events-auto pt-1 sm:pt-0 shrink-0">
+                {/* 1. Next Chapter Destination Button */}
                 <button
                   type="button"
                   onClick={() => scrollToNext(index)}
-                  className="group flex items-center gap-2.5 px-4 py-2.5 sm:px-5 sm:py-2.5 rounded-full bg-[#0a1226]/85 hover:bg-[#0f1d3d] border border-gold-400/40 hover:border-gold-400 text-white backdrop-blur-md shadow-[0_6px_25px_rgba(0,0,0,0.85)] transition-all duration-300 cursor-pointer active:scale-95 touch-manipulation min-h-[40px]"
+                  className="group flex-1 md:flex-initial flex items-center justify-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full bg-[#0a1226]/85 hover:bg-[#0f1d3d] border border-white/20 hover:border-gold-400/50 text-white backdrop-blur-md shadow-[0_6px_20px_rgba(0,0,0,0.8)] transition-all duration-300 cursor-pointer active:scale-95 touch-manipulation min-h-[40px]"
                   aria-label={slide.nextDestination}
                 >
-                  {/* Glowing Pulse Dot */}
                   <span className="w-1.5 h-1.5 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.9)] animate-pulse shrink-0" />
-                  
-                  {/* Contextual Destination Name (e.g. Explore Township, The Neo Club, Explore Masterplan) */}
-                  <span className="text-[10px] sm:text-[11px] uppercase font-bold tracking-[0.2em] text-gray-100 group-hover:text-gold-300 transition-colors whitespace-nowrap">
+                  <span className="text-[9px] sm:text-[10.5px] uppercase font-bold tracking-[0.16em] sm:tracking-[0.18em] text-gray-200 group-hover:text-gold-300 transition-colors whitespace-nowrap">
                     {slide.nextDestination}
                   </span>
-                  
-                  {/* Subtle Divider */}
                   <span className="w-px h-3.5 bg-white/20 shrink-0" />
-                  
-                  {/* Down Arrow */}
                   <ArrowDown size={13} className="text-gold-400 group-hover:translate-y-0.5 transition-transform shrink-0" />
+                </button>
+
+                {/* 2. Luxury Enquire Button (Exact spot of the red box in user screenshot) */}
+                <button
+                  type="button"
+                  onClick={() => openEnquiry(`NeoLiv Grand Forest Privé - ${slide.eyebrow}`)}
+                  className="group flex-1 md:flex-initial flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-bold text-[9.5px] sm:text-[10.5px] uppercase tracking-[0.2em] shadow-[0_4px_22px_rgba(212,175,55,0.45)] hover:shadow-[0_6px_28px_rgba(212,175,55,0.6)] transition-all duration-300 cursor-pointer active:scale-95 touch-manipulation min-h-[40px] shrink-0"
+                >
+                  <span>Enquire</span>
+                  <ArrowRight size={13} className="text-navy-950 stroke-[2.2] group-hover:translate-x-0.5 transition-transform shrink-0" />
                 </button>
               </div>
             </div>

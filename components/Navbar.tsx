@@ -1,30 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { modalState } from '../lib/modal-state';
-import { scrollPresentation } from '../lib/scroll-presentation';
 
 export const Navbar: React.FC = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     useEffect(() => {
-        const unsubscribe = scrollPresentation.subscribe((state) => {
-            setIsScrolled(state.section === "content");
-        });
-
         const handleScroll = () => {
-            const h = window.innerHeight;
-            const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
-            if (scrollY >= h * 1.5) {
-                setIsScrolled(true);
-            } else if (scrollPresentation.getSection() !== "content") {
-                setIsScrolled(false);
+            const overviewEl = document.getElementById('Overview');
+            if (overviewEl) {
+                const rect = overviewEl.getBoundingClientRect();
+                setIsScrolled(rect.top <= 100);
+            } else {
+                const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+                setIsScrolled(scrollY > window.innerHeight * 5);
             }
         };
 
         window.addEventListener('scroll', handleScroll, { passive: true });
+        handleScroll();
         return () => {
-            unsubscribe();
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
@@ -41,7 +37,14 @@ export const Navbar: React.FC = () => {
         };
     }, [isMobileMenuOpen]);
 
+    const scrollToTop = (e: React.MouseEvent) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
     const navLinks = [
+        { name: 'The Sanctuary', href: '#home' },
+        { name: 'Township', href: '#villa-plots' },
         { name: 'Overview', href: '#Overview' },
         { name: 'Lifestyle', href: '#Lifestyle' },
         { name: 'Amenities', href: '#Amenities' },
@@ -53,20 +56,18 @@ export const Navbar: React.FC = () => {
     return (
         <>
             <nav
-                className={`fixed top-0 left-0 w-full z-[80] transition-all duration-500 ${isScrolled
-                    ? 'bg-navy-950/95 backdrop-blur-md border-b border-gold-400/20 py-3 translate-y-0'
-                    : 'bg-transparent py-6 -translate-y-full pointer-events-none'
-                    }`}
+                className={`fixed top-0 left-0 w-full z-[80] transition-all duration-500 ease-out ${
+                    isScrolled
+                        ? 'bg-navy-950/95 backdrop-blur-md border-b border-gold-400/20 py-3 translate-y-0 opacity-100'
+                        : 'bg-transparent py-5 -translate-y-full opacity-0 pointer-events-none'
+                }`}
             >
                 <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center gap-6">
                     {/* Logo & Project Title */}
                     <a
                         href="#home"
-                        onClick={(e) => {
-                            e.preventDefault();
-                            scrollPresentation.resetToHero();
-                        }}
-                        className="flex items-center gap-3 md:gap-3.5 group shrink-0"
+                        onClick={scrollToTop}
+                        className="flex items-center gap-3 md:gap-3.5 group shrink-0 cursor-pointer"
                     >
                         <img src="assets/logo.png" alt="NeoLiv" width={113} height={32} className="h-7 md:h-8 w-auto shrink-0 transition-transform group-hover:scale-105 duration-300" />
                         <div className="w-px h-5 md:h-6 bg-gold-400/30 shrink-0" />
@@ -76,13 +77,12 @@ export const Navbar: React.FC = () => {
                     </a>
 
                     {/* Desktop Nav */}
-                    <div className="hidden xl:flex items-center gap-7">
+                    <div className="hidden xl:flex items-center gap-6">
                         {navLinks.map((link) => (
                             <a
                                 key={link.name}
                                 href={link.href}
-                                onClick={() => scrollPresentation.setSection("content")}
-                                className="text-[9px] uppercase tracking-[0.25em] text-gray-300 hover:text-gold-400 transition-all duration-300 font-medium hover:tracking-[0.3em]"
+                                className="text-[9px] uppercase tracking-[0.22em] text-gray-300 hover:text-gold-400 transition-all duration-300 font-medium hover:tracking-[0.28em]"
                             >
                                 {link.name}
                             </a>
@@ -134,7 +134,7 @@ export const Navbar: React.FC = () => {
                     </button>
                 </div>
 
-                {/* Central Navigation Links - Centered vertically to prevent any vertical scroll */}
+                {/* Central Navigation Links */}
                 <div className="relative z-10 flex-1 flex flex-col justify-center items-center gap-5 sm:gap-6 px-6 py-4 overflow-y-auto hide-scrollbar">
                     {navLinks.map((link) => (
                         <a
@@ -148,7 +148,7 @@ export const Navbar: React.FC = () => {
                     ))}
                 </div>
 
-                {/* Bottom Action Section - Pinned and fully visible */}
+                {/* Bottom Action Section */}
                 <div className="relative z-10 px-6 pt-4 pb-7 border-t border-white/10 text-center shrink-0 bg-navy-950/80 backdrop-blur-md">
                     <p className="text-[10px] tracking-[0.25em] text-gold-400/90 font-mono uppercase mb-3">
                         GRAND FOREST <span className="text-white font-serif font-bold">PRIVÉ</span>

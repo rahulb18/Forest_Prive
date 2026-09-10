@@ -178,27 +178,52 @@ export const Amenities: React.FC = () => {
                                     </div>
                                 </div>
 
-                                {/* Club Visual Impression */}
+                                {/* Club Visual Impression with Dual Club Switcher */}
                                 <div className="lg:col-span-5">
-                                    <div className="relative rounded-2xl overflow-hidden border border-gold-400/30 shadow-2xl group">
-                                        <div className="aspect-[4/3] relative bg-navy-950">
-                                            <img
-                                                src="assets/client/Clubhouse-amenities.jpg"
-                                                alt="Grand Forest Privé Neo Club Glass Pavilion"
-                                                loading="lazy"
-                                                decoding="async"
-                                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                                            />
-                                            <div className="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-transparent to-transparent" />
-                                            <div className="absolute top-3 right-3">
-                                                <span className="px-3 py-1 rounded-full bg-navy-950/90 border border-white/10 text-[9px] uppercase tracking-widest text-gold-300 font-semibold shadow">
-                                                    Artistic Impression
-                                                </span>
+                                    <div className="space-y-3">
+                                        <div className="relative rounded-2xl overflow-hidden border border-gold-400/30 shadow-2xl group bg-navy-950">
+                                            <div className="aspect-[4/3] relative">
+                                                <img
+                                                    src="assets/client/Clubhouse-amenities.jpg"
+                                                    alt="Grand Forest Privé Neo Club Glass Pavilion"
+                                                    loading="lazy"
+                                                    decoding="async"
+                                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                                />
+                                                <div className="absolute inset-0 bg-gradient-to-t from-navy-950/85 via-transparent to-transparent" />
+                                                <div className="absolute top-3 right-3">
+                                                    <span className="px-3 py-1 rounded-full bg-navy-950/90 border border-white/10 text-[9px] uppercase tracking-widest text-gold-300 font-semibold shadow">
+                                                        Artistic Impression
+                                                    </span>
+                                                </div>
+                                                <div className="absolute bottom-4 left-4 right-4">
+                                                    <div className="flex items-center gap-2 text-gold-400 text-xs uppercase tracking-wider font-semibold">
+                                                        <Building2 size={14} />
+                                                        <span>Club 01 • Two-Story Glass Pavilion</span>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div className="absolute bottom-4 left-4 right-4">
-                                                <div className="flex items-center gap-2 text-gold-400 text-xs uppercase tracking-wider font-semibold">
-                                                    <Building2 size={14} />
-                                                    <span>Two Exclusive Clubs</span>
+                                        </div>
+
+                                        {/* Second Club Impression: The Twilight Sanctuary (Gallery-2.jpg) */}
+                                        <div className="relative rounded-2xl overflow-hidden border border-gold-400/20 shadow-xl group bg-navy-950">
+                                            <div className="aspect-[21/9] relative">
+                                                <img
+                                                    src="assets/client/Gallery-2.jpg"
+                                                    alt="Grand Forest Privé Neo Club Twilight Reflection Sanctuary"
+                                                    loading="lazy"
+                                                    decoding="async"
+                                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                                />
+                                                <div className="absolute inset-0 bg-gradient-to-t from-navy-950/85 via-transparent to-transparent" />
+                                                <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between">
+                                                    <div className="flex items-center gap-2 text-gold-400 text-xs uppercase tracking-wider font-semibold">
+                                                        <Building2 size={14} />
+                                                        <span>Club 02 • Twilight Reflection Sanctuary</span>
+                                                    </div>
+                                                    <span className="text-[9px] uppercase tracking-widest text-gray-300/80">
+                                                        Waterfront Deck
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>

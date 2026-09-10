@@ -1,12 +1,11 @@
 import React, { Suspense, lazy } from 'react';
-import { Hero } from './components/Hero';
+import { VisualStorySections } from './components/VisualStorySections';
 import { Navbar } from './components/Navbar';
 import { FloatingCTA } from './components/FloatingCTA';
-import { CinematicShowcase } from './components/CinematicShowcase';
 import { AboutNeoLiv } from './components/AboutNeoLiv';
 import { EnquiryModal } from './components/EnquiryModal';
-import { usePresentationScroll } from './lib/scroll-presentation';
-// Lazy Load heavier components
+
+// Lazy Load subsequent detailed sections
 const CuratedLifestyle = lazy(() => import('./components/CuratedLifestyle').then(m => ({ default: m.CuratedLifestyle })));
 const Amenities = lazy(() => import('./components/Amenities').then(m => ({ default: m.Amenities })));
 const Location = lazy(() => import('./components/Location').then(m => ({ default: m.Location })));
@@ -18,58 +17,69 @@ const ContactForm = lazy(() => import('./components/ContactForm').then(m => ({ d
 const Footer = lazy(() => import('./components/Footer').then(m => ({ default: m.Footer })));
 
 function App() {
-  usePresentationScroll();
   return (
     <>
-      <main className="w-full min-h-screen bg-transparent selection:bg-gold-400 selection:text-navy-900 pointer-events-auto">
-        {/* Section 1: Header & Navigation */}
+      <main className="w-full min-h-screen bg-navy-950 selection:bg-gold-400 selection:text-navy-900 pointer-events-auto">
+        {/* Floating Top Navigation Header */}
         <Navbar />
 
-        {/* Section 2: Hero Section (100dvh Full Viewport) */}
-        <div id="home" className="relative w-full h-screen h-[100dvh] overflow-hidden">
-          <Hero />
-        </div>
+        {/* Visual Story Slides: Dedicated Full-Screen Editorial Sections (NeoLiv Signature Style) */}
+        <VisualStorySections />
 
-        {/* Content Layer: Stable Document Flow with Suspense Lazy Loading */}
-        <div className="relative z-10 bg-navy-900">
-          {/* Cinematic Background Showcase (100dvh Full Viewport) */}
-          <div id="Cinematic" className="relative w-full h-screen h-[100dvh] overflow-hidden">
-            <CinematicShowcase />
+        {/* Detailed Section: Project Overview & Masterplan (Dedicated Client Render: Masterplan.jpg) */}
+        <div id="Overview">
+          <AboutNeoLiv />
+        </div>
+        
+        <Suspense fallback={<div className="h-20 bg-navy-950" />}>
+          {/* Detailed Section: Curated Lifestyle & Sports */}
+          <div id="Lifestyle">
+            <CuratedLifestyle />
           </div>
 
-          {/* Section 02 & 03: Project Introduction & Project Highlights */}
-          <div id="Overview"><AboutNeoLiv /></div>
-          
-          <Suspense fallback={<div className="h-20 bg-navy-950" />}>
-            {/* Section 04: Nature & Lifestyle */}
-            <div id="Lifestyle"><CuratedLifestyle /></div>
+          {/* Detailed Section: Curated Amenities & Club Experience */}
+          <div id="Amenities">
+            <Amenities />
+          </div>
 
-            {/* Section 05: Location & Connectivity */}
-            <div id="Location"><Location /></div>
+          {/* Detailed Section: Location & Regional Connectivity */}
+          <div id="Location">
+            <Location />
+          </div>
 
-            {/* Section 06: Curated Amenities & Section 07: Club Experience */}
-            <div id="Amenities"><Amenities /></div>
+          {/* Detailed Section: Architectural Masterpiece Gallery (All 7 Client Renders) */}
+          <div id="Gallery">
+            <Gallery />
+          </div>
 
-            {/* Section 08 & 12: Architectural Vision & Gallery */}
-            <div id="Gallery"><Gallery /></div>
+          {/* Detailed Section: Grand Privé Advantage & Investment Opportunity */}
+          <div id="Pricing">
+            <GrandPriveAdvantage />
+          </div>
 
-            {/* Section 09: Grand Privé Advantage & Section 10: Investment Opportunity */}
-            <div id="Pricing"><GrandPriveAdvantage /></div>
+          {/* Detailed Section: Developer Profile: About NeoLiv */}
+          <div id="AboutUs">
+            <AboutUs />
+          </div>
 
-            {/* Section 11: Developer Profile: About NeoLiv */}
-            <div id="AboutUs"><AboutUs /></div>
+          {/* Detailed Section: Frequently Asked Questions */}
+          <div id="FAQ">
+            <FAQSection />
+          </div>
 
-            {/* Section 13: Frequently Asked Questions */}
-            <div id="FAQ"><FAQSection /></div>
+          {/* Detailed Section: Lead Capture / Enquiry Section */}
+          <div id="Contact">
+            <ContactForm />
+          </div>
 
-            {/* Section 14: Lead Capture / Enquiry Section */}
-            <div id="Contact"><ContactForm /></div>
+          {/* Compliance, Footer & Brand Details */}
+          <Footer />
+        </Suspense>
 
-            {/* Section 15: Compliance, Footer & Sticky UX */}
-            <Footer />
-          </Suspense>
-          <FloatingCTA />
-        </div>
+        {/* Universal Sticky Desktop Tabs & Mobile Bottom Bar */}
+        <FloatingCTA />
+
+        {/* Universal Enquiry Modal Dialog */}
         <EnquiryModal />
       </main>
     </>

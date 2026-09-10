@@ -97,9 +97,15 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Smooth Scroll Behavior REMOVED - Conflicts with JS scroll animations */
+/* Native Smooth Scroll Behavior & Complete Image Snapping */
 html {
-  scroll-behavior: auto !important;
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+}
+
+.story-snap-slide {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .iti { width: 100%; }

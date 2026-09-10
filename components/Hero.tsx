@@ -1,44 +1,6 @@
-import React, { useEffect, useRef, useState, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowDown, ArrowRight } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { ArrowDown, ArrowRight, Mountain, Sparkles, Building2, Milestone } from "lucide-react";
 import { modalState } from "../lib/modal-state";
-import { scrollPresentation } from "../lib/scroll-presentation";
-
-export interface HeroSlide {
-  image: string;
-  alt: string;
-  eyebrow: string;
-  titlePart1: string;
-  titlePart2: string;
-  subtitle: string;
-}
-
-const HERO_SLIDES: HeroSlide[] = [
-  {
-    image: "assets/client/Gallery-1.jpg",
-    alt: "NeoLiv Grand Forest Privé - Sunset Infinity Pool & Mountain Horizon",
-    eyebrow: "PLOTTED LIVING • 360° MOUNTAIN VIEWS",
-    titlePart1: "Where Nature",
-    titlePart2: "Becomes a Privilege.",
-    subtitle: "Neoliv Grand Forest Privé",
-  },
-  {
-    image: "assets/client/Gallery-3.jpg",
-    alt: "NeoLiv Grand Forest Privé - 360° Mountain Views & Low-Density Living",
-    eyebrow: "LOW-DENSITY PLOTTED LIVING",
-    titlePart1: "360° Mountain Views",
-    titlePart2: "& Wide Roads.",
-    subtitle: "Sanctuary Amidst Mountain Forest",
-  },
-  {
-    image: "assets/client/Gallery-2.jpg",
-    alt: "NeoLiv Grand Forest Privé - Two Exclusive Clubs & Curated Experiences",
-    eyebrow: "GRADE-A INFRASTRUCTURE",
-    titlePart1: "Two Exclusive Clubs",
-    titlePart2: "& Curated Experiences.",
-    subtitle: "Refined Leisure & Private Serenity",
-  },
-];
 
 interface HeroProps {
   onProgress?: (progress: number) => void;
@@ -46,199 +8,147 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
-  const [activeSlide, setActiveSlide] = useState(() => scrollPresentation.getHeroSlide());
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // Synchronize reactively with unified presentation controller
-  useEffect(() => {
-    return scrollPresentation.subscribe((state) => {
-      setActiveSlide(state.heroSlide);
-    });
-  }, []);
-
-  // Mark experience as loaded
   useEffect(() => {
     setIsLoaded(true);
     if (onProgress) onProgress(100);
   }, [onProgress]);
 
-  // Jump to specific slide (from pagination pills)
-  const goToSlide = (targetIndex: number) => {
-    scrollPresentation.setHeroSlide(targetIndex);
+  const scrollToNext = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const target = document.getElementById("EnclaveShowcase") || document.getElementById("Overview");
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
-  const currentSlide = HERO_SLIDES[activeSlide] || HERO_SLIDES[0];
-
   return (
-    <div id="home" className="relative w-full h-full bg-navy-950 overflow-hidden select-none">
-      {/* BACKGROUND SLIDES: High-Performance Luxury Crossfade & WebKit GPU Motion */}
-      {HERO_SLIDES.map((slide, idx) => {
-        const isActive = idx === activeSlide;
-        return (
-          <div
-            key={slide.image}
-            className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-out pointer-events-none will-change-transform ${
-              isActive ? "opacity-100 z-10" : "opacity-0 z-0"
-            }`}
-            style={{
-              WebkitTransform: 'translate3d(0,0,0)',
-              transform: 'translate3d(0,0,0)',
-              WebkitBackfaceVisibility: 'hidden',
-              backfaceVisibility: 'hidden',
-            }}
-          >
-            <img
-              src={slide.image}
-              alt={slide.alt}
-              fetchPriority={idx === 0 ? "high" : "auto"}
-              decoding={idx === 0 ? "sync" : "async"}
-              className={`w-full h-full object-cover object-center transition-transform duration-[2200ms] ease-out will-change-transform ${
-                isActive ? "scale-100" : "scale-105"
-              }`}
-              style={{
-                WebkitTransform: isActive ? 'scale(1) translate3d(0,0,0)' : 'scale(1.05) translate3d(0,0,0)',
-                WebkitBackfaceVisibility: 'hidden',
-              }}
-            />
-          </div>
-        );
-      })}
+    <section
+      id="home"
+      className="relative w-full min-h-screen min-h-[100dvh] flex flex-col justify-between items-center select-none overflow-hidden bg-navy-950 text-white"
+    >
+      {/* BACKGROUND IMAGE: Dedicated Client Render 01 (Sunset Infinity Pool & Mountain Horizon) */}
+      <div className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden">
+        <img
+          src="assets/client/Gallery-1.jpg"
+          alt="NeoLiv Grand Forest Privé - Sunset Infinity Pool & Mountain Horizon"
+          fetchPriority="high"
+          decoding="sync"
+          className="w-full h-full object-cover object-center scale-100 transition-transform duration-[4000ms] ease-out will-change-transform motion-safe:hover:scale-105"
+          style={{
+            WebkitTransform: 'translate3d(0,0,0)',
+            transform: 'translate3d(0,0,0)',
+          }}
+        />
+      </div>
 
-      {/* Persistent Top Scrim for crisp brand mark readability */}
-      <div className="absolute inset-x-0 top-0 h-40 sm:h-48 bg-gradient-to-b from-black/80 via-black/40 to-transparent pointer-events-none z-20" />
-
-      {/* Atmospheric Central & Bottom Scrims for pristine luxury typography */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_65%_at_50%_50%,rgba(5,15,35,0.65)_0%,rgba(5,15,35,0.35)_50%,transparent_85%)] pointer-events-none z-20" />
-      <div className="absolute inset-x-0 bottom-0 h-56 sm:h-72 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none z-20" />
+      {/* Atmospheric Luxury Scrims & Vignettes for Uncompromising Readability */}
+      <div className="absolute inset-x-0 top-0 h-48 sm:h-56 bg-gradient-to-b from-black/85 via-black/45 to-transparent pointer-events-none z-10" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_85%_70%_at_50%_50%,rgba(5,15,35,0.6)_0%,rgba(5,15,35,0.3)_50%,transparent_85%)] pointer-events-none z-10" />
+      <div className="absolute inset-x-0 bottom-0 h-64 sm:h-80 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none z-10" />
 
       {/* TOP BRAND LOCKUP */}
-      <div className="absolute top-4 sm:top-6 md:top-8 left-1/2 -translate-x-1/2 z-30 pointer-events-none text-center px-4 w-full max-w-xl flex flex-col items-center">
+      <header className="relative z-20 w-full pt-6 sm:pt-8 md:pt-10 px-6 max-w-7xl mx-auto flex flex-col items-center text-center">
         <img
           src="assets/logo.png"
           alt="NeoLiv"
           width={140}
           height={40}
-          className="h-9 sm:h-10 md:h-11 lg:h-12 w-auto mb-2 sm:mb-2.5 opacity-95 drop-shadow-[0_3px_14px_rgba(0,0,0,0.95)]"
+          className="h-9 sm:h-10 md:h-12 w-auto mb-2.5 opacity-95 drop-shadow-[0_3px_14px_rgba(0,0,0,0.95)]"
         />
-        <h1 className="font-serif text-base sm:text-lg md:text-xl lg:text-2xl text-white tracking-[0.22em] sm:tracking-[0.28em] uppercase font-bold [text-shadow:_0_2px_12px_rgba(0,0,0,0.98),_0_4px_24px_rgba(0,0,0,0.95)]">
+        <p className="font-serif text-xs sm:text-sm md:text-base text-white tracking-[0.26em] uppercase font-bold [text-shadow:_0_2px_12px_rgba(0,0,0,0.98),_0_4px_24px_rgba(0,0,0,0.95)]">
           GRAND FOREST <span className="text-gold-400">PRIVÉ</span>
+        </p>
+      </header>
+
+      {/* CENTER NARRATIVE CONTENT */}
+      <div className="relative z-20 w-full max-w-5xl mx-auto px-4 sm:px-6 my-auto text-center py-8">
+        {/* Feathered dark backdrop aura */}
+        <div className="absolute inset-0 bg-navy-950/60 rounded-full blur-3xl -z-10 scale-110 pointer-events-none" />
+
+        {/* Eyebrow Pill */}
+        <div className="mb-4 sm:mb-5 inline-block">
+          <span className="inline-flex items-center gap-2 px-4 sm:px-5 py-1.5 rounded-full bg-black/65 border border-gold-400/50 text-amber-300 text-[9px] sm:text-xs tracking-[0.24em] uppercase font-semibold backdrop-blur-md shadow-2xl">
+            <Sparkles size={12} className="text-gold-400" />
+            <span>NATURE-LED PLOTTED LIVING • 360° MOUNTAIN VIEWS</span>
+          </span>
+        </div>
+
+        {/* Main Title */}
+        <h1 className="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-white font-medium uppercase tracking-wide leading-[1.12] sm:leading-[1.1] [text-shadow:_0_2px_8px_rgba(0,0,0,0.95),_0_6px_24px_rgba(0,0,0,0.9),_0_14px_48px_rgba(0,0,0,0.95)]">
+          Where Nature <br className="hidden sm:inline" />
+          <span className="text-[#F6D57E] italic font-serif">Becomes a Privilege.</span>
         </h1>
-      </div>
 
-      {/* CENTER NARRATIVE CONTENT: Smoothly swaps content based on activeSlide */}
-      <div className="absolute inset-0 z-30 flex flex-col items-center justify-center px-4 sm:px-6 text-center pointer-events-none">
-        <div className="w-full max-w-4xl space-y-4 sm:space-y-6 relative py-4 px-2 pointer-events-auto">
-          {/* Feathered dark background aura */}
-          <div className="absolute inset-0 bg-navy-950/60 rounded-full blur-3xl -z-10 scale-110 pointer-events-none" />
+        {/* Subtitle */}
+        <p className="mt-4 sm:mt-5 text-gray-200 text-xs sm:text-sm md:text-base font-light tracking-[0.12em] uppercase max-w-2xl mx-auto leading-relaxed [text-shadow:_0_2px_8px_rgba(0,0,0,0.9)]">
+          Neoliv Grand Forest Privé — Low-Density Forest Sanctuaries with 360° Mountain Vistas & Grade-A Ready Infrastructure.
+        </p>
 
-          {/* Dynamic Slide Content with Fluid Transition & Zero Text Ghosting */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentSlide.image}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-              className="relative"
-            >
-              {/* Eyebrow */}
-              <div className="mb-2 sm:mb-3">
-                <span className="inline-block max-w-[92vw] px-4 py-1.5 rounded-full bg-black/65 border border-gold-400/50 text-amber-300 text-[8.5px] sm:text-[11px] md:text-xs tracking-[0.20em] sm:tracking-[0.28em] uppercase font-semibold backdrop-blur-md shadow-xl truncate">
-                  {currentSlide.eyebrow}
-                </span>
-              </div>
-
-              {/* Main Headline */}
-              <h2 className="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-white font-medium uppercase tracking-wide leading-[1.14] [text-shadow:_0_2px_8px_rgba(0,0,0,0.95),_0_6px_24px_rgba(0,0,0,0.9),_0_14px_48px_rgba(0,0,0,0.95)]">
-                {currentSlide.titlePart1} <br className="hidden sm:inline" />
-                <span className="text-[#F6D57E] italic font-serif">
-                  {currentSlide.titlePart2}
-                </span>
-              </h2>
-
-              {/* Subtitle */}
-              <p className="mt-3 sm:mt-4 text-gray-200 text-xs sm:text-sm md:text-base font-light tracking-[0.15em] uppercase text-shadow">
-                {currentSlide.subtitle}
-              </p>
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Action CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pointer-events-auto relative z-30 w-full max-w-[280px] sm:max-w-xl mx-auto pt-4 sm:pt-6 touch-manipulation">
-            <a
-              href="#Cinematic"
-              onClick={(e) => {
-                e.preventDefault();
-                const el = document.getElementById("Cinematic");
-                if (el) {
-                  el.scrollIntoView({ behavior: "smooth" });
-                } else {
-                  const h = window.innerHeight;
-                  window.scrollTo({ top: h * 3 + 20, behavior: "smooth" });
-                }
-              }}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 sm:px-8 sm:py-3.5 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-bold text-[11px] sm:text-xs uppercase tracking-[0.16em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.45)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.6)] transition-all active:scale-95 cursor-pointer whitespace-nowrap min-h-[44px]"
-            >
-              <span>Explore Grand Forest Privé</span>
-              <ArrowRight size={14} className="inline" />
-            </a>
-            <button
-              type="button"
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                modalState.open("NeoLiv Grand Forest Privé - Hero Enquiry");
-              }}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 sm:px-8 sm:py-3.5 bg-black/60 hover:bg-black/80 active:bg-black/90 text-white border border-gold-400/60 hover:border-gold-400 text-[11px] sm:text-xs uppercase tracking-[0.16em] font-semibold rounded-full backdrop-blur-md shadow-[0_4px_25px_rgba(0,0,0,0.6)] hover:shadow-[0_6px_30px_rgba(212,175,55,0.3)] transition-all active:scale-95 cursor-pointer whitespace-nowrap min-h-[44px]"
-            >
-              Enquire Now
-            </button>
+        {/* Key Highlight Pills Bar */}
+        <div className="mt-6 sm:mt-8 grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4 max-w-3xl mx-auto">
+          <div className="flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-black/45 border border-white/10 backdrop-blur-sm">
+            <Mountain size={14} className="text-gold-400 shrink-0" />
+            <span className="text-[10px] sm:text-xs uppercase font-medium tracking-wider text-gray-200 whitespace-nowrap">
+              360° Mountain Views
+            </span>
           </div>
+          <div className="flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-black/45 border border-white/10 backdrop-blur-sm">
+            <Sparkles size={14} className="text-gold-400 shrink-0" />
+            <span className="text-[10px] sm:text-xs uppercase font-medium tracking-wider text-gray-200 whitespace-nowrap">
+              Low-Density Living
+            </span>
+          </div>
+          <div className="flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-black/45 border border-white/10 backdrop-blur-sm">
+            <Building2 size={14} className="text-gold-400 shrink-0" />
+            <span className="text-[10px] sm:text-xs uppercase font-medium tracking-wider text-gray-200 whitespace-nowrap">
+              2 Exclusive Clubs
+            </span>
+          </div>
+          <div className="flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-black/45 border border-white/10 backdrop-blur-sm">
+            <Milestone size={14} className="text-gold-400 shrink-0" />
+            <span className="text-[10px] sm:text-xs uppercase font-medium tracking-wider text-gray-200 whitespace-nowrap">
+              Wide Internal Roads
+            </span>
+          </div>
+        </div>
+
+        {/* Direct Action CTAs */}
+        <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full max-w-md mx-auto">
+          <button
+            type="button"
+            onClick={() => modalState.open("NeoLiv Grand Forest Privé - Hero Enquiry")}
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 sm:px-9 sm:py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-bold text-xs uppercase tracking-[0.2em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.45)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.6)] transition-all active:scale-95 cursor-pointer whitespace-nowrap min-h-[44px]"
+          >
+            <span>Enquire Now</span>
+            <ArrowRight size={14} />
+          </button>
+
+          <a
+            href="#EnclaveShowcase"
+            onClick={scrollToNext}
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 sm:px-8 sm:py-4 bg-black/60 hover:bg-black/80 active:bg-black/90 text-white border border-gold-400/60 hover:border-gold-400 text-xs uppercase tracking-[0.18em] font-semibold rounded-full backdrop-blur-md shadow-[0_4px_25px_rgba(0,0,0,0.6)] hover:shadow-[0_6px_30px_rgba(212,175,55,0.3)] transition-all active:scale-95 cursor-pointer whitespace-nowrap min-h-[44px]"
+          >
+            <span>Explore The Enclave</span>
+          </a>
         </div>
       </div>
 
-      {/* DISCRETE SLIDE PAGINATION PILLS (01, 02, 03) */}
-      <div className="absolute bottom-16 sm:bottom-20 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2.5 sm:gap-3 pointer-events-auto">
-        {HERO_SLIDES.map((_, idx) => {
-          const isActive = idx === activeSlide;
-          return (
-            <button
-              key={idx}
-              type="button"
-              onClick={() => goToSlide(idx)}
-              aria-label={`Jump to hero slide 0${idx + 1}`}
-              className="group flex items-center gap-1.5 focus:outline-none cursor-pointer py-1.5 px-2"
-            >
-              <span
-                className={`font-serif text-[10px] sm:text-xs tracking-wider transition-colors duration-300 font-bold ${
-                  isActive ? "text-amber-300" : "text-white/50 group-hover:text-white/80"
-                }`}
-              >
-                0{idx + 1}
-              </span>
-              <span
-                className={`block h-[2px] sm:h-[2.5px] rounded-full transition-all duration-500 ${
-                  isActive
-                    ? "w-8 sm:w-10 bg-gradient-to-r from-amber-300 to-gold-400 shadow-[0_0_8px_rgba(212,175,55,0.8)]"
-                    : "w-3 sm:w-4 bg-white/30 group-hover:bg-white/60"
-                }`}
-              />
-            </button>
-          );
-        })}
-      </div>
-
-      {/* SCROLL TO EXPLORE INDICATOR */}
-      <div
-        className={`absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 text-white transition-opacity duration-700 pointer-events-none ${
-          activeSlide === 0 ? "opacity-90" : "opacity-0"
-        }`}
-      >
-        <span className="px-3 py-1 rounded-full bg-navy-950/75 border border-gold-400/30 backdrop-blur-sm text-[8px] sm:text-[9px] uppercase tracking-[0.35em] text-gold-300 font-medium shadow-md">
-          Scroll to Explore
-        </span>
-        <ArrowDown size={11} className="animate-bounce text-gold-400 drop-shadow" />
-      </div>
-    </div>
+      {/* BOTTOM SCROLL INDICATOR: Direct Anchor to Native Scroll Flow */}
+      <footer className="relative z-20 pb-6 sm:pb-8 flex flex-col items-center">
+        <a
+          href="#EnclaveShowcase"
+          onClick={scrollToNext}
+          className="group flex flex-col items-center gap-1.5 text-white/80 hover:text-gold-300 transition-colors cursor-pointer focus:outline-none"
+          aria-label="Scroll down to explore township enclave"
+        >
+          <span className="px-3.5 py-1 rounded-full bg-navy-950/80 border border-gold-400/30 backdrop-blur-sm text-[8px] sm:text-[9px] uppercase tracking-[0.3em] text-gold-300 font-medium shadow group-hover:border-gold-400">
+            Scroll to Explore
+          </span>
+          <ArrowDown size={14} className="animate-bounce text-gold-400 drop-shadow" />
+        </a>
+      </footer>
+    </section>
   );
 };

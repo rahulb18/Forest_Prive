@@ -1,34 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { Phone, MessageCircle, FileText, Send } from "lucide-react";
 import { modalState } from "../lib/modal-state";
-import { scrollPresentation } from "../lib/scroll-presentation";
 
 export const FloatingCTA: React.FC = () => {
-  const [isDesktopVisible, setIsDesktopVisible] = useState(false);
-  const [isMobileVisible, setIsMobileVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const unsubscribe = scrollPresentation.subscribe((state) => {
-      const inContent = state.section === "content";
-      setIsDesktopVisible(inContent);
-      setIsMobileVisible(inContent);
-    });
-
     const handleScroll = () => {
-      const h = window.innerHeight;
-      const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
-      if (scrollY >= h * 1.5) {
-        setIsDesktopVisible(true);
-        setIsMobileVisible(true);
-      } else if (scrollPresentation.getSection() !== "content") {
-        setIsDesktopVisible(false);
-        setIsMobileVisible(false);
+      const overviewEl = document.getElementById("Overview");
+      if (overviewEl) {
+        const rect = overviewEl.getBoundingClientRect();
+        setIsVisible(rect.top <= 200);
+      } else {
+        const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+        setIsVisible(scrollY > window.innerHeight * 5);
       }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
     return () => {
-      unsubscribe();
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
@@ -39,10 +30,10 @@ export const FloatingCTA: React.FC = () => {
 
   return (
     <>
-      {/* DESKTOP: Best-in-Class Vertically Sticky Edge CTAs (Lodha/DLF Style) */}
+      {/* DESKTOP: Vertically Sticky Edge CTAs for detailed content sections */}
       <div
         className={`hidden md:flex fixed right-0 top-1/2 -translate-y-1/2 z-[200] flex-col gap-2 transition-all duration-500 ${
-          isDesktopVisible
+          isVisible
             ? "translate-x-0 opacity-100"
             : "translate-x-full opacity-0 pointer-events-none"
         }`}
@@ -78,10 +69,10 @@ export const FloatingCTA: React.FC = () => {
         </button>
       </div>
 
-      {/* MOBILE: App-Style Floating Bottom Dock - Appears ONLY after second section with iOS Safe Area support */}
+      {/* MOBILE: App-Style Floating Bottom Dock for detailed content sections */}
       <div
         className={`md:hidden fixed bottom-[max(0.75rem,env(safe-area-inset-bottom))] left-3 right-3 z-[250] bg-navy-950/92 backdrop-blur-xl border border-gold-400/30 rounded-2xl shadow-[0_10px_35px_rgba(0,0,0,0.85)] p-1.5 flex items-center justify-between gap-1.5 transition-all duration-500 touch-manipulation select-none ${
-          isMobileVisible
+          isVisible
             ? "translate-y-0 opacity-100 pointer-events-auto"
             : "translate-y-24 opacity-0 pointer-events-none"
         }`}

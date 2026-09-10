@@ -43,8 +43,6 @@ export const Navbar: React.FC = () => {
     };
 
     const navLinks = [
-        { name: 'The Sanctuary', href: '#home' },
-        { name: 'Township', href: '#villa-plots' },
         { name: 'Overview', href: '#Overview' },
         { name: 'Lifestyle', href: '#Lifestyle' },
         { name: 'Amenities', href: '#Amenities' },

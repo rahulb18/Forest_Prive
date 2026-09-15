@@ -49,16 +49,19 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
       <div className="absolute inset-x-0 bottom-0 h-64 sm:h-80 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none z-10" />
 
       {/* TOP BRAND LOCKUP */}
-      <header className="relative z-20 w-full pt-5 sm:pt-7 md:pt-8 px-6 max-w-7xl mx-auto flex flex-col items-center text-center">
-        <div className="inline-flex flex-col items-center px-6 sm:px-8 py-2.5 sm:py-3 rounded-2xl sm:rounded-full bg-navy-950/80 border border-gold-400/30 backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.7)]">
+      <header className="relative z-20 w-full pt-6 sm:pt-8 md:pt-10 px-6 max-w-7xl mx-auto flex flex-col items-center text-center">
+        {/* Seamless feathered dark aura: eliminates bright sun flare behind text without any visible box or borders */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 sm:w-[420px] h-24 sm:h-28 bg-navy-950/75 rounded-full blur-2xl sm:blur-3xl -z-10 pointer-events-none" />
+
+        <div className="relative inline-flex flex-col items-center">
           <img
             src="assets/logo.png"
             alt="NeoLiv"
             width={140}
             height={40}
-            className="h-7 sm:h-8 md:h-9 w-auto mb-1.5 opacity-100 filter drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
+            className="h-8 sm:h-9 md:h-10 w-auto mb-2 opacity-100 filter drop-shadow-[0_4px_16px_rgba(0,0,0,0.95)] transition-transform hover:scale-105 duration-300"
           />
-          <p className="font-serif text-[11px] sm:text-xs md:text-sm text-white tracking-[0.24em] uppercase font-semibold drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+          <p className="font-serif text-xs sm:text-sm md:text-base text-white tracking-[0.28em] uppercase font-semibold [text-shadow:_0_2px_12px_rgba(0,0,0,0.98),_0_4px_24px_rgba(0,0,0,0.95)]">
             GRAND FOREST <span className="text-gold-400 font-bold">PRIVÉ</span>
           </p>
         </div>

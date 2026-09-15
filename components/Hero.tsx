@@ -28,11 +28,11 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
       id="home"
       className="relative w-full min-h-screen min-h-[100dvh] flex flex-col justify-between items-center select-none overflow-hidden bg-navy-950 text-white"
     >
-      {/* BACKGROUND IMAGE: Dedicated Client Render 01 (Sunset Infinity Pool & Mountain Horizon) */}
+      {/* BACKGROUND IMAGE: Dedicated Client Render (Forest Living & Generational Joy) */}
       <div className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden">
         <img
-          src="assets/client/Gallery-1.jpg"
-          alt="NeoLiv Grand Forest Privé - Grand Arrival Portal at Twilight"
+          src="assets/client/Gallery-2.jpg"
+          alt="NeoLiv Grand Forest Privé - Forest Living & Generational Joy"
           fetchPriority="high"
           decoding="sync"
           className="w-full h-full object-cover object-center scale-100 transition-transform duration-[4000ms] ease-out will-change-transform motion-safe:hover:scale-105"

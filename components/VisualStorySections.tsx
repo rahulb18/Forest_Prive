@@ -17,6 +17,17 @@ export interface StorySlideData {
 const STORY_SLIDES: StorySlideData[] = [
   {
     id: "home",
+    image: "assets/client/Gallery-2.jpg",
+    alt: "NeoLiv Grand Forest Privé - Forest Living & Generational Joy",
+    eyebrow: "FOREST SANCTUARY LIVING",
+    titleWhite: "Pure Joy, Space & Freedom",
+    titleGold: "To grow and reconnect.",
+    subtitle: "A generational legacy estate where your family thrives in unpolluted air, wildflower meadows, and timeless natural serenity.",
+    nextDestination: "Grand Arrival",
+    showLogo: true,
+  },
+  {
+    id: "slide-arrival",
     image: "assets/client/Gallery-1.jpg",
     alt: "NeoLiv Grand Forest Privé - Grand Arrival Portal at Twilight",
     eyebrow: "GRAND ARRIVAL • GATED SANCTUARY",
@@ -24,7 +35,6 @@ const STORY_SLIDES: StorySlideData[] = [
     titleGold: "Becomes a Privilege.",
     subtitle: "Grand Forest Privé by NeoLiv — A majestic gated forest estate with 360° Sahyadri mountain vistas & Grade-A infrastructure.",
     nextDestination: "Sunset Pool",
-    showLogo: true,
   },
   {
     id: "slide-pool",
@@ -74,16 +84,6 @@ const STORY_SLIDES: StorySlideData[] = [
     titleWhite: "Open-Air Amphitheatre",
     titleGold: "Under starlit skies.",
     subtitle: "Stepped grassy terraces and stone performance plaza nestled amid bamboo groves for acoustic evenings and family celebrations.",
-    nextDestination: "Forest Living",
-  },
-  {
-    id: "slide-lifestyle",
-    image: "assets/client/Gallery-2.jpg",
-    alt: "NeoLiv Grand Forest Privé - Forest Living & Generational Joy",
-    eyebrow: "FOREST SANCTUARY LIVING",
-    titleWhite: "Pure Joy, Space & Freedom",
-    titleGold: "To grow and reconnect.",
-    subtitle: "A generational legacy estate where your family thrives in unpolluted air, wildflower meadows, and timeless natural serenity.",
     nextDestination: "Explore Masterplan",
   },
 ];

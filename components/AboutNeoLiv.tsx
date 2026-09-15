@@ -79,36 +79,33 @@ export const AboutNeoLiv: React.FC = () => {
             <RevealOnScroll variant="up">
               {/* Eyebrow */}
               <span className="inline-block text-gold-400 text-[11px] sm:text-xs md:text-sm uppercase tracking-[0.35em] font-semibold mb-4">
-                Welcome to Grand Forest Privé
+                Privé Has Arrived
               </span>
 
               {/* Main Headline */}
               <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl xl:text-6xl text-white leading-[1.12] mb-6">
-                A Different Side of <br className="hidden sm:inline" />
-                <span className="text-gold-400 italic">Life Awaits.</span>
+                Not Simply a Place to Own — <br className="hidden sm:inline" />
+                <span className="text-gold-400 italic">A World to Belong To.</span>
               </h2>
 
               {/* Lead Philosophy Quote Callout */}
               <div className="border-l-2 border-gold-400/60 pl-5 mb-6">
                 <p className="font-serif text-lg sm:text-xl lg:text-2xl text-gray-100 font-light leading-relaxed italic drop-shadow-sm">
-                  “A home should give you more than an address. It should give
-                  you room to breathe, space to reconnect and a setting that
-                  makes every day feel a little more extraordinary.”
+                  “Grand Forest Privé is envisioned for those who seek something
+                  increasingly rare — space, stillness and an intimate relationship
+                  with nature.”
                 </p>
               </div>
 
               {/* Narrative Paragraphs */}
               <div className="space-y-4 text-gray-300/90 text-sm sm:text-base lg:text-lg font-light leading-relaxed mb-8 drop-shadow-sm max-w-2xl">
                 <p>
-                  Grand Forest Privé brings together nature-led living,
-                  thoughtfully planned infrastructure and premium community
-                  experiences in an integrated township surrounded by a
-                  beautiful mountain landscape.
+                  Here, mornings begin beneath green canopies. Afternoons unfold at
+                  leisure. Evenings invite you outdoors. And weekends no longer
+                  feel like an escape from life.
                 </p>
-                <p>
-                  With wide roads, green surroundings, a low-density environment
-                  and curated lifestyle spaces, it is designed for those who
-                  value space, privacy and a deeper connection with nature.
+                <p className="text-white/95 font-normal">
+                  They become life itself.
                 </p>
               </div>
 
@@ -118,7 +115,7 @@ export const AboutNeoLiv: React.FC = () => {
                   href="#Lifestyle"
                   className="inline-flex items-center gap-3 px-8 py-3.5 sm:px-9 sm:py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-bold text-xs uppercase tracking-[0.22em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.35)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.5)] transition-all active:scale-95 cursor-pointer"
                 >
-                  <span>Discover the Lifestyle</span>
+                  <span>Discover Privé</span>
                   <ArrowRight size={14} />
                 </a>
               </div>
@@ -135,14 +132,17 @@ export const AboutNeoLiv: React.FC = () => {
                 {/* Highlights Header */}
                 <div className="mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-white/10">
                   <p className="text-gold-400 font-semibold tracking-[0.3em] text-[9px] sm:text-xs uppercase mb-1">
-                    Project Highlights
+                    A Rare Sense of Space
                   </p>
                   <h3 className="font-serif text-lg sm:text-2xl text-white tracking-wide leading-tight">
-                    Everything You Value.{" "}
+                    The Finest Green Gated Living.{" "}
                     <span className="text-gold-400 italic">
-                      Thoughtfully Brought Together.
+                      Designed Around You.
                     </span>
                   </h3>
+                  <p className="text-gray-300/85 text-xs sm:text-sm font-light mt-2 leading-relaxed">
+                    Thoughtfully planned amidst an expansive natural setting, Grand Forest Privé brings together privacy, openness and community in considered balance.
+                  </p>
                 </div>
 
                 {/* 7 Pillars Matrix: 2-Column on Mobile & Desktop for Glanceable Dashboard View */}
@@ -201,7 +201,7 @@ export const AboutNeoLiv: React.FC = () => {
                 href="#Lifestyle"
                 className="w-full inline-flex items-center justify-center gap-3 px-8 py-3.5 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-bold text-xs uppercase tracking-[0.2em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.35)] active:scale-95 cursor-pointer"
               >
-                <span>Discover the Lifestyle</span>
+                <span>Discover Privé</span>
                 <ArrowRight size={14} />
               </a>
             </div>

@@ -48,7 +48,7 @@ export const EnquiryForm: React.FC = () => {
           onClick={() => setIsOpen(true)}
           className="bg-white text-[#1d417f] px-6 py-2 rounded-full font-semibold text-sm shadow-md"
         >
-          Enquire Now
+          Private Preview
         </button>
       </div>
 

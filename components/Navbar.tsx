@@ -86,10 +86,10 @@ export const Navbar: React.FC = () => {
                             </a>
                         ))}
                         <button
-                            onClick={() => modalState.open("NeoLiv Grand Forest Privé - Enquiry")}
+                            onClick={() => modalState.open("NeoLiv Grand Forest Privé - Request a Private Preview")}
                             className="bg-gold-400 text-navy-950 px-6 py-2.5 rounded-full text-[9px] uppercase tracking-[0.2em] font-bold hover:scale-105 hover:brightness-110 hover:shadow-2xl hover:shadow-gold-400/40 transition-all duration-500 shadow-xl shadow-gold-400/20 border border-gold-400/20 cursor-pointer"
                         >
-                            Enquire Now
+                            Private Preview
                         </button>
                     </div>
 
@@ -154,11 +154,11 @@ export const Navbar: React.FC = () => {
                     <button
                         onClick={() => {
                             setIsMobileMenuOpen(false);
-                            modalState.open("NeoLiv Grand Forest Privé - Mobile Menu Enquiry");
+                            modalState.open("NeoLiv Grand Forest Privé - Request a Private Preview");
                         }}
                         className="w-full bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-bold py-3.5 rounded-full text-xs uppercase tracking-[0.2em] shadow-[0_4px_20px_rgba(212,175,55,0.35)] active:scale-95 transition-all cursor-pointer"
                     >
-                        Enquire Now
+                        Request a Private Preview
                     </button>
                 </div>
             </div>

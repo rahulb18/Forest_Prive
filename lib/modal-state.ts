@@ -7,10 +7,10 @@ type ModalListener = (isOpen: boolean, title: string) => void;
 
 class ModalStateManager {
     private isOpen: boolean = false;
-    private title: string = "Enquire Now";
+    private title: string = "Request a Private Preview";
     private listeners: Set<ModalListener> = new Set();
 
-    public open(title: string = "Enquire Now") {
+    public open(title: string = "Request a Private Preview") {
         this.isOpen = true;
         this.title = title;
         this.notify();

@@ -18,72 +18,72 @@ const STORY_SLIDES: StorySlideData[] = [
   {
     id: "home",
     image: "assets/client/Gallery-2.jpg",
-    alt: "NeoLiv Grand Forest Privé - Forest Living & Generational Joy",
-    eyebrow: "FOREST SANCTUARY LIVING",
-    titleWhite: "Pure Joy, Space & Freedom",
-    titleGold: "To grow and reconnect.",
-    subtitle: "A generational legacy estate where your family thrives in unpolluted air, wildflower meadows, and timeless natural serenity.",
-    nextDestination: "Grand Arrival",
+    alt: "NeoLiv Grand Forest Privé - A Life Privately Immersed in Nature",
+    eyebrow: "NEOLIV GRAND FOREST PRIVÉ",
+    titleWhite: "A Life Privately",
+    titleGold: "Immersed in Nature.",
+    subtitle: "Curated forest living in Khopoli, Mumbai 3.0. A rare world where expansive greens, thoughtfully curated experiences and the privilege of space come together.",
+    nextDestination: "Discover Privé",
     showLogo: true,
   },
   {
     id: "slide-arrival",
     image: "assets/client/Gallery-1.jpg",
-    alt: "NeoLiv Grand Forest Privé - Grand Arrival Portal at Twilight",
-    eyebrow: "GRAND ARRIVAL • GATED SANCTUARY",
-    titleWhite: "Where Nature",
-    titleGold: "Becomes a Privilege.",
-    subtitle: "Grand Forest Privé by NeoLiv — A majestic gated forest estate with 360° Sahyadri mountain vistas & Grade-A infrastructure.",
-    nextDestination: "Sunset Pool",
+    alt: "NeoLiv Grand Forest Privé - The Gateway to Grandeur",
+    eyebrow: "ARRIVAL",
+    titleWhite: "The Gateway",
+    titleGold: "To Grandeur.",
+    subtitle: "Your experience of Privé begins long before you reach home. A thoughtfully designed entrance, framed by landscape and architectural detail, marks the transition from the world outside to the serenity within.",
+    nextDestination: "Swimming Pool",
   },
   {
     id: "slide-pool",
     image: "assets/client/pool-1600x1200.jpg",
-    alt: "NeoLiv Grand Forest Privé - Sunset Infinity Pool & Mountain Horizon",
-    eyebrow: "SUNSET INFINITY POOL",
-    titleWhite: "Reflections of Horizon",
-    titleGold: "& tranquil stillness.",
-    subtitle: "Panoramic infinity edge pool gazing onto rolling Sahyadri valleys, luxury lounge decks, and painted evening skies.",
-    nextDestination: "The Neo Club",
+    alt: "NeoLiv Grand Forest Privé - Swimming Pool & Open Skies",
+    eyebrow: "EVERY DAY A HOLIDAY",
+    titleWhite: "Some Places Change",
+    titleGold: "Your sense of time.",
+    subtitle: "Swim beneath open skies. Unwind beside the water. Stay a little longer than planned. At Privé, leisure does not need an occasion.",
+    nextDestination: "The Privé Club",
   },
   {
     id: "slide-club",
     image: "assets/client/clubhouse-1600x1200.jpg",
-    alt: "NeoLiv Grand Forest Privé - The Neo Club Glass Pavilion Concourse",
-    eyebrow: "THE NEO CLUB",
-    titleWhite: "Two-Story Glass Pavilion",
-    titleGold: "Amidst mountain air.",
-    subtitle: "Modern architectural glasshouse clubhouse featuring luminous social lounges, signature chandelier, and radial arrival concourse.",
-    nextDestination: "Forest Township",
+    alt: "NeoLiv Grand Forest Privé - The Privé Club",
+    eyebrow: "THE PRIVÉ CLUB",
+    titleWhite: "Your Private Escape",
+    titleGold: "Just a few steps from home.",
+    subtitle: "At the heart of Grand Forest Privé is a clubhouse designed as an extension of the Privé lifestyle. Spend slow afternoons by the pool and let evenings stretch naturally into leisure.",
+    nextDestination: "Plotted Living",
   },
   {
     id: "slide-township",
     image: "assets/client/1920x1080.jpg",
-    alt: "NeoLiv Grand Forest Privé - 360° Mountain Forest Township Panorama",
-    eyebrow: "360° FOREST TOWNSHIP",
-    titleWhite: "Low-Density Plotted Living",
-    titleGold: "Cradled in nature's canopy.",
-    subtitle: "Contoured residential plots with wide planned avenues, Sahyadri horizons, and untouched forest buffers.",
-    nextDestination: "Sports Arena",
+    alt: "NeoLiv Grand Forest Privé - Masterplan and Plotted Living",
+    eyebrow: "A RARE SENSE OF SPACE",
+    titleWhite: "The Finest Green Gated Living",
+    titleGold: "Designed around you.",
+    subtitle: "Thoughtfully planned amidst an expansive natural setting, Grand Forest Privé brings together privacy, openness and community in considered balance.",
+    nextDestination: "Curated Experiences",
   },
   {
     id: "slide-sports",
     image: "assets/client/Gallery-4.jpg",
-    alt: "NeoLiv Grand Forest Privé - Multiplay Sports Arena & Forest Canopies",
-    eyebrow: "SPORTS & RECREATION",
-    titleWhite: "Multi-Sport Arena",
-    titleGold: "Embraced by canopies.",
-    subtitle: "Professional-grade multiplay basketball and sport courts encircled by lush tropical flora and winding walking trails.",
-    nextDestination: "Amphitheatre",
+    alt: "NeoLiv Grand Forest Privé - Curated Amenities & Active Living",
+    eyebrow: "EXPERIENCES CURATED FOR LIFE",
+    titleWhite: "Every Mood",
+    titleGold: "Has its own place.",
+    subtitle: "Some days call for movement. Others for stillness. Thoughtfully curated spaces allow you to choose your own rhythm — from fitness and sport to quiet contemplation.",
+    nextDestination: "Generational Living",
   },
   {
     id: "slide-amphitheatre",
     image: "assets/client/Gallery-6.jpg",
-    alt: "NeoLiv Grand Forest Privé - Stepped Open-Air Amphitheatre",
-    eyebrow: "CULTURE & COMMUNITY",
-    titleWhite: "Open-Air Amphitheatre",
-    titleGold: "Under starlit skies.",
-    subtitle: "Stepped grassy terraces and stone performance plaza nestled amid bamboo groves for acoustic evenings and family celebrations.",
+    alt: "NeoLiv Grand Forest Privé - Multi Generational Living",
+    eyebrow: "DESIGNED FOR GENERATIONS",
+    titleWhite: "Childhoods • Parenthood",
+    titleGold: "Golden years • One address.",
+    subtitle: "Grand Forest Privé is designed for life across generations. Children discover the outdoors, parents rediscover unhurried conversations, and families rediscover time together.",
     nextDestination: "Explore Masterplan",
   },
 ];
@@ -203,13 +203,13 @@ export const VisualStorySections: React.FC = () => {
                   <ArrowDown size={13} className="text-gold-400 group-hover:translate-y-0.5 transition-transform shrink-0" />
                 </button>
 
-                {/* 2. Luxury Enquire Button (Exact spot of the red box in user screenshot) */}
+                {/* 2. Luxury CTA Button: Request a Private Preview */}
                 <button
                   type="button"
-                  onClick={() => openEnquiry(`NeoLiv Grand Forest Privé - ${slide.eyebrow}`)}
+                  onClick={() => openEnquiry(`NeoLiv Grand Forest Privé - Request a Private Preview`)}
                   className="group flex-1 md:flex-initial flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-bold text-[9.5px] sm:text-[10.5px] uppercase tracking-[0.2em] shadow-[0_4px_22px_rgba(212,175,55,0.45)] hover:shadow-[0_6px_28px_rgba(212,175,55,0.6)] transition-all duration-300 cursor-pointer active:scale-95 touch-manipulation min-h-[40px] shrink-0"
                 >
-                  <span>Enquire</span>
+                  <span>Private Preview</span>
                   <ArrowRight size={13} className="text-navy-950 stroke-[2.2] group-hover:translate-x-0.5 transition-transform shrink-0" />
                 </button>
               </div>

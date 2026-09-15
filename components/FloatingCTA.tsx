@@ -24,7 +24,7 @@ export const FloatingCTA: React.FC = () => {
     };
   }, []);
 
-  const openEnquiry = (title = "Enquire Now") => {
+  const openEnquiry = (title = "NeoLiv Grand Forest Privé - Request a Private Preview") => {
     modalState.open(title);
   };
 
@@ -38,35 +38,35 @@ export const FloatingCTA: React.FC = () => {
             : "translate-x-full opacity-0 pointer-events-none"
         }`}
       >
-        {/* 1. Vertically Sticky: Enquire Now */}
+        {/* 1. Vertically Sticky: Private Preview */}
         <button
-          onClick={() => openEnquiry("NeoLiv Grand Forest Privé - Enquiry")}
+          onClick={() => openEnquiry("NeoLiv Grand Forest Privé - Request a Private Preview")}
           className="group relative flex flex-col items-center justify-center bg-gradient-to-b from-amber-400 via-gold-400 to-amber-500 text-navy-950 py-4 px-2 rounded-l-lg shadow-[-4px_0_25px_rgba(212,175,55,0.4)] hover:-translate-x-1.5 transition-all duration-300 cursor-pointer border-l-2 border-y border-amber-200/70"
-          title="Enquire Now"
+          title="Private Preview"
         >
           <Send
             size={13}
             className="text-navy-950 transform rotate-[-45deg] mb-2 group-hover:scale-110 transition-transform"
           />
           <span className="[writing-mode:vertical-rl] rotate-180 text-[10px] uppercase font-bold tracking-[0.25em] text-navy-950 select-none py-1">
-            Enquire Now
+            Private Preview
           </span>
         </button>
 
-        {/* 2. Vertically Sticky: Download Brochure */}
-        <button
-          onClick={() => openEnquiry("Download Project Brochure")}
+        {/* 2. Vertically Sticky: Discover Privé */}
+        <a
+          href="#Overview"
           className="group relative flex flex-col items-center justify-center bg-navy-950/95 hover:bg-navy-900 text-gold-400 hover:text-white py-4 px-2 rounded-l-lg shadow-[-4px_0_25px_rgba(0,0,0,0.6)] hover:-translate-x-1.5 transition-all duration-300 cursor-pointer border-l-2 border-y border-gold-400/40 backdrop-blur-md"
-          title="Download Brochure"
+          title="Discover Privé"
         >
           <FileText
             size={13}
             className="text-gold-400 group-hover:scale-110 transition-transform mb-2"
           />
           <span className="[writing-mode:vertical-rl] rotate-180 text-[10px] uppercase font-semibold tracking-[0.25em] text-gold-400 group-hover:text-white select-none py-1 transition-colors">
-            Brochure
+            Discover Privé
           </span>
-        </button>
+        </a>
       </div>
 
       {/* MOBILE: App-Style Floating Bottom Dock for detailed content sections */}
@@ -101,17 +101,17 @@ export const FloatingCTA: React.FC = () => {
 
         <div className="w-px h-6 bg-white/15" />
 
-        {/* 3. Enquire */}
+        {/* 3. Private Preview */}
         <button
           type="button"
           onClick={(e) => {
             e.stopPropagation();
-            openEnquiry("NeoLiv Grand Forest Privé - Enquiry");
+            openEnquiry("NeoLiv Grand Forest Privé - Request a Private Preview");
           }}
           className="flex-1 py-3 px-2 flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 text-navy-950 font-bold shadow-md active:scale-95 transition-all text-[10px] uppercase tracking-wider cursor-pointer touch-manipulation min-h-[44px]"
         >
           <Send size={13} className="text-navy-950" />
-          <span>Enquire</span>
+          <span>Private Preview</span>
         </button>
       </div>
     </>

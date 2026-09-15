@@ -35,7 +35,7 @@ export const AboutUs: React.FC = () => {
 
             <div className="container mx-auto px-4 sm:px-6 md:px-12 relative z-10 max-w-7xl">
                 
-                {/* 11. ABOUT NEOLIV HEADER */}
+                {/* SECTION 13: THE NEOLIV PROMISE */}
                 <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
                     <RevealOnScroll variant="up">
                         {/* Official Client Developer Logo Badge */}
@@ -51,30 +51,33 @@ export const AboutUs: React.FC = () => {
                         
                         <div>
                             <span className="inline-block text-gold-400 text-[11px] sm:text-xs uppercase tracking-[0.35em] font-semibold mb-3">
-                                Developer Pedigree & Vision
+                                The NeoLiv Promise
                             </span>
                         </div>
                         
                         <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 sm:mb-6 text-white leading-tight">
-                            Building Joy. <br />
-                            <span className="text-gold-400 italic">Backed by Experience.</span>
+                            Building Places — <br />
+                            <span className="text-gold-400 italic">Building Joy.</span>
                         </h2>
                         
                         <div className="w-20 h-px bg-gradient-to-r from-transparent via-gold-400 to-transparent mx-auto mb-6 sm:mb-8" />
                         
                         <div className="space-y-3 sm:space-y-4 text-gray-300 text-sm sm:text-base lg:text-lg font-light leading-relaxed">
                             <p>
-                                NeoLiv was founded by Mohit Malhotra, former MD & CEO of Godrej Properties, leading industry experts and 360 ONE, described in the supplied document as India's leading wealth and alternatives-focused asset management firm with USD 74 billion AUM.
+                                Grand Forest Privé comes from NeoLiv — India's foremost fund-led developer.
+                            </p>
+                            <p>
+                                Built on professional governance, institutional backing and a vision to create communities people genuinely value, NeoLiv brings a contemporary approach to real estate development.
                             </p>
                             <p className="text-white/90 font-normal">
-                                NeoLiv brings together fund management and an in-house development arm within one integrated platform.
+                                Thoughtfully conceived. Professionally delivered. Designed around life.
                             </p>
                         </div>
                     </RevealOnScroll>
                 </div>
 
                 {/* 4 Pillars Grid - Mobile 2x2 Scorecard */}
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-5 mb-10 sm:mb-14">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-5 mb-14 sm:mb-20">
                     {CREDENTIAL_PILLARS.map((pillar, idx) => {
                         const Icon = pillar.icon;
                         return (
@@ -97,16 +100,63 @@ export const AboutUs: React.FC = () => {
                     })}
                 </div>
 
-                {/* CTA: Discover NeoLiv */}
-                <div className="text-center">
+                {/* SECTION 14: PARTNERS */}
+                <div className="pt-12 sm:pt-16 border-t border-white/10">
                     <RevealOnScroll variant="up">
-                        <button
-                            onClick={() => modalState.open("NeoLiv Grand Forest Privé - Discover NeoLiv")}
-                            className="inline-flex items-center justify-center w-full sm:w-auto gap-3 px-8 sm:px-9 py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-bold text-xs uppercase tracking-[0.22em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.35)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.5)] transition-all active:scale-95 cursor-pointer"
-                        >
-                            <span>Discover NeoLiv</span>
-                            <ArrowRight size={14} />
-                        </button>
+                        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+                            <span className="inline-block text-gold-400 text-[11px] sm:text-xs uppercase tracking-[0.35em] font-semibold mb-3">
+                                Created with Expertise
+                            </span>
+                            <h3 className="font-serif text-2xl sm:text-4xl md:text-5xl text-white mb-4 leading-tight">
+                                Vision Brought to Life <br />
+                                <span className="text-gold-400 italic">By the Finest Minds.</span>
+                            </h3>
+                            <div className="w-16 h-px bg-gold-400/50 mx-auto mb-4" />
+                            <p className="text-gray-300 text-sm sm:text-base font-light leading-relaxed">
+                                Exceptional places are shaped by exceptional collaborations. Grand Forest Privé brings together specialist partners and consultants to translate its vision of nature-led living into a thoughtfully planned destination.
+                            </p>
+                        </div>
+
+                        {/* Partner Showcase Display: 360 ONE, Newarch, Hafeez Contractor */}
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto mb-12">
+                            {/* Partner 1: 360 ONE */}
+                            <div className="p-6 rounded-2xl bg-navy-900/90 border border-gold-400/30 text-center shadow-xl hover:border-gold-400/60 transition-all">
+                                <div className="text-xs uppercase tracking-[0.25em] text-gold-400 font-semibold mb-2">Equity Partner</div>
+                                <h4 className="font-serif text-xl sm:text-2xl text-white font-bold tracking-wider mb-2">360 ONE</h4>
+                                <p className="text-gray-300 text-xs font-light leading-relaxed">
+                                    India's leading wealth and alternatives-focused asset management firm with institutional governance.
+                                </p>
+                            </div>
+
+                            {/* Partner 2: Hafeez Contractor */}
+                            <div className="p-6 rounded-2xl bg-navy-900/90 border border-gold-400/30 text-center shadow-xl hover:border-gold-400/60 transition-all">
+                                <div className="text-xs uppercase tracking-[0.25em] text-gold-400 font-semibold mb-2">Master Architecture</div>
+                                <h4 className="font-serif text-xl sm:text-2xl text-white font-bold tracking-wider mb-2">Hafeez Contractor</h4>
+                                <p className="text-gray-300 text-xs font-light leading-relaxed">
+                                    Legendary architectural visionary shaping monumental spaces, clubhouse pavilions and master plans.
+                                </p>
+                            </div>
+
+                            {/* Partner 3: Newarch */}
+                            <div className="p-6 rounded-2xl bg-navy-900/90 border border-gold-400/30 text-center shadow-xl hover:border-gold-400/60 transition-all">
+                                <div className="text-xs uppercase tracking-[0.25em] text-gold-400 font-semibold mb-2">Landscape Architecture</div>
+                                <h4 className="font-serif text-xl sm:text-2xl text-white font-bold tracking-wider mb-2">Newarch Landscapes</h4>
+                                <p className="text-gray-300 text-xs font-light leading-relaxed">
+                                    Specialist landscape designers behind the 2.5 acres urban forest canopy, garden trails and nature immersion.
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* CTA: Request a Private Preview */}
+                        <div className="text-center">
+                            <button
+                                onClick={() => modalState.open("NeoLiv Grand Forest Privé - Request a Private Preview")}
+                                className="inline-flex items-center justify-center w-full sm:w-auto gap-3 px-8 sm:px-9 py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-bold text-xs uppercase tracking-[0.22em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.35)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.5)] transition-all active:scale-95 cursor-pointer"
+                            >
+                                <span>Request a Private Preview</span>
+                                <ArrowRight size={14} />
+                            </button>
+                        </div>
                     </RevealOnScroll>
                 </div>
 

@@ -101,14 +101,14 @@ export const GrandPriveAdvantage: React.FC = () => {
                     })}
                 </div>
 
-                {/* CTA: Get Privé Price Details */}
+                {/* CTA: Request a Private Preview */}
                 <div className="text-center mb-16 sm:mb-24">
                     <RevealOnScroll variant="up">
                         <button
-                            onClick={() => modalState.open("NeoLiv Grand Forest Privé - Privé Price Details")}
+                            onClick={() => modalState.open("NeoLiv Grand Forest Privé - Request a Private Preview")}
                             className="inline-flex items-center justify-center w-full sm:w-auto gap-3 px-8 sm:px-9 py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-bold text-xs uppercase tracking-[0.22em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.35)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.5)] transition-all active:scale-95 cursor-pointer"
                         >
-                            <span>Get Privé Price Details</span>
+                            <span>Request a Private Preview</span>
                             <ArrowRight size={14} />
                         </button>
                     </RevealOnScroll>
@@ -155,10 +155,10 @@ export const GrandPriveAdvantage: React.FC = () => {
 
                                     <div className="pt-2">
                                         <button
-                                            onClick={() => modalState.open("NeoLiv Grand Forest Privé - Investment Opportunity")}
+                                            onClick={() => modalState.open("NeoLiv Grand Forest Privé - Request a Private Preview")}
                                             className="inline-flex items-center justify-center w-full sm:w-auto gap-3 px-8 py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-bold text-xs uppercase tracking-[0.22em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.35)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.5)] transition-all active:scale-95 cursor-pointer"
                                         >
-                                            <span>Request Investment Details</span>
+                                            <span>Request a Private Preview</span>
                                             <ArrowRight size={14} />
                                         </button>
                                     </div>

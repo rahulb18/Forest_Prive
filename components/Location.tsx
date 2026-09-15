@@ -49,15 +49,21 @@ export const Location: React.FC = () => {
                 <RevealOnScroll variant="up">
                     <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
                         <span className="inline-block text-gold-400 text-[10px] sm:text-xs uppercase tracking-[0.35em] font-semibold mb-3">
-                            Location & Connectivity
+                            Khopoli • Mumbai 3.0
                         </span>
                         <h2 className="font-serif text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-4 sm:mb-6 leading-tight">
-                            Connected to <span className="text-gold-400 italic">What's Next.</span>
+                            Away From the Rush — <br />
+                            <span className="text-gold-400 italic">Connected to What Matters.</span>
                         </h2>
                         <div className="w-20 h-px bg-gradient-to-r from-transparent via-gold-400 to-transparent mx-auto mb-4 sm:mb-6" />
-                        <p className="text-gray-300 text-sm sm:text-lg font-light leading-relaxed max-w-2xl mx-auto">
-                            Grand Forest Privé offers the rare combination of a tranquil setting and connectivity to two important infrastructure anchors in the region.
-                        </p>
+                        <div className="text-gray-300 text-sm sm:text-base font-light leading-relaxed max-w-2xl mx-auto space-y-2">
+                            <p>
+                                Grand Forest Privé places you within a naturally rich setting in the Khopoli-Khalapur region while retaining access to the larger Mumbai metropolitan ecosystem.
+                            </p>
+                            <p className="text-white/90">
+                                Here, distance from congestion becomes an advantage. A place for weekend living today. A landscape positioned around tomorrow. Grand connectivity. Greater possibilities.
+                            </p>
+                        </div>
                     </div>
                 </RevealOnScroll>
 

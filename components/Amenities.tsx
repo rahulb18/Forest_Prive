@@ -9,64 +9,64 @@ import { modalState } from '../lib/modal-state';
 
 const AMENITIES_LIST = [
     { 
-        title: "Jogging / Walking Track", 
-        desc: "For refreshing mornings and leisurely evening walks.", 
-        icon: Footprints 
-    },
-    { 
-        title: "Forest Maze", 
-        desc: "An immersive experience inspired by the natural surroundings.", 
+        title: "Forest Trails", 
+        desc: "Lose yourself. Find your pace.", 
         icon: Trees 
     },
     { 
-        title: "Butterfly Garden", 
-        desc: "A colourful space where landscape and nature come together.", 
-        icon: Flower2 
-    },
-    { 
-        title: "Herb & Fragrance Circle", 
-        desc: "A sensory landscape designed around herbs and fragrances.", 
-        icon: Sparkles 
-    },
-    { 
-        title: "Multiplay Court", 
-        desc: "A dedicated space for recreation and active living.", 
-        icon: Trophy 
-    },
-    { 
-        title: "Amphitheatre", 
-        desc: "A community setting for gatherings and shared experiences.", 
-        icon: Theater 
-    },
-    { 
-        title: "Kid's Play Area", 
-        desc: "A dedicated outdoor space for younger residents.", 
-        icon: Baby 
-    },
-    { 
-        title: "Pet Park", 
-        desc: "A dedicated space for four-legged members of the family.", 
-        icon: Dog 
-    },
-    { 
-        title: "Bonfire Deck", 
-        desc: "A relaxed outdoor setting for memorable evenings.", 
-        icon: Flame 
-    },
-    { 
-        title: "Reflexology Park", 
-        desc: "A therapeutic stone pathway designed for natural healing and wellness.", 
-        icon: HeartHandshake 
-    },
-    { 
-        title: "Splash Pond", 
-        desc: "A refreshing water feature designed for playful moments and gentle relaxation.", 
+        title: "Swimming Pool", 
+        desc: "For afternoons that refuse to be rushed.", 
         icon: Droplets 
     },
     { 
-        title: "Happy Street", 
-        desc: "A vibrant pedestrian avenue designed for community celebrations and evening strolls.", 
-        icon: Smile 
+        title: "Gymnasium", 
+        desc: "Well-being, surrounded by green.", 
+        icon: Trophy 
+    },
+    { 
+        title: "Yoga Deck", 
+        desc: "Begin the day in balance.", 
+        icon: Sparkles 
+    },
+    { 
+        title: "Badminton Court", 
+        desc: "For a little friendly competition.", 
+        icon: Trophy 
+    },
+    { 
+        title: "Multi-purpose Court", 
+        desc: "Space to move. Space to play.", 
+        icon: Trophy 
+    },
+    { 
+        title: "Pet Park", 
+        desc: "Because they deserve their own Prive life.", 
+        icon: Dog 
+    },
+    { 
+        title: "Kids Play Areas", 
+        desc: "Little adventures, naturally.", 
+        icon: Baby 
+    },
+    { 
+        title: "Bonfire Deck", 
+        desc: "Some evenings deserve to last longer.", 
+        icon: Flame 
+    },
+    { 
+        title: "Walking and Jogging Tracks", 
+        desc: "Your everyday route through nature.", 
+        icon: Footprints 
+    },
+    { 
+        title: "Meditation Spaces", 
+        desc: "Find stillness away from everything else.", 
+        icon: HeartHandshake 
+    },
+    { 
+        title: "Open Greens", 
+        desc: "Room to gather. Room to breathe.", 
+        icon: Flower2 
     },
 ];
 
@@ -79,19 +79,19 @@ export const Amenities: React.FC = () => {
 
             <div className="container mx-auto px-6 md:px-12 relative z-10 max-w-7xl">
                 
-                {/* 06. AMENITIES SECTION */}
+                {/* SECTION 8: AMENITIES */}
                 <div className="text-center max-w-4xl mx-auto mb-16">
                     <RevealOnScroll variant="up">
                         <span className="inline-block text-gold-400 text-[11px] sm:text-xs uppercase tracking-[0.35em] font-semibold mb-3">
-                            Amenities
+                            Experiences Curated for Life
                         </span>
                         <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 text-white leading-tight">
-                            Designed Around the <br />
-                            <span className="text-gold-400 italic">Way You Want to Live.</span>
+                            Every Mood <br />
+                            <span className="text-gold-400 italic">Has Its Own Place.</span>
                         </h2>
                         <div className="w-20 h-px bg-gradient-to-r from-transparent via-gold-400 to-transparent mx-auto mb-6" />
                         <p className="text-gray-300 text-base sm:text-lg font-light leading-relaxed max-w-3xl mx-auto">
-                            From quiet walks surrounded by greenery to active afternoons, family evenings and spaces created simply to slow down, Grand Forest Privé offers thoughtfully curated experiences for different moments of your day.
+                            Some days call for movement. Others for stillness. At Grand Forest Privé, thoughtfully curated spaces allow you to choose your own rhythm — from fitness and sport to quiet contemplation, nature walks and moments spent together.
                         </p>
                     </RevealOnScroll>
                 </div>
@@ -130,16 +130,16 @@ export const Amenities: React.FC = () => {
                 <div className="text-center mb-16 sm:mb-24">
                     <RevealOnScroll variant="up">
                         <button
-                            onClick={() => modalState.open("NeoLiv Grand Forest Privé - Amenities & Club")}
+                            onClick={() => modalState.open("NeoLiv Grand Forest Privé - Request a Private Preview")}
                             className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-3.5 sm:py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-bold text-xs uppercase tracking-[0.22em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.35)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.5)] transition-all active:scale-95 cursor-pointer text-center"
                         >
-                            <span>Explore All Amenities</span>
+                            <span>Request a Private Preview</span>
                             <ArrowRight size={14} />
                         </button>
                     </RevealOnScroll>
                 </div>
 
-                {/* 07. CLUB EXPERIENCE SECTION */}
+                {/* SECTION 6: CLUBHOUSE & SECTION 7: SWIMMING POOL */}
                 <div className="pt-12 sm:pt-16 border-t border-white/10">
                     <RevealOnScroll variant="up">
                         <div className="bg-gradient-to-br from-navy-900/90 via-navy-950 to-navy-900/90 border border-gold-400/30 rounded-3xl p-6 sm:p-12 lg:p-16 relative overflow-hidden shadow-2xl">
@@ -148,31 +148,31 @@ export const Amenities: React.FC = () => {
                             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center relative z-10">
                                 <div className="lg:col-span-7 space-y-4 sm:space-y-6">
                                     <span className="inline-block text-gold-400 text-[10px] sm:text-xs uppercase tracking-[0.35em] font-semibold">
-                                        Club Experience
+                                        The Privé Club
                                     </span>
                                     
                                     <h3 className="font-serif text-2xl sm:text-4xl md:text-5xl text-white leading-tight">
-                                        Two Clubs. <br />
-                                        <span className="text-gold-400 italic">Countless Ways to Unwind.</span>
+                                        Your Private Escape — <br />
+                                        <span className="text-gold-400 italic">Just a Few Steps From Home.</span>
                                     </h3>
                                     
                                     <div className="w-16 h-px bg-gold-400/50" />
                                     
                                     <div className="space-y-3 sm:space-y-4 text-gray-300 text-sm sm:text-lg font-light leading-relaxed">
                                         <p>
-                                             Grand Forest Privé extends the lifestyle beyond the outdoors with access to two exclusive clubs.
+                                            At the heart of Grand Forest Privé is a clubhouse designed as an extension of the Privé lifestyle.
                                         </p>
                                         <p>
-                                            Designed as social and recreational destinations within the integrated township, they add another layer of exclusivity to everyday living.
+                                            Begin your morning with movement. Spend slow afternoons by the pool. Meet friends over conversations and coffee. Let evenings stretch naturally into leisure. Everything here is designed to make an ordinary day feel distinctly unordinary.
                                         </p>
                                     </div>
 
                                     <div className="pt-2 sm:pt-4">
                                         <button
-                                            onClick={() => modalState.open("NeoLiv Grand Forest Privé - Club Experience")}
+                                            onClick={() => modalState.open("NeoLiv Grand Forest Privé - Request a Private Preview")}
                                             className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-3.5 sm:py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-bold text-xs uppercase tracking-[0.22em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.35)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.5)] transition-all active:scale-95 cursor-pointer text-center"
                                         >
-                                            <span>Explore the Club Experience</span>
+                                            <span>Request a Private Preview</span>
                                             <ArrowRight size={14} />
                                         </button>
                                     </div>
@@ -185,7 +185,7 @@ export const Amenities: React.FC = () => {
                                             <div className="aspect-[4/3] relative">
                                                 <img
                                                     src="assets/client/clubhouse-1600x1200.jpg"
-                                                    alt="Grand Forest Privé Neo Club Two-Story Glass Concourse"
+                                                    alt="Grand Forest Privé The Privé Club Glass Concourse"
                                                     loading="lazy"
                                                     decoding="async"
                                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
@@ -199,18 +199,18 @@ export const Amenities: React.FC = () => {
                                                 <div className="absolute bottom-4 left-4 right-4">
                                                     <div className="flex items-center gap-2 text-gold-400 text-xs uppercase tracking-wider font-semibold">
                                                         <Building2 size={14} />
-                                                        <span>The Neo Club • Two-Story Glasshouse Concourse</span>
+                                                        <span>The Privé Club • Extension of Privé Living</span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        {/* Second Club Impression: Sunset Infinity Pool & Mountain Deck */}
+                                        {/* Second Club Impression: Section 7 Swimming Pool */}
                                         <div className="relative rounded-2xl overflow-hidden border border-gold-400/20 shadow-xl group bg-navy-950">
                                             <div className="aspect-[21/9] relative">
                                                 <img
                                                     src="assets/client/pool-1600x1200.jpg"
-                                                    alt="Grand Forest Privé Sunset Infinity Pool & Mountain Horizon"
+                                                    alt="Grand Forest Privé Swimming Pool & Open Skies"
                                                     loading="lazy"
                                                     decoding="async"
                                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
@@ -219,10 +219,10 @@ export const Amenities: React.FC = () => {
                                                 <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between">
                                                     <div className="flex items-center gap-2 text-gold-400 text-xs uppercase tracking-wider font-semibold">
                                                         <Building2 size={14} />
-                                                        <span>Club Wellness • Sunset Infinity Pool Deck</span>
+                                                        <span>Swimming Pool • Every Day a Holiday</span>
                                                     </div>
                                                     <span className="text-[9px] uppercase tracking-widest text-gray-300/80">
-                                                        Mountain Horizon
+                                                        Unwind Beside Water
                                                     </span>
                                                 </div>
                                             </div>

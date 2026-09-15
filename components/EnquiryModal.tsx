@@ -194,7 +194,7 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                             </div>
                             <h3 className="text-white font-serif text-xl sm:text-2xl tracking-[0.1em] mb-3 uppercase">Thank You</h3>
                             <p className="text-gray-300 leading-relaxed text-xs sm:text-sm max-w-xs mx-auto font-light">
-                                Our luxury property advisors have received your request for Grand Forest Privé and will reach out to you shortly.
+                                Your request for a Private Preview at <strong className="text-white">NeoLiv Grand Forest Privé</strong> has been received. Our Privé Advisor will connect with you shortly.
                             </p>
                             <button
                                 onClick={handleClose}
@@ -205,9 +205,14 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                         </div>
                     ) : (
                         <>
-                            <p className="text-gray-400 text-[10px] sm:text-[11px] uppercase tracking-widest mb-3.5 text-center">
-                                Connect with our luxury property advisors
-                            </p>
+                            <div className="text-center mb-3.5">
+                                <h4 className="font-serif text-lg sm:text-xl text-white font-medium mb-1">
+                                    Your Private Preview Begins Here
+                                </h4>
+                                <p className="text-gray-300/80 text-[11px] sm:text-xs font-light leading-relaxed">
+                                    Share your details and our Privé Advisor will connect with you to arrange a personalised conversation about Grand Forest Privé.
+                                </p>
+                            </div>
                             <form className="space-y-3 sm:space-y-3.5" onSubmit={(e) => { e.preventDefault(); handleSubmit('callback'); }}>
                                 <div className="space-y-1">
                                     <input
@@ -215,7 +220,7 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                                         name="name"
                                         value={formData.name}
                                         onChange={handleInputChange}
-                                        placeholder="FULL NAME*"
+                                        placeholder="NAME*"
                                         className={`w-full bg-navy-950/70 border ${errors.name ? 'border-red-500/50' : 'border-white/10'} rounded-xl py-2.5 sm:py-3 px-3.5 text-white focus:border-gold-400/50 focus:outline-none transition-all placeholder:text-gray-400 text-base sm:text-xs tracking-wider font-medium`}
                                     />
                                     {errors.name && <p className="text-[9px] text-red-400 flex items-center gap-1 ml-1"><AlertCircle size={8} /> {errors.name}</p>}
@@ -228,7 +233,7 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                                         ref={phoneInputRef}
                                         value={formData.phone}
                                         onChange={handleInputChange}
-                                        placeholder="98765 43210"
+                                        placeholder="MOBILE NUMBER*"
                                         className={`w-full bg-navy-950/70 border ${errors.phone ? 'border-red-500/50' : 'border-white/10'} rounded-xl py-2.5 sm:py-3 px-3.5 text-white focus:border-gold-400/50 focus:outline-none transition-all placeholder:text-gray-400 text-base sm:text-xs tracking-wider font-medium`}
                                     />
                                     {errors.phone && <p className="text-[9px] text-red-400 flex items-center gap-1 ml-1"><AlertCircle size={8} /> {errors.phone}</p>}
@@ -264,7 +269,7 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                                             className="mt-0.5 rounded border-white/20 bg-navy-950 text-gold-400 focus:ring-gold-400/40 w-3.5 h-3.5 cursor-pointer accent-amber-400 shrink-0"
                                         />
                                         <span className="text-[9.5px] sm:text-[10px] text-gray-300 leading-relaxed font-light">
-                                            I authorize Grand Forest Privé and its representatives to contact me via Call, SMS, or WhatsApp regarding project updates.
+                                            Your information will remain private and will only be used to assist with your enquiry.
                                         </span>
                                     </label>
                                     {errors.consent && <p className="text-[9px] text-red-400 flex items-center gap-1 ml-1 mt-0.5"><AlertCircle size={8} /> {errors.consent}</p>}
@@ -282,7 +287,7 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                                         ) : (
                                             <>
                                                 <PhoneCall size={13} />
-                                                Request Call Back
+                                                Request a Private Preview
                                             </>
                                         )}
                                     </button>
@@ -298,7 +303,7 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                                         ) : (
                                             <>
                                                 <Calendar size={13} />
-                                                Schedule Visit
+                                                Speak With Privé Advisor
                                             </>
                                         )}
                                     </button>

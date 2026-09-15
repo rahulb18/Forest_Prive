@@ -40,15 +40,15 @@ export const Philosophy: React.FC = () => {
               </div>
               <div>
                 <h4 className="text-gold-400 font-serif text-2xl lg:text-3xl">99 PLOTS</h4>
-                <p className="text-gray-400 text-[10px] uppercase tracking-[0.2em] mt-2">Limited Inventory</p>
+                <p className="text-gray-400 text-[10px] uppercase tracking-[0.2em] mt-2">Low-Density Living</p>
               </div>
               <div>
                 <h4 className="text-gold-400 font-serif text-2xl lg:text-3xl">2.5 ACRES</h4>
-                <p className="text-gray-400 text-[10px] uppercase tracking-[0.2em] mt-2">Private Club Land</p>
+                <p className="text-gray-400 text-[10px] uppercase tracking-[0.2em] mt-2">Urban Forest & Open Spaces</p>
               </div>
               <div>
                 <h4 className="text-gold-400 font-serif text-2xl lg:text-3xl">30+</h4>
-                <p className="text-gray-400 text-[10px] uppercase tracking-[0.2em] mt-2">World Class Amenities</p>
+                <p className="text-gray-400 text-[10px] uppercase tracking-[0.2em] mt-2">Curated Experiences</p>
               </div>
             </div>
           </RevealOnScroll>

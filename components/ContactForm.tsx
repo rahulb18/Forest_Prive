@@ -122,24 +122,32 @@ export const ContactForm: React.FC = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 items-center">
                     
-                    {/* Left Column: Heading & Copy */}
+                    {/* Left Column: Heading & Copy (Section 15: Final Call to Action) */}
                     <div className="lg:col-span-6 text-center lg:text-left space-y-4 sm:space-y-6">
                         <span className="inline-block text-gold-400 text-[11px] sm:text-xs uppercase tracking-[0.35em] font-semibold">
-                            Enquiry Section
+                            Your Privé Life Awaits
                         </span>
                         <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-tight">
-                            Your Grand Forest Privé <br />
-                            <span className="text-gold-400 italic">Journey Starts Here.</span>
+                            Some Addresses Are Owned — <br />
+                            <span className="text-gold-400 italic">A Few Are Experienced.</span>
                         </h2>
                         <div className="w-20 h-px bg-gradient-to-r from-transparent via-gold-400 to-transparent mx-auto lg:mx-0"></div>
                         <p className="text-gray-300 text-sm sm:text-base lg:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 font-light">
-                            Get detailed information about available inventory, Privé pricing, payment plans and site visits.
+                            Discover a life where mornings begin with nature, weekends feel endless and space becomes the ultimate luxury.
                         </p>
+                        <div className="pt-1">
+                            <p className="font-serif text-white text-base tracking-wider uppercase font-semibold">
+                                NeoLiv Grand Forest Privé
+                            </p>
+                            <p className="text-gold-400 text-xs tracking-widest uppercase">
+                                Khopoli, Mumbai 3.0
+                            </p>
+                        </div>
                     </div>
 
-                    {/* Right Column: Form Container */}
+                    {/* Right Column: Form Container (Lead Form Content) */}
                     <div className="lg:col-span-6">
-                        <div className="bg-navy-900 border border-white/10 p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl shadow-2xl relative min-h-[440px] flex items-center justify-center">
+                        <div className="bg-navy-900 border border-white/10 p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl shadow-2xl relative min-h-[440px] flex flex-col justify-center">
                             {isLocalSubmitted ? (
                                 <div className="flex flex-col items-center justify-center py-10 text-center animate-in fade-in slide-in-from-bottom-4 duration-500">
                                     <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gold-400/10 border border-gold-400/30 rounded-full flex items-center justify-center mb-5 sm:mb-6 shadow-2xl shadow-gold-400/20">
@@ -149,16 +157,25 @@ export const ContactForm: React.FC = () => {
                                         Thank You
                                     </h3>
                                     <p className="text-gray-300 text-xs sm:text-sm md:text-base leading-relaxed max-w-sm font-light">
-                                        Your enquiry for <strong className="text-white">Neoliv Grand Forest Privé</strong> has been prioritized. Our advisory team will connect with you shortly.
+                                        Your request for a Private Preview at <strong className="text-white">NeoLiv Grand Forest Privé</strong> has been received. Our Privé Advisor will connect with you shortly.
                                     </p>
                                 </div>
                             ) : (
                                 <form onSubmit={(e) => { e.preventDefault(); handleSubmit('callback'); }} className="space-y-4 w-full">
+                                    {/* Lead Form Header & Intro */}
+                                    <div className="text-left pb-1">
+                                        <h3 className="font-serif text-xl sm:text-2xl text-white font-medium mb-1">
+                                            Your Private Preview Begins Here
+                                        </h3>
+                                        <p className="text-gray-300/80 text-xs sm:text-sm font-light leading-relaxed">
+                                            Share your details and our Privé Advisor will connect with you to arrange a personalised conversation about Grand Forest Privé.
+                                        </p>
+                                    </div>
                                     
                                     {/* Full Name - text-base on mobile prevents iOS Safari auto-zoom */}
                                     <div className="space-y-1">
                                         <label className="text-[10px] uppercase tracking-widest text-gray-400 font-semibold ml-1">
-                                            Full Name*
+                                            Name*
                                         </label>
                                         <input
                                             type="text"
@@ -166,7 +183,7 @@ export const ContactForm: React.FC = () => {
                                             value={formData.name}
                                             onChange={handleInputChange}
                                             className={`w-full bg-navy-950/70 border ${errors.name ? 'border-red-500/60' : 'border-white/10'} rounded-xl px-4 py-3.5 sm:py-3 text-white placeholder-gray-600 focus:outline-none focus:border-gold-400/60 transition-all text-base sm:text-sm`}
-                                            placeholder="Enter your full name"
+                                            placeholder="Enter your name"
                                         />
                                         {errors.name && <p className="text-[10px] text-red-400 flex items-center gap-1 mt-0.5"><AlertCircle size={10} /> {errors.name}</p>}
                                     </div>
@@ -225,15 +242,15 @@ export const ContactForm: React.FC = () => {
                                                 className="mt-1 rounded border-white/20 bg-navy-950 text-gold-400 focus:ring-gold-400/40 w-4 h-4 cursor-pointer accent-amber-400"
                                             />
                                             <span className="text-[11px] text-gray-300 leading-relaxed font-light">
-                                                I authorize Grand Forest Privé and its representatives to contact me via Call, SMS, or WhatsApp regarding project updates.
+                                                Your information will remain private and will only be used to assist with your enquiry.
                                             </span>
                                         </label>
                                         {errors.consent && <p className="text-[10px] text-red-400 flex items-center gap-1 mt-1"><AlertCircle size={10} /> {errors.consent}</p>}
                                     </div>
 
-                                    {/* Dual Submit Actions: Primary & Secondary with min 48px touch targets */}
+                                    {/* Dual Action CTAs */}
                                     <div className="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                        {/* Primary: Request a Call Back */}
+                                        {/* Primary: Request a Private Preview */}
                                         <button
                                             type="button"
                                             disabled={loading}
@@ -245,12 +262,12 @@ export const ContactForm: React.FC = () => {
                                             ) : (
                                                 <>
                                                     <PhoneCall size={15} />
-                                                    Request a Call Back
+                                                    Request a Private Preview
                                                 </>
                                             )}
                                         </button>
 
-                                        {/* Secondary: Schedule a Site Visit */}
+                                        {/* Secondary: Speak With Our Privé Advisor */}
                                         <button
                                             type="button"
                                             disabled={loading}
@@ -262,7 +279,7 @@ export const ContactForm: React.FC = () => {
                                             ) : (
                                                 <>
                                                     <Calendar size={15} />
-                                                    Schedule a Site Visit
+                                                    Speak With Our Privé Advisor
                                                 </>
                                             )}
                                         </button>

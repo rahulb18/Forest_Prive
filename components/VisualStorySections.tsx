@@ -136,22 +136,24 @@ export const VisualStorySections: React.FC = () => {
             <div className="absolute inset-x-0 bottom-0 h-[46%] sm:h-[40%] bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none z-10" />
             {/* Subtle bottom-left radial vignette */}
             <div className="absolute inset-y-0 left-0 w-full max-w-2xl bg-[radial-gradient(ellipse_at_bottom_left,rgba(0,0,0,0.75)_0%,rgba(0,0,0,0.25)_50%,transparent_80%)] pointer-events-none z-10" />
-            {/* Subtle top edge scrim */}
-            <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/60 to-transparent pointer-events-none z-10" />
+            {/* Subtle top edge scrim - deep gradient for crystal-clear brand contrast */}
+            <div className="absolute inset-x-0 top-0 h-48 sm:h-64 bg-gradient-to-b from-black/85 via-black/50 to-transparent pointer-events-none z-10" />
 
             {/* TOP BRAND LOCKUP (Slide 1) or SLIDE CHAPTER COUNTER (Subsequent Slides) */}
             {slide.showLogo ? (
-              <header className="relative z-20 w-full pt-6 sm:pt-8 md:pt-10 px-6 flex flex-col items-center text-center">
-                <img
-                  src="assets/logo.png"
-                  alt="NeoLiv"
-                  width={140}
-                  height={40}
-                  className="h-8 sm:h-9 md:h-10 w-auto mb-1.5 opacity-95 drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]"
-                />
-                <span className="font-serif text-xs sm:text-sm text-white tracking-[0.24em] uppercase font-semibold drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
-                  GRAND FOREST <span className="text-gold-400">PRIVÉ</span>
-                </span>
+              <header className="relative z-20 w-full pt-5 sm:pt-7 md:pt-8 px-6 flex flex-col items-center text-center">
+                <div className="inline-flex flex-col items-center px-6 sm:px-8 py-2.5 sm:py-3 rounded-2xl sm:rounded-full bg-navy-950/80 border border-gold-400/30 backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.7)]">
+                  <img
+                    src="assets/logo.png"
+                    alt="NeoLiv"
+                    width={140}
+                    height={40}
+                    className="h-7 sm:h-8 md:h-9 w-auto mb-1.5 opacity-100 filter drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
+                  />
+                  <span className="font-serif text-[11px] sm:text-xs md:text-sm text-white tracking-[0.24em] uppercase font-semibold drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+                    GRAND FOREST <span className="text-gold-400 font-bold">PRIVÉ</span>
+                  </span>
+                </div>
               </header>
             ) : (
               <div className="relative z-20 pt-6 sm:pt-8 px-6 sm:px-12 flex items-center justify-between pointer-events-none">

@@ -206,10 +206,10 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                     ) : (
                         <>
                             <div className="text-center mb-3.5">
-                                <h4 className="font-serif text-lg sm:text-xl text-white font-medium mb-1">
+                                <h4 className="card-heading font-serif text-lg sm:text-xl text-white font-medium mb-1">
                                     Your Private Preview Begins Here
                                 </h4>
-                                <p className="text-gray-300/80 text-[11px] sm:text-xs font-light leading-relaxed">
+                                <p className="body-small font-sans text-gray-300/80 text-[11px] sm:text-xs font-light leading-relaxed">
                                     Share your details and our Privé Advisor will connect with you to arrange a personalised conversation about Grand Forest Privé.
                                 </p>
                             </div>
@@ -221,9 +221,9 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                                         value={formData.name}
                                         onChange={handleInputChange}
                                         placeholder="NAME*"
-                                        className={`w-full bg-navy-950/70 border ${errors.name ? 'border-red-500/50' : 'border-white/10'} rounded-xl py-2.5 sm:py-3 px-3.5 text-white focus:border-gold-400/50 focus:outline-none transition-all placeholder:text-gray-400 text-base sm:text-xs tracking-wider font-medium`}
+                                        className={`w-full font-sans bg-navy-950/70 border ${errors.name ? 'border-red-500/50' : 'border-white/10'} rounded-xl py-2.5 sm:py-3 px-3.5 text-white focus:border-gold-400/50 focus:outline-none transition-all placeholder:text-gray-400 text-base sm:text-xs tracking-wider font-medium`}
                                     />
-                                    {errors.name && <p className="text-[9px] text-red-400 flex items-center gap-1 ml-1"><AlertCircle size={8} /> {errors.name}</p>}
+                                    {errors.name && <p className="font-sans text-[9px] text-red-400 flex items-center gap-1 ml-1"><AlertCircle size={8} /> {errors.name}</p>}
                                 </div>
 
                                 <div className="space-y-1">
@@ -234,9 +234,9 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                                         value={formData.phone}
                                         onChange={handleInputChange}
                                         placeholder="MOBILE NUMBER*"
-                                        className={`w-full bg-navy-950/70 border ${errors.phone ? 'border-red-500/50' : 'border-white/10'} rounded-xl py-2.5 sm:py-3 px-3.5 text-white focus:border-gold-400/50 focus:outline-none transition-all placeholder:text-gray-400 text-base sm:text-xs tracking-wider font-medium`}
+                                        className={`w-full font-sans numeric bg-navy-950/70 border ${errors.phone ? 'border-red-500/50' : 'border-white/10'} rounded-xl py-2.5 sm:py-3 px-3.5 text-white focus:border-gold-400/50 focus:outline-none transition-all placeholder:text-gray-400 text-base sm:text-xs tracking-wider font-medium`}
                                     />
-                                    {errors.phone && <p className="text-[9px] text-red-400 flex items-center gap-1 ml-1"><AlertCircle size={8} /> {errors.phone}</p>}
+                                    {errors.phone && <p className="font-sans text-[9px] text-red-400 flex items-center gap-1 ml-1"><AlertCircle size={8} /> {errors.phone}</p>}
                                 </div>
 
                                 <div className="space-y-1">
@@ -246,9 +246,9 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                                         value={formData.email}
                                         onChange={handleInputChange}
                                         placeholder="EMAIL ADDRESS*"
-                                        className={`w-full bg-navy-950/70 border ${errors.email ? 'border-red-500/50' : 'border-white/10'} rounded-xl py-2.5 sm:py-3 px-3.5 text-white focus:border-gold-400/50 focus:outline-none transition-all placeholder:text-gray-400 text-base sm:text-xs tracking-wider font-medium`}
+                                        className={`w-full font-sans bg-navy-950/70 border ${errors.email ? 'border-red-500/50' : 'border-white/10'} rounded-xl py-2.5 sm:py-3 px-3.5 text-white focus:border-gold-400/50 focus:outline-none transition-all placeholder:text-gray-400 text-base sm:text-xs tracking-wider font-medium`}
                                     />
-                                    {errors.email && <p className="text-[9px] text-red-400 flex items-center gap-1 ml-1"><AlertCircle size={8} /> {errors.email}</p>}
+                                    {errors.email && <p className="font-sans text-[9px] text-red-400 flex items-center gap-1 ml-1"><AlertCircle size={8} /> {errors.email}</p>}
                                 </div>
 
                                 <div className="pt-0.5">
@@ -268,11 +268,11 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                                             }}
                                             className="mt-0.5 rounded border-white/20 bg-navy-950 text-gold-400 focus:ring-gold-400/40 w-3.5 h-3.5 cursor-pointer accent-amber-400 shrink-0"
                                         />
-                                        <span className="text-[9.5px] sm:text-[10px] text-gray-300 leading-relaxed font-light">
+                                        <span className="body-small font-sans text-[9.5px] sm:text-[10px] text-gray-300 leading-relaxed font-light">
                                             Your information will remain private and will only be used to assist with your enquiry.
                                         </span>
                                     </label>
-                                    {errors.consent && <p className="text-[9px] text-red-400 flex items-center gap-1 ml-1 mt-0.5"><AlertCircle size={8} /> {errors.consent}</p>}
+                                    {errors.consent && <p className="font-sans text-[9px] text-red-400 flex items-center gap-1 ml-1 mt-0.5"><AlertCircle size={8} /> {errors.consent}</p>}
                                 </div>
 
                                 <div className="pt-1.5 grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
@@ -280,7 +280,7 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                                         type="button"
                                         disabled={loading}
                                         onClick={() => handleSubmit('callback')}
-                                        className="w-full bg-gold-400 text-navy-950 font-bold py-3 sm:py-3.5 rounded-xl flex items-center justify-center gap-2 hover:bg-gold-300 transition-all shadow-lg shadow-gold-400/10 uppercase tracking-wider text-[11px] disabled:opacity-50 active:scale-95 cursor-pointer"
+                                        className="w-full bg-gold-400 text-navy-950 font-sans font-semibold py-3 sm:py-3.5 rounded-xl flex items-center justify-center gap-2 hover:bg-gold-300 transition-all shadow-lg shadow-gold-400/10 uppercase tracking-[0.18em] text-[11px] disabled:opacity-50 active:scale-95 cursor-pointer"
                                     >
                                         {loading && actionType === 'callback' ? (
                                             <div className="w-4 h-4 border-2 border-navy-900/30 border-t-navy-900 rounded-full animate-spin" />
@@ -296,7 +296,7 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                                         type="button"
                                         disabled={loading}
                                         onClick={() => handleSubmit('visit')}
-                                        className="w-full bg-white/10 text-white border border-white/20 font-bold py-3 sm:py-3.5 rounded-xl flex items-center justify-center gap-2 hover:bg-white/15 transition-all uppercase tracking-wider text-[11px] disabled:opacity-50 active:scale-95 cursor-pointer"
+                                        className="w-full bg-white/10 text-white border border-white/20 font-sans font-semibold py-3 sm:py-3.5 rounded-xl flex items-center justify-center gap-2 hover:bg-white/15 transition-all uppercase tracking-[0.18em] text-[11px] disabled:opacity-50 active:scale-95 cursor-pointer"
                                     >
                                         {loading && actionType === 'visit' ? (
                                             <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />

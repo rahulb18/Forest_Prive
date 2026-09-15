@@ -48,7 +48,7 @@ export const FloatingCTA: React.FC = () => {
             size={13}
             className="text-navy-950 transform rotate-[-45deg] mb-2 group-hover:scale-110 transition-transform"
           />
-          <span className="[writing-mode:vertical-rl] rotate-180 text-[10px] uppercase font-bold tracking-[0.25em] text-navy-950 select-none py-1">
+          <span className="[writing-mode:vertical-rl] rotate-180 font-sans text-[10px] uppercase font-semibold tracking-[0.2em] text-navy-950 select-none py-1">
             Private Preview
           </span>
         </button>
@@ -63,7 +63,7 @@ export const FloatingCTA: React.FC = () => {
             size={13}
             className="text-gold-400 group-hover:scale-110 transition-transform mb-2"
           />
-          <span className="[writing-mode:vertical-rl] rotate-180 text-[10px] uppercase font-semibold tracking-[0.25em] text-gold-400 group-hover:text-white select-none py-1 transition-colors">
+          <span className="[writing-mode:vertical-rl] rotate-180 font-sans text-[10px] uppercase font-semibold tracking-[0.2em] text-gold-400 group-hover:text-white select-none py-1 transition-colors">
             Discover Privé
           </span>
         </a>
@@ -80,7 +80,7 @@ export const FloatingCTA: React.FC = () => {
         {/* 1. Call Now */}
         <a
           href="tel:+917607608555"
-          className="flex-1 py-3 px-2 flex items-center justify-center gap-1.5 rounded-xl text-gray-200 hover:text-gold-400 active:bg-white/15 transition-all font-medium text-[10px] uppercase tracking-wider touch-manipulation min-h-[44px]"
+          className="flex-1 py-3 px-2 flex items-center justify-center gap-1.5 rounded-xl text-gray-200 hover:text-gold-400 active:bg-white/15 transition-all font-sans font-medium text-[10.5px] uppercase tracking-wider touch-manipulation min-h-[44px]"
         >
           <Phone size={14} className="text-gold-400" />
           <span>Call Now</span>
@@ -93,7 +93,7 @@ export const FloatingCTA: React.FC = () => {
           href="https://wa.me/917607608555?text=Hi%2C%20I%20am%20interested%20in%20Grand%20Forest%20Priv%C3%A9."
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-1 py-3 px-2 flex items-center justify-center gap-1.5 rounded-xl text-gray-200 hover:text-emerald-400 active:bg-white/15 transition-all font-medium text-[10px] uppercase tracking-wider touch-manipulation min-h-[44px]"
+          className="flex-1 py-3 px-2 flex items-center justify-center gap-1.5 rounded-xl text-gray-200 hover:text-emerald-400 active:bg-white/15 transition-all font-sans font-medium text-[10.5px] uppercase tracking-wider touch-manipulation min-h-[44px]"
         >
           <MessageCircle size={14} className="text-emerald-400" />
           <span>WhatsApp</span>
@@ -108,7 +108,7 @@ export const FloatingCTA: React.FC = () => {
             e.stopPropagation();
             openEnquiry("NeoLiv Grand Forest Privé - Request a Private Preview");
           }}
-          className="flex-1 py-3 px-2 flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 text-navy-950 font-bold shadow-md active:scale-95 transition-all text-[10px] uppercase tracking-wider cursor-pointer touch-manipulation min-h-[44px]"
+          className="flex-1 py-3 px-2 flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 text-navy-950 font-sans font-semibold shadow-md active:scale-95 transition-all text-[10.5px] uppercase tracking-[0.16em] cursor-pointer touch-manipulation min-h-[44px]"
         >
           <Send size={13} className="text-navy-950" />
           <span>Private Preview</span>

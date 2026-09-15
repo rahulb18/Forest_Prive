@@ -149,13 +149,13 @@ export const VisualStorySections: React.FC = () => {
                   height={40}
                   className="h-8 sm:h-9 md:h-10 w-auto mb-1.5 opacity-95 drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]"
                 />
-                <span className="font-serif text-xs sm:text-sm text-white tracking-[0.24em] uppercase font-bold drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
+                <span className="font-serif text-xs sm:text-sm text-white tracking-[0.24em] uppercase font-semibold drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
                   GRAND FOREST <span className="text-gold-400">PRIVÉ</span>
                 </span>
               </header>
             ) : (
               <div className="relative z-20 pt-6 sm:pt-8 px-6 sm:px-12 flex items-center justify-between pointer-events-none">
-                <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.25em] text-white/70 font-mono bg-black/45 px-3 py-1 rounded-full border border-white/10 backdrop-blur-sm shadow">
+                <span className="numeric text-[9px] sm:text-[10px] uppercase tracking-[0.25em] text-white/80 font-sans font-medium bg-black/45 px-3 py-1 rounded-full border border-white/10 backdrop-blur-sm shadow">
                   0{index + 1} / 0{STORY_SLIDES.length}
                 </span>
               </div>
@@ -167,13 +167,13 @@ export const VisualStorySections: React.FC = () => {
               <div className="max-w-xl text-left pointer-events-auto">
                 {/* Discreet Eyebrow Pill */}
                 <div className="mb-2 sm:mb-2.5">
-                  <span className="inline-block px-3 py-1 rounded-full bg-black/60 border border-gold-400/40 text-gold-300 text-[8px] sm:text-[9.5px] tracking-[0.24em] uppercase font-semibold backdrop-blur-md shadow-md">
+                  <span className="inline-block px-3 py-1 rounded-full bg-black/60 border border-gold-400/40 text-gold-300 font-sans text-[8px] sm:text-[9.5px] tracking-[0.24em] uppercase font-semibold backdrop-blur-md shadow-md">
                     {slide.eyebrow}
                   </span>
                 </div>
 
                 {/* Refined Headline: Natural Title Case */}
-                <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-[42px] text-white font-normal leading-[1.2] tracking-normal drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
+                <h2 className="hero-display font-serif text-2xl sm:text-3xl md:text-4xl lg:text-[42px] text-white font-normal leading-[1.2] tracking-normal drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
                   <span>{slide.titleWhite}</span> <br className="hidden sm:inline" />
                   <span className="text-[#F6D57E] italic font-serif sm:mt-0.5 inline-block">
                     {slide.titleGold}
@@ -181,12 +181,12 @@ export const VisualStorySections: React.FC = () => {
                 </h2>
 
                 {/* Subtitle Description */}
-                <p className="text-gray-200/90 text-xs sm:text-[13px] md:text-sm font-light tracking-[0.02em] max-w-lg mt-1.5 sm:mt-2.5 leading-relaxed drop-shadow-[0_2px_6px_rgba(0,0,0,0.95)]">
+                <p className="body-regular font-sans text-gray-200/90 text-xs sm:text-[13px] md:text-sm font-light tracking-[0.02em] max-w-lg mt-1.5 sm:mt-2.5 leading-relaxed drop-shadow-[0_2px_6px_rgba(0,0,0,0.95)]">
                   {slide.subtitle}
                 </p>
               </div>
 
-              {/* DUAL ACTION CONTROLS: Next Destination (Left) + Enquire Now Button (Right - user's highlighted spot) */}
+              {/* DUAL ACTION CONTROLS: Next Destination (Left) + Enquire Now Button (Right) */}
               <div className="flex items-center gap-2.5 sm:gap-3.5 w-full md:w-auto pointer-events-auto pt-1 sm:pt-0 shrink-0">
                 {/* 1. Next Chapter Destination Button */}
                 <button
@@ -196,7 +196,7 @@ export const VisualStorySections: React.FC = () => {
                   aria-label={slide.nextDestination}
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.9)] animate-pulse shrink-0" />
-                  <span className="text-[9px] sm:text-[10.5px] uppercase font-bold tracking-[0.16em] sm:tracking-[0.18em] text-gray-200 group-hover:text-gold-300 transition-colors whitespace-nowrap">
+                  <span className="font-sans text-[9px] sm:text-[10.5px] uppercase font-semibold tracking-[0.18em] text-gray-200 group-hover:text-gold-300 transition-colors whitespace-nowrap">
                     {slide.nextDestination}
                   </span>
                   <span className="w-px h-3.5 bg-white/20 shrink-0" />
@@ -207,7 +207,7 @@ export const VisualStorySections: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => openEnquiry(`NeoLiv Grand Forest Privé - Request a Private Preview`)}
-                  className="group flex-1 md:flex-initial flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-bold text-[9.5px] sm:text-[10.5px] uppercase tracking-[0.2em] shadow-[0_4px_22px_rgba(212,175,55,0.45)] hover:shadow-[0_6px_28px_rgba(212,175,55,0.6)] transition-all duration-300 cursor-pointer active:scale-95 touch-manipulation min-h-[40px] shrink-0"
+                  className="group flex-1 md:flex-initial flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-sans font-semibold text-[9.5px] sm:text-[10.5px] uppercase tracking-[0.18em] shadow-[0_4px_22px_rgba(212,175,55,0.45)] hover:shadow-[0_6px_28px_rgba(212,175,55,0.6)] transition-all duration-300 cursor-pointer active:scale-95 touch-manipulation min-h-[40px] shrink-0"
                 >
                   <span>Private Preview</span>
                   <ArrowRight size={13} className="text-navy-950 stroke-[2.2] group-hover:translate-x-0.5 transition-transform shrink-0" />

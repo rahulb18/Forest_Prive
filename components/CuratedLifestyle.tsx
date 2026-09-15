@@ -18,11 +18,11 @@ export const CuratedLifestyle: React.FC = () => {
           {/* Left Column: Narrative (Strictly Client Copy) */}
           <div className="lg:col-span-6 space-y-6">
             <RevealOnScroll variant="up">
-              <span className="inline-block text-gold-400 text-[10px] sm:text-xs uppercase tracking-[0.35em] font-semibold mb-3">
+              <span className="eyebrow-label inline-block text-gold-400 font-sans text-[10px] sm:text-xs uppercase tracking-[0.35em] font-semibold mb-3">
                 The Art of Private Living
               </span>
 
-              <h2 className="font-serif text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-[1.14] mb-4 sm:mb-6">
+              <h2 className="section-heading font-serif text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-medium leading-[1.14] mb-4 sm:mb-6">
                 More Nature. More Space. <br className="hidden sm:inline" />
                 <span className="text-gold-400 italic">More of What Matters.</span>
               </h2>
@@ -35,17 +35,17 @@ export const CuratedLifestyle: React.FC = () => {
                   “Privé is conceived around a different idea of luxury. Not excess. But the freedom to slow down. The privilege of open skies. The joy of having nature close enough to become part of your everyday rituals.”
                 </p>
 
-                <p>
+                <p className="body-large font-sans">
                   A setting where families reconnect, generations come together and time seems to move at its own pace.
                 </p>
 
                 {/* Section 4: Forest and Open Spaces integration */}
                 <div className="pt-2 border-t border-white/10">
-                  <p className="text-gold-300 font-semibold tracking-[0.2em] text-xs uppercase mb-1.5 flex items-center gap-2">
+                  <p className="font-sans text-gold-300 font-semibold tracking-[0.2em] text-xs uppercase mb-1.5 flex items-center gap-2">
                     <Trees size={14} />
-                    <span>The Forest Within • 2.5 Acres</span>
+                    <span>The Forest Within • <span className="numeric">2.5</span> Acres</span>
                   </p>
-                  <p className="text-white/90 text-xs sm:text-base font-normal leading-relaxed">
+                  <p className="body-regular font-sans text-white/90 text-xs sm:text-base font-normal leading-relaxed">
                     Step beyond your everyday world and into a landscape shaped around nature. An urban forest, open greens and thoughtfully designed outdoor spaces create an environment where every walk feels restorative and every view carries a sense of openness.
                   </p>
                 </div>
@@ -55,7 +55,7 @@ export const CuratedLifestyle: React.FC = () => {
               <div className="pt-4 sm:pt-6">
                 <a
                   href="#Amenities"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-3.5 sm:py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-bold text-xs uppercase tracking-[0.22em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.35)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.5)] transition-all active:scale-95 cursor-pointer text-center"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-3.5 sm:py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-sans font-semibold text-xs uppercase tracking-[0.18em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.35)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.5)] transition-all active:scale-95 cursor-pointer text-center"
                 >
                   <span>Explore Experiences</span>
                   <ArrowRight size={14} />
@@ -82,18 +82,18 @@ export const CuratedLifestyle: React.FC = () => {
                     
                     {/* Artistic Impression Overlay Label */}
                     <div className="absolute top-4 right-4 z-20">
-                      <span className="px-3 py-1 rounded-full bg-navy-950/85 backdrop-blur-md border border-white/10 text-[9px] uppercase tracking-[0.2em] text-gold-300 font-semibold shadow-lg">
+                      <span className="px-3 py-1 rounded-full bg-navy-950/85 backdrop-blur-md border border-white/10 text-[9px] uppercase tracking-[0.2em] text-gold-300 font-sans font-semibold shadow-lg">
                         Artistic Impression
                       </span>
                     </div>
 
                     {/* Integrated Caption: Section 4 */}
                     <div className="absolute bottom-6 left-6 right-6 z-20">
-                      <div className="flex items-center gap-2 text-gold-400 text-xs uppercase tracking-[0.25em] font-semibold mb-1">
+                      <div className="flex items-center gap-2 text-gold-400 text-xs uppercase tracking-[0.25em] font-sans font-semibold mb-1">
                         <Trees size={14} />
                         <span>The Forest Within</span>
                       </div>
-                      <p className="text-white font-serif text-lg sm:text-xl">
+                      <p className="card-heading text-white font-serif text-lg sm:text-xl font-medium">
                         Nature is not an amenity here. It is the setting for life.
                       </p>
                     </div>
@@ -112,10 +112,10 @@ export const CuratedLifestyle: React.FC = () => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-transparent to-transparent" />
                     <div className="absolute bottom-3 left-3 right-3">
-                      <span className="text-[8px] uppercase tracking-widest text-gold-300 font-bold block">
+                      <span className="text-[8px] uppercase tracking-widest text-gold-300 font-sans font-semibold block">
                         Open-Air Gatherings
                       </span>
-                      <span className="text-[10px] text-white font-serif">
+                      <span className="text-[10px] text-white font-sans font-light">
                         Quiet Corners for Reflection
                       </span>
                     </div>
@@ -135,37 +135,37 @@ export const CuratedLifestyle: React.FC = () => {
               <div className="absolute top-0 right-1/4 w-72 h-72 bg-gold-400/5 rounded-full blur-3xl pointer-events-none" />
               
               <div className="max-w-4xl mx-auto text-center">
-                <span className="inline-block text-gold-400 text-[10px] sm:text-xs uppercase tracking-[0.35em] font-semibold mb-3">
+                <span className="eyebrow-label inline-block text-gold-400 font-sans text-[10px] sm:text-xs uppercase tracking-[0.35em] font-semibold mb-3">
                   The Privé Weekend
                 </span>
-                <h3 className="font-serif text-2xl sm:text-4xl md:text-5xl text-white mb-6 leading-tight">
+                <h3 className="section-heading font-serif text-2xl sm:text-4xl md:text-5xl text-white mb-6 leading-tight font-medium">
                   Imagine a Different <span className="text-gold-400 italic">Kind of Weekend.</span>
                 </h3>
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 my-8 text-left">
                   <div className="p-4 rounded-xl bg-navy-950/80 border border-white/5 flex items-start gap-3">
                     <Feather size={16} className="text-gold-400 shrink-0 mt-0.5" />
-                    <p className="text-gray-200 text-xs sm:text-sm font-light">Where the alarm is replaced by birdsong.</p>
+                    <p className="body-small font-sans text-gray-200 text-xs sm:text-sm font-light">Where the alarm is replaced by birdsong.</p>
                   </div>
                   <div className="p-4 rounded-xl bg-navy-950/80 border border-white/5 flex items-start gap-3">
                     <Sparkles size={16} className="text-gold-400 shrink-0 mt-0.5" />
-                    <p className="text-gray-200 text-xs sm:text-sm font-light">Where children run outside before reaching for a screen.</p>
+                    <p className="body-small font-sans text-gray-200 text-xs sm:text-sm font-light">Where children run outside before reaching for a screen.</p>
                   </div>
                   <div className="p-4 rounded-xl bg-navy-950/80 border border-white/5 flex items-start gap-3">
                     <Feather size={16} className="text-gold-400 shrink-0 mt-0.5" />
-                    <p className="text-gray-200 text-xs sm:text-sm font-light">Where breakfast becomes brunch.</p>
+                    <p className="body-small font-sans text-gray-200 text-xs sm:text-sm font-light">Where breakfast becomes brunch.</p>
                   </div>
                   <div className="p-4 rounded-xl bg-navy-950/80 border border-white/5 flex items-start gap-3 sm:col-span-2 lg:col-span-1">
                     <Sparkles size={16} className="text-gold-400 shrink-0 mt-0.5" />
-                    <p className="text-gray-200 text-xs sm:text-sm font-light">Where evenings gather around conversations rather than calendars.</p>
+                    <p className="body-small font-sans text-gray-200 text-xs sm:text-sm font-light">Where evenings gather around conversations rather than calendars.</p>
                   </div>
                   <div className="p-4 rounded-xl bg-navy-950/80 border border-white/5 flex items-start gap-3 sm:col-span-2 lg:col-span-2">
                     <Feather size={16} className="text-gold-400 shrink-0 mt-0.5" />
-                    <p className="text-gray-200 text-xs sm:text-sm font-light">Where Monday feels a little farther away.</p>
+                    <p className="body-small font-sans text-gray-200 text-xs sm:text-sm font-light">Where Monday feels a little farther away.</p>
                   </div>
                 </div>
 
-                <p className="font-serif text-base sm:text-xl text-gold-300 italic">
+                <p className="font-serif text-base sm:text-xl text-gold-300 italic font-light">
                   This is the privilege of Privé.
                 </p>
               </div>

@@ -124,23 +124,23 @@ export const ContactForm: React.FC = () => {
                     
                     {/* Left Column: Heading & Copy (Section 15: Final Call to Action) */}
                     <div className="lg:col-span-6 text-center lg:text-left space-y-4 sm:space-y-6">
-                        <span className="inline-block text-gold-400 text-[11px] sm:text-xs uppercase tracking-[0.35em] font-semibold">
+                        <span className="eyebrow-label inline-block text-gold-400 font-sans text-[11px] sm:text-xs uppercase tracking-[0.35em] font-semibold">
                             Your Privé Life Awaits
                         </span>
-                        <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-tight">
+                        <h2 className="section-heading font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-medium leading-tight">
                             Some Addresses Are Owned — <br />
                             <span className="text-gold-400 italic">A Few Are Experienced.</span>
                         </h2>
                         <div className="w-20 h-px bg-gradient-to-r from-transparent via-gold-400 to-transparent mx-auto lg:mx-0"></div>
-                        <p className="text-gray-300 text-sm sm:text-base lg:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 font-light">
+                        <p className="body-large font-sans text-gray-300 text-sm sm:text-base lg:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 font-light">
                             Discover a life where mornings begin with nature, weekends feel endless and space becomes the ultimate luxury.
                         </p>
                         <div className="pt-1">
                             <p className="font-serif text-white text-base tracking-wider uppercase font-semibold">
                                 NeoLiv Grand Forest Privé
                             </p>
-                            <p className="text-gold-400 text-xs tracking-widest uppercase">
-                                Khopoli, Mumbai 3.0
+                            <p className="font-sans text-gold-400 text-xs tracking-widest uppercase font-medium">
+                                Khopoli, Mumbai <span className="numeric">3.0</span>
                             </p>
                         </div>
                     </div>
@@ -153,10 +153,10 @@ export const ContactForm: React.FC = () => {
                                     <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gold-400/10 border border-gold-400/30 rounded-full flex items-center justify-center mb-5 sm:mb-6 shadow-2xl shadow-gold-400/20">
                                         <CheckCircle2 className="text-gold-400" size={36} />
                                     </div>
-                                    <h3 className="font-serif text-2xl md:text-3xl text-white mb-2 sm:mb-3 tracking-wide uppercase">
+                                    <h3 className="card-heading font-serif text-2xl md:text-3xl text-white mb-2 sm:mb-3 tracking-wide uppercase font-medium">
                                         Thank You
                                     </h3>
-                                    <p className="text-gray-300 text-xs sm:text-sm md:text-base leading-relaxed max-w-sm font-light">
+                                    <p className="body-regular font-sans text-gray-300 text-xs sm:text-sm md:text-base leading-relaxed max-w-sm font-light">
                                         Your request for a Private Preview at <strong className="text-white">NeoLiv Grand Forest Privé</strong> has been received. Our Privé Advisor will connect with you shortly.
                                     </p>
                                 </div>
@@ -164,17 +164,17 @@ export const ContactForm: React.FC = () => {
                                 <form onSubmit={(e) => { e.preventDefault(); handleSubmit('callback'); }} className="space-y-4 w-full">
                                     {/* Lead Form Header & Intro */}
                                     <div className="text-left pb-1">
-                                        <h3 className="font-serif text-xl sm:text-2xl text-white font-medium mb-1">
+                                        <h3 className="card-heading font-serif text-xl sm:text-2xl text-white font-medium mb-1">
                                             Your Private Preview Begins Here
                                         </h3>
-                                        <p className="text-gray-300/80 text-xs sm:text-sm font-light leading-relaxed">
+                                        <p className="body-small font-sans text-gray-300/80 text-xs sm:text-sm font-light leading-relaxed">
                                             Share your details and our Privé Advisor will connect with you to arrange a personalised conversation about Grand Forest Privé.
                                         </p>
                                     </div>
                                     
                                     {/* Full Name - text-base on mobile prevents iOS Safari auto-zoom */}
                                     <div className="space-y-1">
-                                        <label className="text-[10px] uppercase tracking-widest text-gray-400 font-semibold ml-1">
+                                        <label className="form-label font-sans text-[10px] sm:text-xs uppercase tracking-widest text-gray-400 font-medium ml-1">
                                             Name*
                                         </label>
                                         <input
@@ -182,15 +182,15 @@ export const ContactForm: React.FC = () => {
                                             name="name"
                                             value={formData.name}
                                             onChange={handleInputChange}
-                                            className={`w-full bg-navy-950/70 border ${errors.name ? 'border-red-500/60' : 'border-white/10'} rounded-xl px-4 py-3.5 sm:py-3 text-white placeholder-gray-600 focus:outline-none focus:border-gold-400/60 transition-all text-base sm:text-sm`}
+                                            className={`w-full font-sans bg-navy-950/70 border ${errors.name ? 'border-red-500/60' : 'border-white/10'} rounded-xl px-4 py-3.5 sm:py-3 text-white placeholder-gray-500 focus:outline-none focus:border-gold-400/60 transition-all text-base sm:text-sm`}
                                             placeholder="Enter your name"
                                         />
-                                        {errors.name && <p className="text-[10px] text-red-400 flex items-center gap-1 mt-0.5"><AlertCircle size={10} /> {errors.name}</p>}
+                                        {errors.name && <p className="font-sans text-[10px] text-red-400 flex items-center gap-1 mt-0.5"><AlertCircle size={10} /> {errors.name}</p>}
                                     </div>
                                     
                                     {/* Mobile Number - text-base on mobile prevents iOS Safari auto-zoom */}
                                     <div className="space-y-1">
-                                        <label className="text-[10px] uppercase tracking-widest text-gray-400 font-semibold ml-1">
+                                        <label className="form-label font-sans text-[10px] sm:text-xs uppercase tracking-widest text-gray-400 font-medium ml-1">
                                             Mobile Number*
                                         </label>
                                         <div className="relative">
@@ -200,16 +200,16 @@ export const ContactForm: React.FC = () => {
                                                 name="phone"
                                                 value={formData.phone}
                                                 onChange={handleInputChange}
-                                                className={`w-full bg-navy-950/70 border ${errors.phone ? 'border-red-500/60' : 'border-white/10'} rounded-xl pr-4 py-3.5 sm:py-3 text-white placeholder-gray-600 focus:outline-none focus:border-gold-400/60 transition-all text-base sm:text-sm font-medium`}
+                                                className={`w-full font-sans numeric bg-navy-950/70 border ${errors.phone ? 'border-red-500/60' : 'border-white/10'} rounded-xl pr-4 py-3.5 sm:py-3 text-white placeholder-gray-500 focus:outline-none focus:border-gold-400/60 transition-all text-base sm:text-sm font-medium`}
                                                 placeholder="98765 43210"
                                             />
                                         </div>
-                                        {errors.phone && <p className="text-[10px] text-red-400 flex items-center gap-1 mt-0.5"><AlertCircle size={10} /> {errors.phone}</p>}
+                                        {errors.phone && <p className="font-sans text-[10px] text-red-400 flex items-center gap-1 mt-0.5"><AlertCircle size={10} /> {errors.phone}</p>}
                                     </div>
 
                                     {/* Email Address - text-base on mobile prevents iOS Safari auto-zoom */}
                                     <div className="space-y-1">
-                                        <label className="text-[10px] uppercase tracking-widest text-gray-400 font-semibold ml-1">
+                                        <label className="form-label font-sans text-[10px] sm:text-xs uppercase tracking-widest text-gray-400 font-medium ml-1">
                                             Email Address*
                                         </label>
                                         <input
@@ -217,10 +217,10 @@ export const ContactForm: React.FC = () => {
                                             name="email"
                                             value={formData.email}
                                             onChange={handleInputChange}
-                                            className={`w-full bg-navy-950/70 border ${errors.email ? 'border-red-500/60' : 'border-white/10'} rounded-xl px-4 py-3.5 sm:py-3 text-white placeholder-gray-600 focus:outline-none focus:border-gold-400/60 transition-all text-base sm:text-sm`}
+                                            className={`w-full font-sans bg-navy-950/70 border ${errors.email ? 'border-red-500/60' : 'border-white/10'} rounded-xl px-4 py-3.5 sm:py-3 text-white placeholder-gray-500 focus:outline-none focus:border-gold-400/60 transition-all text-base sm:text-sm`}
                                             placeholder="Enter your email address"
                                         />
-                                        {errors.email && <p className="text-[10px] text-red-400 flex items-center gap-1 mt-0.5"><AlertCircle size={10} /> {errors.email}</p>}
+                                        {errors.email && <p className="font-sans text-[10px] text-red-400 flex items-center gap-1 mt-0.5"><AlertCircle size={10} /> {errors.email}</p>}
                                     </div>
 
                                     {/* Mandatory Consent Checkbox */}
@@ -241,11 +241,11 @@ export const ContactForm: React.FC = () => {
                                                 }}
                                                 className="mt-1 rounded border-white/20 bg-navy-950 text-gold-400 focus:ring-gold-400/40 w-4 h-4 cursor-pointer accent-amber-400"
                                             />
-                                            <span className="text-[11px] text-gray-300 leading-relaxed font-light">
+                                            <span className="body-small font-sans text-[11px] sm:text-xs text-gray-300 leading-relaxed font-light">
                                                 Your information will remain private and will only be used to assist with your enquiry.
                                             </span>
                                         </label>
-                                        {errors.consent && <p className="text-[10px] text-red-400 flex items-center gap-1 mt-1"><AlertCircle size={10} /> {errors.consent}</p>}
+                                        {errors.consent && <p className="font-sans text-[10px] text-red-400 flex items-center gap-1 mt-1"><AlertCircle size={10} /> {errors.consent}</p>}
                                     </div>
 
                                     {/* Dual Action CTAs */}
@@ -255,7 +255,7 @@ export const ContactForm: React.FC = () => {
                                             type="button"
                                             disabled={loading}
                                             onClick={() => handleSubmit('callback')}
-                                            className="w-full bg-gold-400 hover:bg-gold-300 text-navy-950 font-bold py-4 sm:py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-gold-400/20 active:scale-95 text-xs uppercase tracking-wider disabled:opacity-50 cursor-pointer min-h-[48px]"
+                                            className="w-full bg-gold-400 hover:bg-gold-300 text-navy-950 font-sans font-semibold py-4 sm:py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-gold-400/20 active:scale-95 text-xs uppercase tracking-[0.18em] disabled:opacity-50 cursor-pointer min-h-[48px]"
                                         >
                                             {loading && actionType === 'callback' ? (
                                                 <div className="w-4 h-4 border-2 border-navy-950/30 border-t-navy-950 rounded-full animate-spin" />
@@ -272,7 +272,7 @@ export const ContactForm: React.FC = () => {
                                             type="button"
                                             disabled={loading}
                                             onClick={() => handleSubmit('visit')}
-                                            className="w-full bg-white/10 hover:bg-white/15 text-white border border-white/20 font-bold py-4 sm:py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-all active:scale-95 text-xs uppercase tracking-wider disabled:opacity-50 cursor-pointer min-h-[48px]"
+                                            className="w-full bg-white/10 hover:bg-white/15 text-white border border-white/20 font-sans font-semibold py-4 sm:py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-all active:scale-95 text-xs uppercase tracking-[0.18em] disabled:opacity-50 cursor-pointer min-h-[48px]"
                                         >
                                             {loading && actionType === 'visit' ? (
                                                 <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -285,7 +285,7 @@ export const ContactForm: React.FC = () => {
                                         </button>
                                     </div>
                                     
-                                    <p className="text-[9px] text-gray-400 text-center pt-2 uppercase tracking-widest">
+                                    <p className="font-sans text-[9px] text-gray-400 text-center pt-2 uppercase tracking-widest font-normal">
                                         Strict Privacy • Verified MahaRERA Registered Development
                                     </p>
                                 </form>

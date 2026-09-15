@@ -69,47 +69,47 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
 
         {/* Eyebrow Pill */}
         <div className="mb-4 sm:mb-5 inline-block">
-          <span className="inline-flex items-center gap-2 px-4 sm:px-5 py-1.5 rounded-full bg-black/65 border border-gold-400/50 text-amber-300 text-[9px] sm:text-xs tracking-[0.24em] uppercase font-semibold backdrop-blur-md shadow-2xl">
+          <span className="inline-flex items-center gap-2 px-4 sm:px-5 py-1.5 rounded-full bg-black/65 border border-gold-400/50 text-amber-300 font-sans text-[9px] sm:text-xs tracking-[0.24em] uppercase font-semibold backdrop-blur-md shadow-2xl">
             <Sparkles size={12} className="text-gold-400" />
-            <span>NEOLIV GRAND FOREST PRIVÉ • KHOPOLI, MUMBAI 3.0</span>
+            <span>NEOLIV GRAND FOREST PRIVÉ • KHOPOLI, MUMBAI <span className="numeric">3.0</span></span>
           </span>
         </div>
 
         {/* Main Title (Alternative: Where Nature Becomes Your Private Address) */}
-        <h1 className="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-white font-medium uppercase tracking-wide leading-[1.12] sm:leading-[1.1] [text-shadow:_0_2px_8px_rgba(0,0,0,0.95),_0_6px_24px_rgba(0,0,0,0.9),_0_14px_48px_rgba(0,0,0,0.95)]">
+        <h1 className="hero-display font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-white font-medium uppercase tracking-wide leading-[1.12] sm:leading-[1.1] [text-shadow:_0_2px_8px_rgba(0,0,0,0.95),_0_6px_24px_rgba(0,0,0,0.9),_0_14px_48px_rgba(0,0,0,0.95)]">
           A Life Privately <br className="hidden sm:inline" />
           <span className="text-[#F6D57E] italic font-serif">Immersed in Nature.</span>
         </h1>
 
         {/* Subtitle / Body Copy */}
-        <p className="mt-4 sm:mt-5 text-gray-200 text-xs sm:text-sm md:text-base font-light tracking-[0.04em] max-w-2xl mx-auto leading-relaxed [text-shadow:_0_2px_8px_rgba(0,0,0,0.9)]">
-          Curated forest living in Khopoli, Mumbai 3.0. A rare world where expansive greens, thoughtfully curated experiences and the privilege of space come together.
+        <p className="body-large font-sans mt-4 sm:mt-5 text-gray-200 text-xs sm:text-sm md:text-base font-light tracking-[0.02em] max-w-2xl mx-auto leading-relaxed [text-shadow:_0_2px_8px_rgba(0,0,0,0.9)]">
+          Curated forest living in Khopoli, Mumbai <span className="numeric">3.0</span>. A rare world where expansive greens, thoughtfully curated experiences and the privilege of space come together.
         </p>
 
         {/* Key Highlight Pills Bar */}
         <div className="mt-6 sm:mt-8 grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4 max-w-3xl mx-auto">
           <div className="flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-black/45 border border-white/10 backdrop-blur-sm">
             <Mountain size={14} className="text-gold-400 shrink-0" />
-            <span className="text-[10px] sm:text-xs uppercase font-medium tracking-wider text-gray-200 whitespace-nowrap">
-              360° Mountain Views
+            <span className="font-sans text-[10px] sm:text-xs uppercase font-medium tracking-wider text-gray-200 whitespace-nowrap">
+              <span className="numeric">360°</span> Mountain Views
             </span>
           </div>
           <div className="flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-black/45 border border-white/10 backdrop-blur-sm">
             <Sparkles size={14} className="text-gold-400 shrink-0" />
-            <span className="text-[10px] sm:text-xs uppercase font-medium tracking-wider text-gray-200 whitespace-nowrap">
+            <span className="font-sans text-[10px] sm:text-xs uppercase font-medium tracking-wider text-gray-200 whitespace-nowrap">
               Low-Density Living
             </span>
           </div>
           <div className="flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-black/45 border border-white/10 backdrop-blur-sm">
             <Building2 size={14} className="text-gold-400 shrink-0" />
-            <span className="text-[10px] sm:text-xs uppercase font-medium tracking-wider text-gray-200 whitespace-nowrap">
+            <span className="font-sans text-[10px] sm:text-xs uppercase font-medium tracking-wider text-gray-200 whitespace-nowrap">
               The Privé Club
             </span>
           </div>
           <div className="flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-black/45 border border-white/10 backdrop-blur-sm">
             <Milestone size={14} className="text-gold-400 shrink-0" />
-            <span className="text-[10px] sm:text-xs uppercase font-medium tracking-wider text-gray-200 whitespace-nowrap">
-              2.5 Acres Forest
+            <span className="font-sans text-[10px] sm:text-xs uppercase font-medium tracking-wider text-gray-200 whitespace-nowrap">
+              <span className="numeric">2.5</span> Acres Forest
             </span>
           </div>
         </div>
@@ -119,7 +119,7 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
           <button
             type="button"
             onClick={() => modalState.open("NeoLiv Grand Forest Privé - Request a Private Preview")}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 sm:px-9 sm:py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-bold text-xs uppercase tracking-[0.2em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.45)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.6)] transition-all active:scale-95 cursor-pointer whitespace-nowrap min-h-[44px]"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 sm:px-9 sm:py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-sans font-semibold text-xs uppercase tracking-[0.18em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.45)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.6)] transition-all active:scale-95 cursor-pointer whitespace-nowrap min-h-[44px]"
           >
             <span>Request a Private Preview</span>
             <ArrowRight size={14} />
@@ -128,7 +128,7 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
           <a
             href="#Overview"
             onClick={scrollToNext}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 sm:px-8 sm:py-4 bg-black/60 hover:bg-black/80 active:bg-black/90 text-white border border-gold-400/60 hover:border-gold-400 text-xs uppercase tracking-[0.18em] font-semibold rounded-full backdrop-blur-md shadow-[0_4px_25px_rgba(0,0,0,0.6)] hover:shadow-[0_6px_30px_rgba(212,175,55,0.3)] transition-all active:scale-95 cursor-pointer whitespace-nowrap min-h-[44px]"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 sm:px-8 sm:py-4 bg-black/60 hover:bg-black/80 active:bg-black/90 text-white border border-gold-400/60 hover:border-gold-400 font-sans text-xs uppercase tracking-[0.18em] font-semibold rounded-full backdrop-blur-md shadow-[0_4px_25px_rgba(0,0,0,0.6)] hover:shadow-[0_6px_30px_rgba(212,175,55,0.3)] transition-all active:scale-95 cursor-pointer whitespace-nowrap min-h-[44px]"
           >
             <span>Discover Privé</span>
           </a>

@@ -51,10 +51,10 @@ export const FAQSection: React.FC = () => {
             <div className="container mx-auto px-4 sm:px-6 md:px-12 max-w-4xl relative z-10">
                 <RevealOnScroll variant="up">
                     <div className="text-center mb-12 sm:mb-16">
-                        <span className="inline-block text-gold-400 text-[11px] sm:text-xs uppercase tracking-[0.35em] font-semibold mb-3">
+                        <span className="eyebrow-label inline-block text-gold-400 font-sans text-[11px] sm:text-xs uppercase tracking-[0.35em] font-semibold mb-3">
                             Frequently Asked Questions
                         </span>
-                        <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-white mb-4 sm:mb-6 leading-tight">
+                        <h2 className="section-heading font-serif text-3xl sm:text-4xl md:text-5xl text-white font-medium mb-4 sm:mb-6 leading-tight">
                             Clear Answers. <span className="text-gold-400 italic">Thoughtful Details.</span>
                         </h2>
                         <div className="w-20 h-px bg-gradient-to-r from-transparent via-gold-400 to-transparent mx-auto mb-6" />
@@ -80,10 +80,10 @@ export const FAQSection: React.FC = () => {
                                         aria-expanded={isOpen}
                                     >
                                         <div className="flex items-center gap-3 sm:gap-4">
-                                            <span className="font-mono text-[11px] sm:text-xs text-gold-400 font-bold shrink-0">
+                                            <span className="numeric font-sans text-[11px] sm:text-xs text-gold-400 font-semibold shrink-0">
                                                 0{idx + 1}
                                             </span>
-                                            <h3 className="font-serif text-sm sm:text-base md:text-lg text-white font-medium tracking-wide leading-snug">
+                                            <h3 className="font-sans text-sm sm:text-base md:text-lg text-white font-medium tracking-wide leading-snug">
                                                 {faq.question}
                                             </h3>
                                         </div>
@@ -102,7 +102,7 @@ export const FAQSection: React.FC = () => {
                                                 exit={{ height: 0, opacity: 0 }}
                                                 transition={{ duration: 0.3, ease: "easeInOut" }}
                                             >
-                                                <div className="px-4 sm:px-6 md:px-8 pb-5 sm:pb-6 pt-2 border-t border-white/5 text-gray-300 text-xs sm:text-sm md:text-base font-light leading-relaxed">
+                                                <div className="body-regular font-sans px-4 sm:px-6 md:px-8 pb-5 sm:pb-6 pt-2 border-t border-white/5 text-gray-300 text-xs sm:text-sm md:text-base font-light leading-relaxed">
                                                     <p>{faq.answer}</p>
                                                 </div>
                                             </motion.div>

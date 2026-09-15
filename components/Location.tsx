@@ -48,15 +48,15 @@ export const Location: React.FC = () => {
                 {/* Header */}
                 <RevealOnScroll variant="up">
                     <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-                        <span className="inline-block text-gold-400 text-[10px] sm:text-xs uppercase tracking-[0.35em] font-semibold mb-3">
-                            Khopoli • Mumbai 3.0
+                        <span className="eyebrow-label inline-block text-gold-400 font-sans text-[10px] sm:text-xs uppercase tracking-[0.35em] font-semibold mb-3">
+                            Khopoli • Mumbai <span className="numeric">3.0</span>
                         </span>
-                        <h2 className="font-serif text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-4 sm:mb-6 leading-tight">
+                        <h2 className="section-heading font-serif text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-4 sm:mb-6 leading-tight font-medium">
                             Away From the Rush — <br />
                             <span className="text-gold-400 italic">Connected to What Matters.</span>
                         </h2>
                         <div className="w-20 h-px bg-gradient-to-r from-transparent via-gold-400 to-transparent mx-auto mb-4 sm:mb-6" />
-                        <div className="text-gray-300 text-sm sm:text-base font-light leading-relaxed max-w-2xl mx-auto space-y-2">
+                        <div className="body-regular font-sans text-gray-300 text-sm sm:text-base font-light leading-relaxed max-w-2xl mx-auto space-y-2">
                             <p>
                                 Grand Forest Privé places you within a naturally rich setting in the Khopoli-Khalapur region while retaining access to the larger Mumbai metropolitan ecosystem.
                             </p>
@@ -85,10 +85,10 @@ export const Location: React.FC = () => {
                                                 <Icon size={18} className="sm:w-5 sm:h-5" />
                                             </div>
                                             <div className="flex-1 min-w-0">
-                                                <span className="inline-block text-[10px] sm:text-[11px] font-mono uppercase tracking-widest px-2.5 py-0.5 rounded-full border mb-1 bg-gold-400/15 border-gold-400/35 text-white font-semibold">
+                                                <span className="numeric inline-block text-[10px] sm:text-[11px] font-sans uppercase tracking-wider px-2.5 py-0.5 rounded-full border mb-1 bg-gold-400/15 border-gold-400/35 text-white font-semibold">
                                                     {item.badge}
                                                 </span>
-                                                <h3 className="font-serif text-xs sm:text-base text-white group-hover:text-gold-300 transition-colors leading-snug">
+                                                <h3 className="font-sans font-medium text-xs sm:text-base text-white group-hover:text-gold-300 transition-colors leading-snug">
                                                     {item.title}
                                                 </h3>
                                             </div>
@@ -103,7 +103,7 @@ export const Location: React.FC = () => {
                                     href="https://www.google.com/maps/search/?api=1&query=Neoliv+Grand+Forest+Prive"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-3.5 sm:py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-bold text-xs uppercase tracking-[0.22em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.35)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.5)] transition-all active:scale-95 cursor-pointer text-center"
+                                    className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-3.5 sm:py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-sans font-semibold text-xs uppercase tracking-[0.18em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.35)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.5)] transition-all active:scale-95 cursor-pointer text-center"
                                 >
                                     <MapPin size={14} />
                                     <span>View Location</span>

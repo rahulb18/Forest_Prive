@@ -28,27 +28,27 @@ export const Philosophy: React.FC = () => {
 
         <div>
           <RevealOnScroll variant="up" delay={300}>
-            <p className="font-sans text-gray-300 text-sm md:text-base lg:text-lg leading-relaxed font-light tracking-wide italic">
-              "A limited-inventory community offering just 99 thoughtfully curated plots within a sprawling 65+ acre master-planned township—the perfect blend of nature, connectivity, and world-class lifestyle."
+            <p className="body-large font-sans text-gray-300 text-sm md:text-base lg:text-lg leading-relaxed font-light tracking-wide italic">
+              “Grand Forest Privé is envisioned for those who seek something increasingly rare — space, stillness and an intimate relationship with nature.”
             </p>
           </RevealOnScroll>
           <RevealOnScroll variant="up" delay={500}>
             <div className="grid grid-cols-2 gap-8 mt-10">
               <div>
-                <h4 className="text-gold-400 font-serif text-2xl lg:text-3xl">65+ ACRES</h4>
-                <p className="text-gray-400 text-[10px] uppercase tracking-[0.2em] mt-2">Proposed Development</p>
+                <h4 className="numeric font-sans font-bold text-gold-400 text-2xl lg:text-3xl tracking-tight">65+ ACRES</h4>
+                <p className="font-sans text-gray-400 text-[10px] uppercase tracking-[0.2em] mt-2 font-normal">Proposed Development</p>
               </div>
               <div>
-                <h4 className="text-gold-400 font-serif text-2xl lg:text-3xl">99 PLOTS</h4>
-                <p className="text-gray-400 text-[10px] uppercase tracking-[0.2em] mt-2">Low-Density Living</p>
+                <h4 className="numeric font-sans font-bold text-gold-400 text-2xl lg:text-3xl tracking-tight">99 PLOTS</h4>
+                <p className="font-sans text-gray-400 text-[10px] uppercase tracking-[0.2em] mt-2 font-normal">Low-Density Living</p>
               </div>
               <div>
-                <h4 className="text-gold-400 font-serif text-2xl lg:text-3xl">2.5 ACRES</h4>
-                <p className="text-gray-400 text-[10px] uppercase tracking-[0.2em] mt-2">Urban Forest & Open Spaces</p>
+                <h4 className="numeric font-sans font-bold text-gold-400 text-2xl lg:text-3xl tracking-tight">2.5 ACRES</h4>
+                <p className="font-sans text-gray-400 text-[10px] uppercase tracking-[0.2em] mt-2 font-normal">Urban Forest & Open Spaces</p>
               </div>
               <div>
-                <h4 className="text-gold-400 font-serif text-2xl lg:text-3xl">30+</h4>
-                <p className="text-gray-400 text-[10px] uppercase tracking-[0.2em] mt-2">Curated Experiences</p>
+                <h4 className="numeric font-sans font-bold text-gold-400 text-2xl lg:text-3xl tracking-tight">30+</h4>
+                <p className="font-sans text-gray-400 text-[10px] uppercase tracking-[0.2em] mt-2 font-normal">Curated Experiences</p>
               </div>
             </div>
           </RevealOnScroll>

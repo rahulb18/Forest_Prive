@@ -58,14 +58,14 @@ export const GrandPriveAdvantage: React.FC = () => {
                 {/* 09. GRAND PRIVÉ ADVANTAGE */}
                 <div className="text-center max-w-3xl mx-auto mb-16">
                     <RevealOnScroll variant="up">
-                        <span className="inline-block text-gold-400 text-[11px] sm:text-xs uppercase tracking-[0.35em] font-semibold mb-3">
+                        <span className="eyebrow-label inline-block text-gold-400 font-sans text-[11px] sm:text-xs uppercase tracking-[0.35em] font-semibold mb-3">
                             Grand Privé Advantage
                         </span>
-                        <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 text-white leading-tight">
+                        <h2 className="section-heading font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 text-white font-medium leading-tight">
                             A Privileged <span className="text-gold-400 italic">Opportunity</span>
                         </h2>
                         <div className="w-20 h-px bg-gradient-to-r from-transparent via-gold-400 to-transparent mx-auto mb-6" />
-                        <p className="text-gray-300 text-base sm:text-lg font-light leading-relaxed">
+                        <p className="body-regular font-sans text-gray-300 text-base sm:text-lg font-light leading-relaxed">
                             A special proposition created around attractive pricing and a flexible payment structure.
                         </p>
                     </RevealOnScroll>
@@ -88,10 +88,10 @@ export const GrandPriveAdvantage: React.FC = () => {
                                         </div>
                                     </div>
                                     <div>
-                                        <div className="font-sans text-lg sm:text-2xl lg:text-3xl text-white font-bold tracking-tight mb-1 [font-variant-numeric:lining-nums]">
+                                        <div className="numeric font-sans text-lg sm:text-2xl lg:text-3xl text-white font-bold tracking-tight mb-1">
                                             {item.value}
                                         </div>
-                                        <p className="font-serif text-xs sm:text-sm lg:text-base text-gray-300 font-light leading-tight">
+                                        <p className="font-sans text-xs sm:text-sm lg:text-base text-gray-300 font-normal leading-tight">
                                             {item.label}
                                         </p>
                                     </div>
@@ -106,7 +106,7 @@ export const GrandPriveAdvantage: React.FC = () => {
                     <RevealOnScroll variant="up">
                         <button
                             onClick={() => modalState.open("NeoLiv Grand Forest Privé - Request a Private Preview")}
-                            className="inline-flex items-center justify-center w-full sm:w-auto gap-3 px-8 sm:px-9 py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-bold text-xs uppercase tracking-[0.22em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.35)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.5)] transition-all active:scale-95 cursor-pointer"
+                            className="inline-flex items-center justify-center w-full sm:w-auto gap-3 px-8 sm:px-9 py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-sans font-semibold text-xs uppercase tracking-[0.18em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.35)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.5)] transition-all active:scale-95 cursor-pointer"
                         >
                             <span>Request a Private Preview</span>
                             <ArrowRight size={14} />
@@ -122,18 +122,18 @@ export const GrandPriveAdvantage: React.FC = () => {
                             
                             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 items-center">
                                 <div className="lg:col-span-8 space-y-5 sm:space-y-6">
-                                    <span className="inline-block text-gold-400 text-[11px] sm:text-xs uppercase tracking-[0.35em] font-semibold">
+                                    <span className="eyebrow-label inline-block text-gold-400 font-sans text-[11px] sm:text-xs uppercase tracking-[0.35em] font-semibold">
                                         Investment Opportunity
                                     </span>
                                     
-                                    <h3 className="font-serif text-2xl sm:text-4xl md:text-5xl text-white leading-tight">
+                                    <h3 className="section-heading font-serif text-2xl sm:text-4xl md:text-5xl text-white font-medium leading-tight">
                                         Lifestyle Today. <br />
                                         <span className="text-gold-400 italic">Potential for Tomorrow.</span>
                                     </h3>
                                     
                                     <div className="w-16 h-px bg-gold-400/50" />
                                     
-                                    <div className="space-y-3 sm:space-y-4 text-gray-300 text-sm sm:text-base lg:text-lg font-light leading-relaxed">
+                                    <div className="body-regular font-sans space-y-3 sm:space-y-4 text-gray-300 text-sm sm:text-base lg:text-lg font-light leading-relaxed">
                                         <p>
                                             Grand Forest Privé combines a premium integrated township proposition with proximity to major infrastructure such as the Mumbai–Pune Expressway and Navi Mumbai International Airport.
                                         </p>
@@ -144,11 +144,11 @@ export const GrandPriveAdvantage: React.FC = () => {
 
                                     {/* Compliance Note */}
                                     <div className="p-3.5 sm:p-4 rounded-xl bg-navy-900/80 border border-white/5 text-[11px] sm:text-xs text-gray-400 leading-relaxed font-light">
-                                        <div className="flex items-center gap-2 text-gold-400 font-semibold uppercase tracking-wider mb-1 text-[10px]">
+                                        <div className="flex items-center gap-2 text-gold-400 font-sans font-semibold uppercase tracking-wider mb-1 text-[10px]">
                                             <FileCheck size={14} />
                                             <span>Statutory Disclosure</span>
                                         </div>
-                                        <p>
+                                        <p className="body-small font-sans">
                                             *The 4X ROI projection is based on a report by Colliers and is subject to market conditions, statutory approvals, and agreement terms. It should not be construed as a financial guarantee.
                                         </p>
                                     </div>
@@ -156,7 +156,7 @@ export const GrandPriveAdvantage: React.FC = () => {
                                     <div className="pt-2">
                                         <button
                                             onClick={() => modalState.open("NeoLiv Grand Forest Privé - Request a Private Preview")}
-                                            className="inline-flex items-center justify-center w-full sm:w-auto gap-3 px-8 py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-bold text-xs uppercase tracking-[0.22em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.35)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.5)] transition-all active:scale-95 cursor-pointer"
+                                            className="inline-flex items-center justify-center w-full sm:w-auto gap-3 px-8 py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-sans font-semibold text-xs uppercase tracking-[0.18em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.35)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.5)] transition-all active:scale-95 cursor-pointer"
                                         >
                                             <span>Request a Private Preview</span>
                                             <ArrowRight size={14} />
@@ -171,14 +171,14 @@ export const GrandPriveAdvantage: React.FC = () => {
                                             <TrendingUp size={28} />
                                         </div>
                                         <div>
-                                            <p className="text-gold-400 text-[10px] uppercase tracking-[0.25em] font-mono mb-1">
+                                            <p className="text-gold-400 text-[10px] uppercase tracking-[0.25em] font-sans font-semibold mb-1">
                                                 Colliers Report
                                             </p>
-                                            <div className="font-sans text-4xl sm:text-5xl text-white font-bold tracking-tight [font-variant-numeric:lining-nums]">
+                                            <div className="numeric font-sans text-4xl sm:text-5xl text-white font-bold tracking-tight">
                                                 4X <span className="text-gold-400 text-xl font-light">ROI*</span>
                                             </div>
-                                            <p className="text-gray-400 text-xs font-light mt-2">
-                                                Investor-friendly exit structure on 30% payment.
+                                            <p className="body-small font-sans text-gray-400 text-xs font-light mt-2">
+                                                Investor-friendly exit structure on <span className="numeric">30%</span> payment.
                                             </p>
                                         </div>
                                     </div>

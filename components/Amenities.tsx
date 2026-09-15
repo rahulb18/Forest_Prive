@@ -82,15 +82,15 @@ export const Amenities: React.FC = () => {
                 {/* SECTION 8: AMENITIES */}
                 <div className="text-center max-w-4xl mx-auto mb-16">
                     <RevealOnScroll variant="up">
-                        <span className="inline-block text-gold-400 text-[11px] sm:text-xs uppercase tracking-[0.35em] font-semibold mb-3">
+                        <span className="eyebrow-label inline-block text-gold-400 font-sans text-[11px] sm:text-xs uppercase tracking-[0.35em] font-semibold mb-3">
                             Experiences Curated for Life
                         </span>
-                        <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 text-white leading-tight">
+                        <h2 className="section-heading font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 text-white font-medium leading-tight">
                             Every Mood <br />
                             <span className="text-gold-400 italic">Has Its Own Place.</span>
                         </h2>
                         <div className="w-20 h-px bg-gradient-to-r from-transparent via-gold-400 to-transparent mx-auto mb-6" />
-                        <p className="text-gray-300 text-base sm:text-lg font-light leading-relaxed max-w-3xl mx-auto">
+                        <p className="body-large font-sans text-gray-300 text-base sm:text-lg font-light leading-relaxed max-w-3xl mx-auto">
                             Some days call for movement. Others for stillness. At Grand Forest Privé, thoughtfully curated spaces allow you to choose your own rhythm — from fitness and sport to quiet contemplation, nature walks and moments spent together.
                         </p>
                     </RevealOnScroll>
@@ -108,15 +108,15 @@ export const Amenities: React.FC = () => {
                                             <div className="w-8 h-8 sm:w-11 sm:h-11 rounded-xl bg-gold-400/10 border border-gold-400/20 flex items-center justify-center text-gold-400 group-hover:bg-gold-400 group-hover:text-navy-950 transition-all duration-300 shrink-0">
                                                 <Icon size={16} className="sm:w-5 sm:h-5" />
                                             </div>
-                                            <span className="text-xs sm:text-xs md:text-sm font-mono text-gold-400 font-bold tracking-wider">
+                                            <span className="numeric text-xs sm:text-xs md:text-sm font-sans text-gold-400 font-semibold tracking-wider">
                                                 {(idx + 1).toString().padStart(2, '0')}
                                             </span>
                                         </div>
-                                        <h3 className="font-serif text-xs sm:text-base md:text-lg text-white mb-1 group-hover:text-gold-300 transition-colors leading-snug">
+                                        <h3 className="font-sans font-medium text-xs sm:text-base md:text-lg text-white mb-1 group-hover:text-gold-300 transition-colors leading-snug">
                                             {amenity.title}
                                         </h3>
                                         {amenity.desc && (
-                                            <p className="text-gray-300/80 text-[10px] sm:text-xs md:text-sm font-light leading-snug sm:leading-relaxed line-clamp-2 sm:line-clamp-none">
+                                            <p className="body-small font-sans text-gray-300/80 text-[10px] sm:text-xs md:text-sm font-light leading-snug sm:leading-relaxed line-clamp-2 sm:line-clamp-none">
                                                 {amenity.desc}
                                             </p>
                                         )}
@@ -131,7 +131,7 @@ export const Amenities: React.FC = () => {
                     <RevealOnScroll variant="up">
                         <button
                             onClick={() => modalState.open("NeoLiv Grand Forest Privé - Request a Private Preview")}
-                            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-3.5 sm:py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-bold text-xs uppercase tracking-[0.22em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.35)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.5)] transition-all active:scale-95 cursor-pointer text-center"
+                            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-3.5 sm:py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-sans font-semibold text-xs uppercase tracking-[0.18em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.35)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.5)] transition-all active:scale-95 cursor-pointer text-center"
                         >
                             <span>Request a Private Preview</span>
                             <ArrowRight size={14} />
@@ -147,18 +147,18 @@ export const Amenities: React.FC = () => {
                             
                             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center relative z-10">
                                 <div className="lg:col-span-7 space-y-4 sm:space-y-6">
-                                    <span className="inline-block text-gold-400 text-[10px] sm:text-xs uppercase tracking-[0.35em] font-semibold">
+                                    <span className="eyebrow-label inline-block text-gold-400 font-sans text-[10px] sm:text-xs uppercase tracking-[0.35em] font-semibold">
                                         The Privé Club
                                     </span>
                                     
-                                    <h3 className="font-serif text-2xl sm:text-4xl md:text-5xl text-white leading-tight">
+                                    <h3 className="section-heading font-serif text-2xl sm:text-4xl md:text-5xl text-white font-medium leading-tight">
                                         Your Private Escape — <br />
                                         <span className="text-gold-400 italic">Just a Few Steps From Home.</span>
                                     </h3>
                                     
                                     <div className="w-16 h-px bg-gold-400/50" />
                                     
-                                    <div className="space-y-3 sm:space-y-4 text-gray-300 text-sm sm:text-lg font-light leading-relaxed">
+                                    <div className="body-large font-sans space-y-3 sm:space-y-4 text-gray-300 text-sm sm:text-lg font-light leading-relaxed">
                                         <p>
                                             At the heart of Grand Forest Privé is a clubhouse designed as an extension of the Privé lifestyle.
                                         </p>
@@ -170,7 +170,7 @@ export const Amenities: React.FC = () => {
                                     <div className="pt-2 sm:pt-4">
                                         <button
                                             onClick={() => modalState.open("NeoLiv Grand Forest Privé - Request a Private Preview")}
-                                            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-3.5 sm:py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-bold text-xs uppercase tracking-[0.22em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.35)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.5)] transition-all active:scale-95 cursor-pointer text-center"
+                                            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-3.5 sm:py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-sans font-semibold text-xs uppercase tracking-[0.18em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.35)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.5)] transition-all active:scale-95 cursor-pointer text-center"
                                         >
                                             <span>Request a Private Preview</span>
                                             <ArrowRight size={14} />

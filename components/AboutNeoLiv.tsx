@@ -78,12 +78,12 @@ export const AboutNeoLiv: React.FC = () => {
           <div className="lg:col-span-6 xl:col-span-6 text-left">
             <RevealOnScroll variant="up">
               {/* Eyebrow */}
-              <span className="inline-block text-gold-400 text-[11px] sm:text-xs md:text-sm uppercase tracking-[0.35em] font-semibold mb-4">
+              <span className="eyebrow-label inline-block text-gold-400 font-sans text-[11px] sm:text-xs md:text-sm uppercase tracking-[0.35em] font-semibold mb-4">
                 Privé Has Arrived
               </span>
 
               {/* Main Headline */}
-              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl xl:text-6xl text-white leading-[1.12] mb-6">
+              <h2 className="section-heading font-serif text-3xl sm:text-4xl md:text-5xl xl:text-6xl text-white font-medium leading-[1.12] mb-6">
                 Not Simply a Place to Own — <br className="hidden sm:inline" />
                 <span className="text-gold-400 italic">A World to Belong To.</span>
               </h2>
@@ -98,7 +98,7 @@ export const AboutNeoLiv: React.FC = () => {
               </div>
 
               {/* Narrative Paragraphs */}
-              <div className="space-y-4 text-gray-300/90 text-sm sm:text-base lg:text-lg font-light leading-relaxed mb-8 drop-shadow-sm max-w-2xl">
+              <div className="body-large font-sans space-y-4 text-gray-300/90 text-sm sm:text-base lg:text-lg font-light leading-relaxed mb-8 drop-shadow-sm max-w-2xl">
                 <p>
                   Here, mornings begin beneath green canopies. Afternoons unfold at
                   leisure. Evenings invite you outdoors. And weekends no longer
@@ -113,7 +113,7 @@ export const AboutNeoLiv: React.FC = () => {
               <div className="hidden lg:block">
                 <a
                   href="#Lifestyle"
-                  className="inline-flex items-center gap-3 px-8 py-3.5 sm:px-9 sm:py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-bold text-xs uppercase tracking-[0.22em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.35)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.5)] transition-all active:scale-95 cursor-pointer"
+                  className="inline-flex items-center gap-3 px-8 py-3.5 sm:px-9 sm:py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-sans font-semibold text-xs uppercase tracking-[0.18em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.35)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.5)] transition-all active:scale-95 cursor-pointer"
                 >
                   <span>Discover Privé</span>
                   <ArrowRight size={14} />
@@ -131,16 +131,16 @@ export const AboutNeoLiv: React.FC = () => {
 
                 {/* Highlights Header */}
                 <div className="mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-white/10">
-                  <p className="text-gold-400 font-semibold tracking-[0.3em] text-[9px] sm:text-xs uppercase mb-1">
+                  <p className="eyebrow-label text-gold-400 font-sans font-semibold tracking-[0.3em] text-[9px] sm:text-xs uppercase mb-1">
                     A Rare Sense of Space
                   </p>
-                  <h3 className="font-serif text-lg sm:text-2xl text-white tracking-wide leading-tight">
+                  <h3 className="card-heading font-serif text-lg sm:text-2xl text-white font-medium tracking-wide leading-tight">
                     The Finest Green Gated Living.{" "}
                     <span className="text-gold-400 italic">
                       Designed Around You.
                     </span>
                   </h3>
-                  <p className="text-gray-300/85 text-xs sm:text-sm font-light mt-2 leading-relaxed">
+                  <p className="body-small font-sans text-gray-300/85 text-xs sm:text-sm font-light mt-2 leading-relaxed">
                     Thoughtfully planned amidst an expansive natural setting, Grand Forest Privé brings together privacy, openness and community in considered balance.
                   </p>
                 </div>
@@ -158,10 +158,10 @@ export const AboutNeoLiv: React.FC = () => {
                           <Icon size={16} className="sm:w-[18px] sm:h-[18px]" />
                         </div>
                         <div className="text-left min-w-0">
-                          <div className="font-sans font-bold text-xs sm:text-sm xl:text-base text-white tracking-tight [font-variant-numeric:lining-nums] leading-tight group-hover:text-gold-300 transition-colors whitespace-nowrap">
+                          <div className="numeric font-sans font-semibold text-xs sm:text-sm xl:text-base text-white tracking-tight leading-tight group-hover:text-gold-300 transition-colors whitespace-nowrap">
                             {item.highlight}
                           </div>
-                          <div className="font-serif text-[10px] sm:text-xs text-gray-300/90 font-light leading-snug mt-0.5 whitespace-nowrap">
+                          <div className="font-sans text-[10px] sm:text-xs text-gray-300/90 font-normal leading-snug mt-0.5 whitespace-nowrap">
                             {item.label}
                           </div>
                         </div>
@@ -181,10 +181,10 @@ export const AboutNeoLiv: React.FC = () => {
                           <Icon size={16} className="sm:w-[18px] sm:h-[18px]" />
                         </div>
                         <div className="text-left min-w-0">
-                          <div className="font-sans font-bold text-xs sm:text-sm xl:text-base text-white tracking-tight [font-variant-numeric:lining-nums] leading-tight group-hover:text-gold-300 transition-colors">
+                          <div className="numeric font-sans font-semibold text-xs sm:text-sm xl:text-base text-white tracking-tight leading-tight group-hover:text-gold-300 transition-colors">
                             {item.highlight}
                           </div>
-                          <div className="font-serif text-[10px] sm:text-xs text-gray-300/90 font-light leading-snug mt-0.5">
+                          <div className="font-sans text-[10px] sm:text-xs text-gray-300/90 font-normal leading-snug mt-0.5">
                             {item.label}
                           </div>
                         </div>
@@ -199,7 +199,7 @@ export const AboutNeoLiv: React.FC = () => {
             <div className="mt-6 text-center lg:hidden">
               <a
                 href="#Lifestyle"
-                className="w-full inline-flex items-center justify-center gap-3 px-8 py-3.5 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-bold text-xs uppercase tracking-[0.2em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.35)] active:scale-95 cursor-pointer"
+                className="w-full inline-flex items-center justify-center gap-3 px-8 py-3.5 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-sans font-semibold text-xs uppercase tracking-[0.18em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.35)] active:scale-95 cursor-pointer"
               >
                 <span>Discover Privé</span>
                 <ArrowRight size={14} />

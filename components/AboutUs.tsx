@@ -38,9 +38,22 @@ export const AboutUs: React.FC = () => {
                 {/* 11. ABOUT NEOLIV HEADER */}
                 <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
                     <RevealOnScroll variant="up">
-                        <span className="inline-block text-gold-400 text-[11px] sm:text-xs uppercase tracking-[0.35em] font-semibold mb-3">
-                            About NeoLiv
-                        </span>
+                        {/* Official Client Developer Logo Badge */}
+                        <div className="inline-block bg-white/95 backdrop-blur-md px-5 sm:px-6 py-2 sm:py-2.5 rounded-2xl border border-white/20 shadow-2xl mb-6">
+                            <img
+                                src="assets/client/Neoliv-logo.png"
+                                alt="NeoLiv - India's Foremost Fund-Led Developer"
+                                width={180}
+                                height={57}
+                                className="h-7 sm:h-8 w-auto object-contain"
+                            />
+                        </div>
+                        
+                        <div>
+                            <span className="inline-block text-gold-400 text-[11px] sm:text-xs uppercase tracking-[0.35em] font-semibold mb-3">
+                                Developer Pedigree & Vision
+                            </span>
+                        </div>
                         
                         <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 sm:mb-6 text-white leading-tight">
                             Building Joy. <br />

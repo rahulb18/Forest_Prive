@@ -12,13 +12,13 @@ const masterpieceData = [
     title: "Curated Vistas",
     subtitle: "Panoramic Mountain Frontage",
     description: "Wake up to infinite expanses of rolling green valleys and mountain vistas. The spectacular forest views are not just a backdrop, but an integral part of your daily living experience.",
-    image: "assets/client/Gallery-3.jpg",
+    image: "assets/client/1920x1080.jpg",
   },
   {
     title: "Exclusive Enclave",
     subtitle: "An Address of Distinction",
     description: "Join a community of the discerning few. With world-class amenities and unparalleled privacy, this is a legacy designed to be cherished for generations.",
-    image: "assets/client/Gallery-2.jpg",
+    image: "assets/client/clubhouse-1600x1200.jpg",
   }
 ];
 

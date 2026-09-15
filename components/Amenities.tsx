@@ -184,8 +184,8 @@ export const Amenities: React.FC = () => {
                                         <div className="relative rounded-2xl overflow-hidden border border-gold-400/30 shadow-2xl group bg-navy-950">
                                             <div className="aspect-[4/3] relative">
                                                 <img
-                                                    src="assets/client/Clubhouse-amenities.jpg"
-                                                    alt="Grand Forest Privé Neo Club Glass Pavilion"
+                                                    src="assets/client/clubhouse-1600x1200.jpg"
+                                                    alt="Grand Forest Privé Neo Club Two-Story Glass Concourse"
                                                     loading="lazy"
                                                     decoding="async"
                                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
@@ -199,18 +199,18 @@ export const Amenities: React.FC = () => {
                                                 <div className="absolute bottom-4 left-4 right-4">
                                                     <div className="flex items-center gap-2 text-gold-400 text-xs uppercase tracking-wider font-semibold">
                                                         <Building2 size={14} />
-                                                        <span>Club 01 • Two-Story Glass Pavilion</span>
+                                                        <span>The Neo Club • Two-Story Glasshouse Concourse</span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        {/* Second Club Impression: The Twilight Sanctuary (Gallery-2.jpg) */}
+                                        {/* Second Club Impression: Sunset Infinity Pool & Mountain Deck */}
                                         <div className="relative rounded-2xl overflow-hidden border border-gold-400/20 shadow-xl group bg-navy-950">
                                             <div className="aspect-[21/9] relative">
                                                 <img
-                                                    src="assets/client/Gallery-2.jpg"
-                                                    alt="Grand Forest Privé Neo Club Twilight Reflection Sanctuary"
+                                                    src="assets/client/pool-1600x1200.jpg"
+                                                    alt="Grand Forest Privé Sunset Infinity Pool & Mountain Horizon"
                                                     loading="lazy"
                                                     decoding="async"
                                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
@@ -219,10 +219,10 @@ export const Amenities: React.FC = () => {
                                                 <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between">
                                                     <div className="flex items-center gap-2 text-gold-400 text-xs uppercase tracking-wider font-semibold">
                                                         <Building2 size={14} />
-                                                        <span>Club 02 • Twilight Reflection Sanctuary</span>
+                                                        <span>Club Wellness • Sunset Infinity Pool Deck</span>
                                                     </div>
                                                     <span className="text-[9px] uppercase tracking-widest text-gray-300/80">
-                                                        Waterfront Deck
+                                                        Mountain Horizon
                                                     </span>
                                                 </div>
                                             </div>

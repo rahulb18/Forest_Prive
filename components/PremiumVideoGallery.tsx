@@ -15,7 +15,7 @@ const videos = [
   { 
     id: 3, 
     src: "assets/videos_optimized/Video_Generation_Complete (1).mp4",
-    poster: "assets/client/Clubhouse-amenities.jpg"
+    poster: "assets/client/clubhouse-1600x1200.jpg"
   },
   { 
     id: 4, 

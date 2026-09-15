@@ -32,7 +32,7 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
       <div className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden">
         <img
           src="assets/client/Gallery-1.jpg"
-          alt="NeoLiv Grand Forest Privé - Sunset Infinity Pool & Mountain Horizon"
+          alt="NeoLiv Grand Forest Privé - Grand Arrival Portal at Twilight"
           fetchPriority="high"
           decoding="sync"
           className="w-full h-full object-cover object-center scale-100 transition-transform duration-[4000ms] ease-out will-change-transform motion-safe:hover:scale-105"

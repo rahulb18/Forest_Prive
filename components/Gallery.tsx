@@ -9,53 +9,134 @@ import { modalState } from '../lib/modal-state';
 interface GalleryItem {
     src: string;
     title: string;
+    category: 'all' | 'club' | 'entrance' | 'sports' | 'nature' | 'masterplan';
     badge: 'ARTISTIC IMPRESSION';
 }
 
+const GALLERY_CATEGORIES = [
+    { id: 'all', label: 'All Impressions' },
+    { id: 'club', label: 'Club & Wellness' },
+    { id: 'entrance', label: 'Grand Arrival' },
+    { id: 'sports', label: 'Sports & Culture' },
+    { id: 'nature', label: 'Nature & Trails' },
+    { id: 'masterplan', label: 'Masterplan & Layout' },
+] as const;
+
 const GALLERY_ITEMS: GalleryItem[] = [
+    // Club & Wellness
+    {
+        src: 'assets/client/clubhouse-1600x1200.jpg',
+        title: 'The Neo Club Concourse & Glass Facade',
+        category: 'club',
+        badge: 'ARTISTIC IMPRESSION',
+    },
+    {
+        src: 'assets/client/pool-1600x1200.jpg',
+        title: 'Sunset Infinity Pool & Sahyadri Horizon Deck',
+        category: 'club',
+        badge: 'ARTISTIC IMPRESSION',
+    },
+    // Grand Arrival
     {
         src: 'assets/client/Gallery-1.jpg',
-        title: 'Sunset Infinity Pool & Mountain Horizon',
+        title: 'Grand Entrance Portal & Security Pavilion (Twilight)',
+        category: 'entrance',
         badge: 'ARTISTIC IMPRESSION',
     },
     {
-        src: 'assets/client/Gallery-2.jpg',
-        title: 'Neo Club Twilight Facade & Reflection Pool',
+        src: 'assets/client/Gallery-5.jpg',
+        title: 'Grand Entrance Portal Architectural Detail (Daylight)',
+        category: 'entrance',
+        badge: 'ARTISTIC IMPRESSION',
+    },
+    // Sports & Culture
+    {
+        src: 'assets/client/Gallery-4.jpg',
+        title: 'Multiplay Sports Arena (Basketball & Pickleball Courts)',
+        category: 'sports',
         badge: 'ARTISTIC IMPRESSION',
     },
     {
-        src: 'assets/client/Gallery-3.jpg',
-        title: '360° Mountain Township & Plotted Living View',
+        src: 'assets/client/Gallery-6.jpg',
+        title: 'Stepped Amphitheatre & Open-Air Cultural Lawn',
+        category: 'sports',
+        badge: 'ARTISTIC IMPRESSION',
+    },
+    // Masterplan & Layout
+    {
+        src: 'assets/client/1920x1080.jpg',
+        title: 'Cinematic Mountain Forest Township Panorama',
+        category: 'masterplan',
         badge: 'ARTISTIC IMPRESSION',
     },
     {
-        src: 'assets/client/Clubhouse-amenities.jpg',
-        title: 'Grand Glasshouse Clubhouse Architecture',
+        src: 'assets/client/1920x1080-2.jpg',
+        title: 'Forest Enclave Master Entry & Plotted Living Perspective',
+        category: 'masterplan',
         badge: 'ARTISTIC IMPRESSION',
     },
     {
-        src: 'assets/client/amenities-2.jpg',
-        title: 'Panoramic Forest-View Fitness Center & Studio',
-        badge: 'ARTISTIC IMPRESSION',
-    },
-    {
-        src: 'assets/client/amenities-3.jpg',
-        title: 'Multiplay Sports Courts & Verdant Canopies',
+        src: 'assets/client/1600x1200.jpg',
+        title: 'Aerial Villa Plots Layout Demarcation View',
+        category: 'masterplan',
         badge: 'ARTISTIC IMPRESSION',
     },
     {
         src: 'assets/client/Masterplan.jpg',
-        title: 'Architectural Master Development Layout',
+        title: 'Official Architectural Master Development Plan',
+        category: 'masterplan',
         badge: 'ARTISTIC IMPRESSION',
-    }
+    },
+    // Nature & Trails
+    {
+        src: 'assets/client/1920x1080-3.jpg',
+        title: 'Sunlit Forest Canopy Trail & Timber Split-Rail Fencing',
+        category: 'nature',
+        badge: 'ARTISTIC IMPRESSION',
+    },
+    {
+        src: 'assets/client/1920x1080-4.jpg',
+        title: 'Botanical Garden Walkway & Amber Blossom Meadow',
+        category: 'nature',
+        badge: 'ARTISTIC IMPRESSION',
+    },
+    {
+        src: 'assets/client/1920x1080-5.jpg',
+        title: 'Cobblestone Rainforest Walk & Exotic Native Flora',
+        category: 'nature',
+        badge: 'ARTISTIC IMPRESSION',
+    },
+    {
+        src: 'assets/client/1920x1080-6.jpg',
+        title: 'Sensory Garden, Contoured Lawns & Children Play Park',
+        category: 'nature',
+        badge: 'ARTISTIC IMPRESSION',
+    },
+    {
+        src: 'assets/client/Gallery-2.jpg',
+        title: 'Joyful Family Running Through Wildflower Forest Meadow',
+        category: 'nature',
+        badge: 'ARTISTIC IMPRESSION',
+    },
+    {
+        src: 'assets/client/Gallery-3.jpg',
+        title: 'Multi-Generational Living & Manicured Estate Lawns',
+        category: 'nature',
+        badge: 'ARTISTIC IMPRESSION',
+    },
 ];
 
 export const Gallery: React.FC = () => {
+    const [activeCategory, setActiveCategory] = useState<string>('all');
     const [currentIndex, setCurrentIndex] = useState(0);
     const [lightboxIndex, setLightboxIndex] = useState(-1);
     const [visibleCards, setVisibleCards] = useState(3);
     const [isPaused, setIsPaused] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
+
+    const filteredItems = activeCategory === 'all'
+        ? GALLERY_ITEMS
+        : GALLERY_ITEMS.filter(item => item.category === activeCategory);
 
     // Responsive visible cards determination
     useEffect(() => {
@@ -74,14 +155,20 @@ export const Gallery: React.FC = () => {
         return () => window.removeEventListener('resize', updateVisibleCards);
     }, []);
 
-    const maxIndex = Math.max(0, GALLERY_ITEMS.length - visibleCards);
+    const maxIndex = Math.max(0, filteredItems.length - visibleCards);
 
-    // Guard currentIndex within valid bounds on screen resize
+    // Guard currentIndex within valid bounds on screen resize or category filter change
     useEffect(() => {
         if (currentIndex > maxIndex) {
             setCurrentIndex(maxIndex);
         }
     }, [maxIndex, currentIndex]);
+
+    // Reset currentIndex when category changes
+    const handleCategoryChange = (categoryId: string) => {
+        setActiveCategory(categoryId);
+        setCurrentIndex(0);
+    };
 
     // Navigation handlers
     const handlePrev = () => {
@@ -113,7 +200,7 @@ export const Gallery: React.FC = () => {
         }
     };
 
-    // Auto-advance every 5 seconds when not paused
+    // Auto-advance every 5.5 seconds when not paused
     useEffect(() => {
         if (isPaused || lightboxIndex >= 0) return;
         const interval = setInterval(() => {
@@ -132,7 +219,7 @@ export const Gallery: React.FC = () => {
                 
                 {/* SECTION HEADER: Editorial & Refined */}
                 <RevealOnScroll variant="up">
-                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 sm:mb-12">
+                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 sm:mb-10">
                         <div className="max-w-2xl">
                             <span className="inline-block text-gold-400 text-[11px] sm:text-xs uppercase tracking-[0.35em] font-semibold mb-3">
                                 Architectural Vision & Impressions
@@ -145,7 +232,7 @@ export const Gallery: React.FC = () => {
                             <div className="w-20 h-px bg-gradient-to-r from-gold-400 to-transparent mb-4" />
                             
                             <p className="text-gray-300 text-sm sm:text-base font-light leading-relaxed">
-                                Experience Grand Forest Privé taking shape through envisioned architectural expressions of an extraordinary lifestyle.
+                                Experience Grand Forest Privé taking shape through envisioned architectural expressions of an extraordinary lifestyle across 16 official client renders.
                             </p>
                         </div>
 
@@ -158,7 +245,7 @@ export const Gallery: React.FC = () => {
                                 </span>
                                 <span className="text-gray-500 text-xs">/</span>
                                 <span className="text-gray-400 text-xs font-medium">
-                                    {GALLERY_ITEMS.length.toString().padStart(2, '0')}
+                                    {filteredItems.length.toString().padStart(2, '0')}
                                 </span>
                             </div>
 
@@ -180,6 +267,26 @@ export const Gallery: React.FC = () => {
                                 </button>
                             </div>
                         </div>
+                    </div>
+
+                    {/* CATEGORY FILTER TABS */}
+                    <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-6 sm:mb-8 scrollbar-none no-scrollbar">
+                        {GALLERY_CATEGORIES.map(cat => {
+                            const isSelected = activeCategory === cat.id;
+                            return (
+                                <button
+                                    key={cat.id}
+                                    onClick={() => handleCategoryChange(cat.id)}
+                                    className={`px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase whitespace-nowrap transition-all duration-300 cursor-pointer ${
+                                        isSelected
+                                            ? 'bg-gold-400 text-navy-950 shadow-[0_2px_12px_rgba(212,175,55,0.4)]'
+                                            : 'bg-navy-900/80 border border-white/10 text-gray-300 hover:text-white hover:border-gold-400/40'
+                                    }`}
+                                >
+                                    {cat.label}
+                                </button>
+                            );
+                        })}
                     </div>
                 </RevealOnScroll>
 
@@ -210,7 +317,7 @@ export const Gallery: React.FC = () => {
                             }}
                             className="flex -mx-2 sm:-mx-3"
                         >
-                            {GALLERY_ITEMS.map((item, idx) => {
+                            {filteredItems.map((item, idx) => {
                                 return (
                                     <div
                                         key={idx}
@@ -314,7 +421,7 @@ export const Gallery: React.FC = () => {
                     open={lightboxIndex >= 0}
                     close={() => setLightboxIndex(-1)}
                     index={lightboxIndex}
-                    slides={GALLERY_ITEMS.map(item => ({ src: encodeURI(item.src), title: item.title }))}
+                    slides={filteredItems.map(item => ({ src: encodeURI(item.src), title: item.title }))}
                 />
             </div>
         </section>

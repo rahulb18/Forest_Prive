@@ -4,8 +4,9 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const floorPlans = [
   { id: 1, src: 'assets/client/Masterplan.jpg', alt: 'Grand Forest Privé Masterplan View' },
-  { id: 2, src: 'assets/client/Clubhouse-amenities.jpg', alt: 'Neo Club Architectural Plan View' },
-  { id: 3, src: 'assets/client/amenities-3.jpg', alt: 'Club Facilities & Lawns View' }
+  { id: 2, src: 'assets/client/1600x1200.jpg', alt: 'Grand Forest Privé Demarcated Villa Plots Layout' },
+  { id: 3, src: 'assets/client/clubhouse-1600x1200.jpg', alt: 'Neo Club Concourse & Architectural Facade' },
+  { id: 4, src: 'assets/client/1920x1080.jpg', alt: '360° Mountain Forest Township Panorama' }
 ];
 
 export const FloorPlan: React.FC = () => {

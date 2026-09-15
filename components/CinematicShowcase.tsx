@@ -42,7 +42,7 @@ export const CinematicShowcase: React.FC = () => {
             {/* Image Container with smooth aspect ratio and zoom effect */}
             <div className="aspect-[16/9] sm:aspect-[21/9] relative w-full overflow-hidden">
               <img
-                src="assets/client/Gallery-3.jpg"
+                src="assets/client/1920x1080.jpg"
                 alt="NeoLiv Grand Forest Privé - 360° Mountain Township & Low-Density Plotted Living"
                 loading="lazy"
                 decoding="async"

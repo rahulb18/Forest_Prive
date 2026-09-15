@@ -210,7 +210,7 @@ export const Gallery: React.FC = () => {
     }, [maxIndex, isPaused, lightboxIndex]);
 
     return (
-        <section id="Gallery" className="py-16 md:py-24 bg-navy-950 text-white relative border-t border-white/5 overflow-hidden">
+        <section id="Gallery" className="pt-16 pb-24 md:py-24 bg-navy-950 text-white relative border-t border-white/5 overflow-hidden scroll-mt-20 md:scroll-mt-24">
             {/* Ambient Ambient Lighting */}
             <div className="absolute top-1/2 left-0 w-96 h-96 bg-gold-400/5 rounded-full blur-[140px] pointer-events-none" />
             <div className="absolute bottom-10 right-0 w-96 h-96 bg-emerald-500/5 rounded-full blur-[140px] pointer-events-none" />

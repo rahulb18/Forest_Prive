@@ -12,6 +12,7 @@ export interface StorySlideData {
   subtitle: string;
   nextDestination: string;
   showLogo?: boolean;
+  objectPosition?: string;
 }
 
 const STORY_SLIDES: StorySlideData[] = [
@@ -35,6 +36,7 @@ const STORY_SLIDES: StorySlideData[] = [
     titleGold: "To Grandeur.",
     subtitle: "Your experience of Privé begins long before you reach home. A thoughtfully designed entrance, framed by landscape and architectural detail, marks the transition from the world outside to the serenity within.",
     nextDestination: "Swimming Pool",
+    objectPosition: "object-[25%_center] sm:object-center",
   },
   {
     id: "slide-pool",
@@ -85,6 +87,7 @@ const STORY_SLIDES: StorySlideData[] = [
     titleGold: "Golden years • One address.",
     subtitle: "Grand Forest Privé is designed for life across generations. Children discover the outdoors, parents rediscover unhurried conversations, and families rediscover time together.",
     nextDestination: "Explore Masterplan",
+    objectPosition: "object-[78%_center] sm:object-center",
   },
 ];
 
@@ -123,7 +126,7 @@ export const VisualStorySections: React.FC = () => {
                 fetchPriority={isFirst ? "high" : "auto"}
                 loading={isFirst ? "eager" : "lazy"}
                 decoding={isFirst ? "sync" : "async"}
-                className="w-full h-full object-cover object-center scale-100"
+                className={`w-full h-full object-cover scale-100 ${slide.objectPosition || "object-center"}`}
                 style={{
                   WebkitTransform: "translate3d(0,0,0)",
                   transform: "translate3d(0,0,0)",
@@ -208,13 +211,13 @@ export const VisualStorySections: React.FC = () => {
                   <ArrowDown size={13} className="text-gold-400 group-hover:translate-y-0.5 transition-transform shrink-0" />
                 </button>
 
-                {/* 2. Luxury CTA Button: Request a Private Preview */}
+                {/* 2. Luxury CTA Button: Enquire */}
                 <button
                   type="button"
-                  onClick={() => openEnquiry(`NeoLiv Grand Forest Privé - Request a Private Preview`)}
+                  onClick={() => openEnquiry(`NeoLiv Grand Forest Privé - Enquire`)}
                   className="group flex-1 md:flex-initial flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-sans font-semibold text-[9.5px] sm:text-[10.5px] uppercase tracking-[0.18em] shadow-[0_4px_22px_rgba(212,175,55,0.45)] hover:shadow-[0_6px_28px_rgba(212,175,55,0.6)] transition-all duration-300 cursor-pointer active:scale-95 touch-manipulation min-h-[40px] shrink-0"
                 >
-                  <span>Private Preview</span>
+                  <span>Enquire</span>
                   <ArrowRight size={13} className="text-navy-950 stroke-[2.2] group-hover:translate-x-0.5 transition-transform shrink-0" />
                 </button>
               </div>

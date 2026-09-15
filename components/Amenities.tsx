@@ -72,7 +72,7 @@ const AMENITIES_LIST = [
 
 export const Amenities: React.FC = () => {
     return (
-        <section id="Amenities" className="py-20 md:py-28 bg-navy-950 text-white relative overflow-hidden">
+        <section id="Amenities" className="pt-16 pb-24 md:py-28 bg-navy-950 text-white relative overflow-hidden scroll-mt-20 md:scroll-mt-24">
             {/* Ambient Lighting & Texture */}
             <div className="absolute inset-0 bg-grain opacity-[0.03] pointer-events-none" />
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gold-400/5 rounded-full blur-[150px] pointer-events-none" />
@@ -130,10 +130,10 @@ export const Amenities: React.FC = () => {
                 <div className="text-center mb-16 sm:mb-24">
                     <RevealOnScroll variant="up">
                         <button
-                            onClick={() => modalState.open("NeoLiv Grand Forest Privé - Request a Private Preview")}
+                            onClick={() => modalState.open("NeoLiv Grand Forest Privé - Enquire")}
                             className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-3.5 sm:py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-sans font-semibold text-xs uppercase tracking-[0.18em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.35)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.5)] transition-all active:scale-95 cursor-pointer text-center"
                         >
-                            <span>Request a Private Preview</span>
+                            <span>Enquire</span>
                             <ArrowRight size={14} />
                         </button>
                     </RevealOnScroll>
@@ -169,10 +169,10 @@ export const Amenities: React.FC = () => {
 
                                     <div className="pt-2 sm:pt-4">
                                         <button
-                                            onClick={() => modalState.open("NeoLiv Grand Forest Privé - Request a Private Preview")}
+                                            onClick={() => modalState.open("NeoLiv Grand Forest Privé - Enquire")}
                                             className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-3.5 sm:py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-sans font-semibold text-xs uppercase tracking-[0.18em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.35)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.5)] transition-all active:scale-95 cursor-pointer text-center"
                                         >
-                                            <span>Request a Private Preview</span>
+                                            <span>Enquire</span>
                                             <ArrowRight size={14} />
                                         </button>
                                     </div>
@@ -180,9 +180,10 @@ export const Amenities: React.FC = () => {
 
                                 {/* Club Visual Impression with Dual Club Switcher */}
                                 <div className="lg:col-span-5">
-                                    <div className="space-y-3">
-                                        <div className="relative rounded-2xl overflow-hidden border border-gold-400/30 shadow-2xl group bg-navy-950">
-                                            <div className="aspect-[4/3] relative">
+                                    <div className="space-y-4">
+                                        {/* Primary Club Impression: The Privé Club Concourse */}
+                                        <div className="relative rounded-2xl overflow-hidden border border-gold-400/25 shadow-2xl group bg-navy-950">
+                                            <div className="aspect-[16/10] relative">
                                                 <img
                                                     src="assets/client/clubhouse-1600x1200.jpg"
                                                     alt="Grand Forest Privé The Privé Club Glass Concourse"
@@ -190,24 +191,27 @@ export const Amenities: React.FC = () => {
                                                     decoding="async"
                                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                                                 />
-                                                <div className="absolute inset-0 bg-gradient-to-t from-navy-950/85 via-transparent to-transparent" />
+                                                <div className="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-950/20 to-transparent" />
                                                 <div className="absolute top-3 right-3">
                                                     <span className="px-3 py-1 rounded-full bg-navy-950/90 border border-white/10 text-[9px] uppercase tracking-widest text-gold-300 font-semibold shadow">
                                                         Artistic Impression
                                                     </span>
                                                 </div>
-                                                <div className="absolute bottom-4 left-4 right-4">
+                                                <div className="absolute bottom-3.5 left-4 right-4 flex items-center justify-between gap-2">
                                                     <div className="flex items-center gap-2 text-gold-400 text-xs uppercase tracking-wider font-semibold">
-                                                        <Building2 size={14} />
-                                                        <span>The Privé Club • Extension of Privé Living</span>
+                                                        <Building2 size={14} className="shrink-0" />
+                                                        <span>The Privé Club</span>
                                                     </div>
+                                                    <span className="text-[10px] uppercase tracking-widest text-gray-300 font-medium text-right">
+                                                        Extension of Privé Living
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        {/* Second Club Impression: Section 7 Swimming Pool */}
-                                        <div className="relative rounded-2xl overflow-hidden border border-gold-400/20 shadow-xl group bg-navy-950">
-                                            <div className="aspect-[21/9] relative">
+                                        {/* Second Club Impression: Section 7 Swimming Pool & Open Skies */}
+                                        <div className="relative rounded-2xl overflow-hidden border border-gold-400/25 shadow-2xl group bg-navy-950">
+                                            <div className="aspect-[16/10] relative">
                                                 <img
                                                     src="assets/client/pool-1600x1200.jpg"
                                                     alt="Grand Forest Privé Swimming Pool & Open Skies"
@@ -215,14 +219,19 @@ export const Amenities: React.FC = () => {
                                                     decoding="async"
                                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                                                 />
-                                                <div className="absolute inset-0 bg-gradient-to-t from-navy-950/85 via-transparent to-transparent" />
-                                                <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between">
+                                                <div className="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-950/20 to-transparent" />
+                                                <div className="absolute top-3 right-3">
+                                                    <span className="px-3 py-1 rounded-full bg-navy-950/90 border border-white/10 text-[9px] uppercase tracking-widest text-gold-300 font-semibold shadow">
+                                                        Artistic Impression
+                                                    </span>
+                                                </div>
+                                                <div className="absolute bottom-3.5 left-4 right-4 flex items-center justify-between gap-2">
                                                     <div className="flex items-center gap-2 text-gold-400 text-xs uppercase tracking-wider font-semibold">
-                                                        <Building2 size={14} />
-                                                        <span>Swimming Pool • Every Day a Holiday</span>
+                                                        <Building2 size={14} className="shrink-0" />
+                                                        <span>Swimming Pool</span>
                                                     </div>
-                                                    <span className="text-[9px] uppercase tracking-widest text-gray-300/80">
-                                                        Unwind Beside Water
+                                                    <span className="text-[10px] uppercase tracking-widest text-gray-300 font-medium text-right">
+                                                        Every Day a Holiday
                                                     </span>
                                                 </div>
                                             </div>

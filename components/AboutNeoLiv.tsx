@@ -53,7 +53,7 @@ export const AboutNeoLiv: React.FC = () => {
   return (
     <section
       id="Overview"
-      className="pt-16 pb-8 md:pt-20 md:pb-10 lg:pt-24 lg:pb-12 bg-navy-950 text-white relative overflow-hidden"
+      className="pt-16 pb-20 md:pt-20 md:pb-14 lg:pt-24 lg:pb-16 bg-navy-950 text-white relative overflow-hidden scroll-mt-20 md:scroll-mt-24"
     >
       {/* Environmental Landscape Backdrop (Direct visual grounding in the mountain & nature landscape) */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none">
@@ -158,10 +158,10 @@ export const AboutNeoLiv: React.FC = () => {
                           <Icon size={16} className="sm:w-[18px] sm:h-[18px]" />
                         </div>
                         <div className="text-left min-w-0">
-                          <div className="numeric font-sans font-semibold text-xs sm:text-sm xl:text-base text-white tracking-tight leading-tight group-hover:text-gold-300 transition-colors whitespace-nowrap">
+                          <div className="numeric font-sans font-semibold text-xs sm:text-sm xl:text-base text-white tracking-tight leading-tight group-hover:text-gold-300 transition-colors">
                             {item.highlight}
                           </div>
-                          <div className="font-sans text-[10px] sm:text-xs text-gray-300/90 font-normal leading-snug mt-0.5 whitespace-nowrap">
+                          <div className="font-sans text-[10px] sm:text-xs text-gray-300/90 font-normal leading-snug mt-0.5">
                             {item.label}
                           </div>
                         </div>
@@ -196,7 +196,7 @@ export const AboutNeoLiv: React.FC = () => {
             </RevealOnScroll>
 
             {/* CTA Button (Mobile View - Direct Flow after Highlights) */}
-            <div className="mt-6 text-center lg:hidden">
+            <div className="mt-6 mb-4 text-center lg:hidden">
               <a
                 href="#Lifestyle"
                 className="w-full inline-flex items-center justify-center gap-3 px-8 py-3.5 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-sans font-semibold text-xs uppercase tracking-[0.18em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.35)] active:scale-95 cursor-pointer"

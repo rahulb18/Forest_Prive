@@ -39,7 +39,7 @@ export const Location: React.FC = () => {
     const [isMapActive, setIsMapActive] = useState(false);
 
     return (
-        <section id="Location" className="py-16 md:py-28 bg-navy-900 text-white relative overflow-hidden">
+        <section id="Location" className="pt-16 pb-24 md:py-28 bg-navy-900 text-white relative overflow-hidden scroll-mt-20 md:scroll-mt-24">
             {/* Ambient Background Glows */}
             <div className="absolute inset-0 bg-grain opacity-[0.03] pointer-events-none" />
             <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-gold-400/5 rounded-full blur-[150px] pointer-events-none" />

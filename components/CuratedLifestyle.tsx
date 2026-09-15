@@ -5,7 +5,7 @@ import { modalState } from '../lib/modal-state';
 
 export const CuratedLifestyle: React.FC = () => {
   return (
-    <section id="Lifestyle" className="pt-12 pb-16 md:pt-16 md:pb-24 lg:pt-20 lg:pb-28 bg-navy-950 text-white relative overflow-hidden">
+    <section id="Lifestyle" className="pt-12 pb-20 md:pt-16 md:pb-24 lg:pt-20 lg:pb-28 bg-navy-950 text-white relative overflow-hidden scroll-mt-20 md:scroll-mt-24">
       {/* Ambient Mountain Horizon Glow */}
       <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-gold-400/5 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-0 left-10 w-[400px] h-[400px] bg-emerald-500/5 rounded-full blur-[120px] pointer-events-none" />

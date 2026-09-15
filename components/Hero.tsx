@@ -123,10 +123,10 @@ export const Hero: React.FC<HeroProps> = ({ onProgress }) => {
         <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full max-w-md mx-auto">
           <button
             type="button"
-            onClick={() => modalState.open("NeoLiv Grand Forest Privé - Request a Private Preview")}
+            onClick={() => modalState.open("NeoLiv Grand Forest Privé - Enquire")}
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 sm:px-9 sm:py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-sans font-semibold text-xs uppercase tracking-[0.18em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.45)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.6)] transition-all active:scale-95 cursor-pointer whitespace-nowrap min-h-[44px]"
           >
-            <span>Request a Private Preview</span>
+            <span>Enquire</span>
             <ArrowRight size={14} />
           </button>
 

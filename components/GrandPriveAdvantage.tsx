@@ -47,7 +47,7 @@ const COMMERCIAL_METRICS = [
 
 export const GrandPriveAdvantage: React.FC = () => {
     return (
-        <section id="Pricing" className="py-16 md:py-28 bg-navy-900 text-white relative overflow-hidden">
+        <section id="Pricing" className="pt-16 pb-24 md:py-28 bg-navy-900 text-white relative overflow-hidden scroll-mt-20 md:scroll-mt-24">
             {/* Background Texture & Soft Accents */}
             <div className="absolute inset-0 bg-grain opacity-[0.03] pointer-events-none" />
             <div className="absolute -top-40 -right-40 w-96 h-96 bg-gold-400/5 rounded-full blur-[140px] pointer-events-none" />
@@ -101,14 +101,14 @@ export const GrandPriveAdvantage: React.FC = () => {
                     })}
                 </div>
 
-                {/* CTA: Request a Private Preview */}
+                {/* CTA: Enquire */}
                 <div className="text-center mb-16 sm:mb-24">
                     <RevealOnScroll variant="up">
                         <button
-                            onClick={() => modalState.open("NeoLiv Grand Forest Privé - Request a Private Preview")}
+                            onClick={() => modalState.open("NeoLiv Grand Forest Privé - Enquire")}
                             className="inline-flex items-center justify-center w-full sm:w-auto gap-3 px-8 sm:px-9 py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-sans font-semibold text-xs uppercase tracking-[0.18em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.35)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.5)] transition-all active:scale-95 cursor-pointer"
                         >
-                            <span>Request a Private Preview</span>
+                            <span>Enquire</span>
                             <ArrowRight size={14} />
                         </button>
                     </RevealOnScroll>
@@ -155,10 +155,10 @@ export const GrandPriveAdvantage: React.FC = () => {
 
                                     <div className="pt-2">
                                         <button
-                                            onClick={() => modalState.open("NeoLiv Grand Forest Privé - Request a Private Preview")}
+                                            onClick={() => modalState.open("NeoLiv Grand Forest Privé - Enquire")}
                                             className="inline-flex items-center justify-center w-full sm:w-auto gap-3 px-8 py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-sans font-semibold text-xs uppercase tracking-[0.18em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.35)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.5)] transition-all active:scale-95 cursor-pointer"
                                         >
-                                            <span>Request a Private Preview</span>
+                                            <span>Enquire</span>
                                             <ArrowRight size={14} />
                                         </button>
                                     </div>

@@ -4,6 +4,20 @@ import { modalState } from "../lib/modal-state";
 
 export const FloatingCTA: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const checkMenu = () => {
+      setIsMenuOpen(document.documentElement.getAttribute("data-mobile-menu-open") === "true");
+    };
+    checkMenu();
+    const observer = new MutationObserver(checkMenu);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-mobile-menu-open"],
+    });
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,7 +27,7 @@ export const FloatingCTA: React.FC = () => {
         setIsVisible(rect.top <= 200);
       } else {
         const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
-        setIsVisible(scrollY > window.innerHeight * 5);
+        setIsVisible(scrollY > window.innerHeight * 6.5);
       }
     };
 
@@ -24,7 +38,7 @@ export const FloatingCTA: React.FC = () => {
     };
   }, []);
 
-  const openEnquiry = (title = "NeoLiv Grand Forest Privé - Request a Private Preview") => {
+  const openEnquiry = (title = "NeoLiv Grand Forest Privé - Enquire") => {
     modalState.open(title);
   };
 
@@ -33,23 +47,23 @@ export const FloatingCTA: React.FC = () => {
       {/* DESKTOP: Vertically Sticky Edge CTAs for detailed content sections */}
       <div
         className={`hidden md:flex fixed right-0 top-1/2 -translate-y-1/2 z-[200] flex-col gap-2 transition-all duration-500 ${
-          isVisible
+          isVisible && !isMenuOpen
             ? "translate-x-0 opacity-100"
             : "translate-x-full opacity-0 pointer-events-none"
         }`}
       >
-        {/* 1. Vertically Sticky: Private Preview */}
+        {/* 1. Vertically Sticky: Enquire */}
         <button
-          onClick={() => openEnquiry("NeoLiv Grand Forest Privé - Request a Private Preview")}
+          onClick={() => openEnquiry("NeoLiv Grand Forest Privé - Enquire")}
           className="group relative flex flex-col items-center justify-center bg-gradient-to-b from-amber-400 via-gold-400 to-amber-500 text-navy-950 py-4 px-2 rounded-l-lg shadow-[-4px_0_25px_rgba(212,175,55,0.4)] hover:-translate-x-1.5 transition-all duration-300 cursor-pointer border-l-2 border-y border-amber-200/70"
-          title="Private Preview"
+          title="Enquire"
         >
           <Send
             size={13}
             className="text-navy-950 transform rotate-[-45deg] mb-2 group-hover:scale-110 transition-transform"
           />
           <span className="[writing-mode:vertical-rl] rotate-180 font-sans text-[10px] uppercase font-semibold tracking-[0.2em] text-navy-950 select-none py-1">
-            Private Preview
+            Enquire
           </span>
         </button>
 
@@ -72,7 +86,7 @@ export const FloatingCTA: React.FC = () => {
       {/* MOBILE: App-Style Floating Bottom Dock for detailed content sections */}
       <div
         className={`md:hidden fixed bottom-[max(0.75rem,env(safe-area-inset-bottom))] left-3 right-3 z-[250] bg-navy-950/92 backdrop-blur-xl border border-gold-400/30 rounded-2xl shadow-[0_10px_35px_rgba(0,0,0,0.85)] p-1.5 flex items-center justify-between gap-1.5 transition-all duration-500 touch-manipulation select-none ${
-          isVisible
+          isVisible && !isMenuOpen
             ? "translate-y-0 opacity-100 pointer-events-auto"
             : "translate-y-24 opacity-0 pointer-events-none"
         }`}
@@ -101,17 +115,17 @@ export const FloatingCTA: React.FC = () => {
 
         <div className="w-px h-6 bg-white/15" />
 
-        {/* 3. Private Preview */}
+        {/* 3. Enquire */}
         <button
           type="button"
           onClick={(e) => {
             e.stopPropagation();
-            openEnquiry("NeoLiv Grand Forest Privé - Request a Private Preview");
+            openEnquiry("NeoLiv Grand Forest Privé - Enquire");
           }}
           className="flex-1 py-3 px-2 flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 text-navy-950 font-sans font-semibold shadow-md active:scale-95 transition-all text-[10.5px] uppercase tracking-[0.16em] cursor-pointer touch-manipulation min-h-[44px]"
         >
           <Send size={13} className="text-navy-950" />
-          <span>Private Preview</span>
+          <span>Enquire</span>
         </button>
       </div>
     </>

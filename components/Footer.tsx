@@ -10,7 +10,7 @@ const RERA_NUMBERS = [
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-navy-950 pt-14 sm:pt-16 pb-28 md:pb-24 px-4 sm:px-6 border-t border-white/5 relative overflow-hidden text-white">
+    <footer className="bg-navy-950 pt-14 sm:pt-16 pb-36 md:pb-20 px-4 sm:px-6 border-t border-white/5 relative overflow-hidden text-white">
       {/* Subtle brand pattern overlay */}
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-grain"></div>
 

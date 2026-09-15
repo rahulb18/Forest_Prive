@@ -28,7 +28,7 @@ const CREDENTIAL_PILLARS = [
 
 export const AboutUs: React.FC = () => {
     return (
-        <section id="AboutUs" className="py-16 md:py-28 bg-navy-950 text-white relative overflow-hidden">
+        <section id="AboutUs" className="pt-16 pb-24 md:py-28 bg-navy-950 text-white relative overflow-hidden scroll-mt-20 md:scroll-mt-24">
             {/* Ambient Lighting & Texture */}
             <div className="absolute inset-0 bg-grain opacity-[0.03] pointer-events-none" />
             <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[450px] bg-gold-400/5 rounded-full blur-[160px] pointer-events-none" />
@@ -147,13 +147,13 @@ export const AboutUs: React.FC = () => {
                             </div>
                         </div>
 
-                        {/* CTA: Request a Private Preview */}
+                        {/* CTA: Enquire */}
                         <div className="text-center">
                             <button
-                                onClick={() => modalState.open("NeoLiv Grand Forest Privé - Request a Private Preview")}
+                                onClick={() => modalState.open("NeoLiv Grand Forest Privé - Enquire")}
                                 className="inline-flex items-center justify-center w-full sm:w-auto gap-3 px-8 sm:px-9 py-4 bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-sans font-semibold text-xs uppercase tracking-[0.18em] rounded-full shadow-[0_4px_25px_rgba(212,175,55,0.35)] hover:shadow-[0_6px_32px_rgba(212,175,55,0.5)] transition-all active:scale-95 cursor-pointer"
                             >
-                                <span>Request a Private Preview</span>
+                                <span>Enquire</span>
                                 <ArrowRight size={14} />
                             </button>
                         </div>

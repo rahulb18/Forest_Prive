@@ -33,6 +33,7 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
 
     // Subscribe to global modalState
     useEffect(() => {
+        (window as any).modalState = modalState;
         const unsubscribeModal = modalState.subscribe((open, t) => {
             setGlobalOpen(open);
             if (t) setGlobalTitle(t);
@@ -194,7 +195,7 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                             </div>
                             <h3 className="text-white font-serif text-xl sm:text-2xl tracking-[0.1em] mb-3 uppercase">Thank You</h3>
                             <p className="text-gray-300 leading-relaxed text-xs sm:text-sm max-w-xs mx-auto font-light">
-                                Your request for a Private Preview at <strong className="text-white">NeoLiv Grand Forest Privé</strong> has been received. Our Privé Advisor will connect with you shortly.
+                                Your enquiry for <strong className="text-white">NeoLiv Grand Forest Privé</strong> has been received. Our Privé Advisor will connect with you shortly.
                             </p>
                             <button
                                 onClick={handleClose}
@@ -207,7 +208,7 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                         <>
                             <div className="text-center mb-3.5">
                                 <h4 className="card-heading font-serif text-lg sm:text-xl text-white font-medium mb-1">
-                                    Your Private Preview Begins Here
+                                    Your Enquiry Begins Here
                                 </h4>
                                 <p className="body-small font-sans text-gray-300/80 text-[11px] sm:text-xs font-light leading-relaxed">
                                     Share your details and our Privé Advisor will connect with you to arrange a personalised conversation about Grand Forest Privé.
@@ -280,14 +281,14 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                                         type="button"
                                         disabled={loading}
                                         onClick={() => handleSubmit('callback')}
-                                        className="w-full bg-gold-400 text-navy-950 font-sans font-semibold py-3 sm:py-3.5 rounded-xl flex items-center justify-center gap-2 hover:bg-gold-300 transition-all shadow-lg shadow-gold-400/10 uppercase tracking-[0.18em] text-[11px] disabled:opacity-50 active:scale-95 cursor-pointer"
+                                        className="w-full bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-sans font-semibold py-3 sm:py-3.5 px-3 rounded-xl flex items-center justify-center gap-1.5 sm:gap-2 shadow-lg shadow-gold-400/10 uppercase tracking-[0.12em] sm:tracking-[0.14em] text-[10.5px] sm:text-[11px] disabled:opacity-50 active:scale-95 cursor-pointer whitespace-nowrap min-h-[44px]"
                                     >
                                         {loading && actionType === 'callback' ? (
                                             <div className="w-4 h-4 border-2 border-navy-900/30 border-t-navy-900 rounded-full animate-spin" />
                                         ) : (
                                             <>
-                                                <PhoneCall size={13} />
-                                                Request a Private Preview
+                                                <PhoneCall size={13} className="shrink-0" />
+                                                <span>Enquire Now</span>
                                             </>
                                         )}
                                     </button>
@@ -296,14 +297,14 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                                         type="button"
                                         disabled={loading}
                                         onClick={() => handleSubmit('visit')}
-                                        className="w-full bg-white/10 text-white border border-white/20 font-sans font-semibold py-3 sm:py-3.5 rounded-xl flex items-center justify-center gap-2 hover:bg-white/15 transition-all uppercase tracking-[0.18em] text-[11px] disabled:opacity-50 active:scale-95 cursor-pointer"
+                                        className="w-full bg-white/10 hover:bg-white/15 text-white border border-white/20 font-sans font-semibold py-3 sm:py-3.5 px-3 rounded-xl flex items-center justify-center gap-1.5 sm:gap-2 uppercase tracking-[0.12em] sm:tracking-[0.14em] text-[10.5px] sm:text-[11px] disabled:opacity-50 active:scale-95 cursor-pointer whitespace-nowrap min-h-[44px]"
                                     >
                                         {loading && actionType === 'visit' ? (
                                             <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                                         ) : (
                                             <>
-                                                <Calendar size={13} />
-                                                Speak With Privé Advisor
+                                                <Calendar size={13} className="shrink-0" />
+                                                <span>Schedule Visit</span>
                                             </>
                                         )}
                                     </button>

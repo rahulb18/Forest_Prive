@@ -11,35 +11,58 @@ export const Navbar: React.FC = () => {
             const overviewEl = document.getElementById('Overview');
             if (overviewEl) {
                 const rect = overviewEl.getBoundingClientRect();
-                setIsScrolled(rect.top <= 100);
+                setIsScrolled(rect.top <= 200);
             } else {
                 const scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
-                setIsScrolled(scrollY > window.innerHeight * 5);
+                setIsScrolled(scrollY > window.innerHeight * 6.5);
             }
         };
 
         window.addEventListener('scroll', handleScroll, { passive: true });
+        window.addEventListener('resize', handleScroll, { passive: true });
         handleScroll();
         return () => {
             window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('resize', handleScroll);
         };
     }, []);
 
-    // Lock body scroll when mobile menu is open
+    // Lock body scroll and set data attribute when mobile menu is open
     useEffect(() => {
         if (isMobileMenuOpen) {
             document.body.style.overflow = 'hidden';
+            document.documentElement.setAttribute('data-mobile-menu-open', 'true');
         } else {
             document.body.style.overflow = '';
+            document.documentElement.removeAttribute('data-mobile-menu-open');
         }
         return () => {
             document.body.style.overflow = '';
+            document.documentElement.removeAttribute('data-mobile-menu-open');
         };
     }, [isMobileMenuOpen]);
 
     const scrollToTop = (e: React.MouseEvent) => {
         e.preventDefault();
         window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+        if (href.startsWith('#')) {
+            e.preventDefault();
+            setIsMobileMenuOpen(false);
+            const targetId = href.replace('#', '');
+            const targetEl = document.getElementById(targetId);
+            if (targetEl) {
+                const navHeight = 76;
+                const elementPosition = targetEl.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
     };
 
     const navLinks = [
@@ -80,16 +103,17 @@ export const Navbar: React.FC = () => {
                             <a
                                 key={link.name}
                                 href={link.href}
-                                className="text-[9px] uppercase tracking-[0.22em] text-gray-300 hover:text-gold-400 transition-all duration-300 font-medium hover:tracking-[0.28em]"
+                                onClick={(e) => handleNavClick(e, link.href)}
+                                className="text-[9px] uppercase tracking-[0.22em] text-gray-300 hover:text-gold-400 transition-all duration-300 font-medium hover:tracking-[0.28em] cursor-pointer"
                             >
                                 {link.name}
                             </a>
                         ))}
                         <button
-                            onClick={() => modalState.open("NeoLiv Grand Forest Privé - Request a Private Preview")}
+                            onClick={() => modalState.open("NeoLiv Grand Forest Privé - Enquire")}
                             className="bg-gold-400 text-navy-950 px-6 py-2.5 rounded-full font-sans text-[9.5px] uppercase tracking-[0.18em] font-semibold hover:scale-105 hover:brightness-110 hover:shadow-2xl hover:shadow-gold-400/40 transition-all duration-500 shadow-xl shadow-gold-400/20 border border-gold-400/20 cursor-pointer"
                         >
-                            Private Preview
+                            Enquire
                         </button>
                     </div>
 
@@ -107,8 +131,8 @@ export const Navbar: React.FC = () => {
 
             {/* Mobile Menu Overlay */}
             <div 
-                className={`fixed inset-0 z-[200] bg-gradient-to-b from-[#070e1e] via-[#091224] to-[#050a16] transition-all duration-300 ease-out ${
-                    isMobileMenuOpen ? 'opacity-100 pointer-events-auto translate-x-0' : 'opacity-0 pointer-events-none translate-x-full'
+                className={`fixed inset-0 z-[300] bg-gradient-to-b from-[#070e1e] via-[#091224] to-[#050a16] transition-all duration-300 ease-out ${
+                    isMobileMenuOpen ? 'opacity-100 pointer-events-auto translate-x-0 visible' : 'opacity-0 pointer-events-none translate-x-full invisible'
                 } xl:hidden flex flex-col h-[100dvh] max-h-[100dvh] overflow-hidden`}
             >
                 {/* Subtle Background Glow */}
@@ -138,8 +162,8 @@ export const Navbar: React.FC = () => {
                         <a
                             key={link.name}
                             href={link.href}
-                            onClick={() => setIsMobileMenuOpen(false)}
-                            className="font-sans text-base sm:text-lg text-white hover:text-gold-400 active:text-gold-300 transition-colors uppercase tracking-[0.2em] font-medium active:scale-95 py-1 text-center drop-shadow-md"
+                            onClick={(e) => handleNavClick(e, link.href)}
+                            className="font-sans text-base sm:text-lg text-white hover:text-gold-400 active:text-gold-300 transition-colors uppercase tracking-[0.2em] font-medium active:scale-95 py-1 text-center drop-shadow-md cursor-pointer"
                         >
                             {link.name}
                         </a>
@@ -154,11 +178,11 @@ export const Navbar: React.FC = () => {
                     <button
                         onClick={() => {
                             setIsMobileMenuOpen(false);
-                            modalState.open("NeoLiv Grand Forest Privé - Request a Private Preview");
+                            modalState.open("NeoLiv Grand Forest Privé - Enquire");
                         }}
                         className="w-full bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-sans font-semibold py-3.5 rounded-full text-xs uppercase tracking-[0.18em] shadow-[0_4px_20px_rgba(212,175,55,0.35)] active:scale-95 transition-all cursor-pointer"
                     >
-                        Request a Private Preview
+                        Enquire
                     </button>
                 </div>
             </div>

@@ -114,7 +114,7 @@ export const ContactForm: React.FC = () => {
     };
 
     return (
-        <section id="Contact" className="py-16 md:py-24 bg-navy-950 relative overflow-hidden border-t border-white/5">
+        <section id="Contact" className="pt-16 pb-24 md:py-24 bg-navy-950 relative overflow-hidden border-t border-white/5 scroll-mt-20 md:scroll-mt-24">
             <div className="absolute inset-0 bg-grain opacity-[0.03] mix-blend-overlay pointer-events-none" />
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gold-400/5 rounded-full blur-[120px] pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#1d417f]/10 rounded-full blur-[120px] pointer-events-none" />
@@ -157,7 +157,7 @@ export const ContactForm: React.FC = () => {
                                         Thank You
                                     </h3>
                                     <p className="body-regular font-sans text-gray-300 text-xs sm:text-sm md:text-base leading-relaxed max-w-sm font-light">
-                                        Your request for a Private Preview at <strong className="text-white">NeoLiv Grand Forest Privé</strong> has been received. Our Privé Advisor will connect with you shortly.
+                                        Your enquiry for <strong className="text-white">NeoLiv Grand Forest Privé</strong> has been received. Our Privé Advisor will connect with you shortly.
                                     </p>
                                 </div>
                             ) : (
@@ -165,7 +165,7 @@ export const ContactForm: React.FC = () => {
                                     {/* Lead Form Header & Intro */}
                                     <div className="text-left pb-1">
                                         <h3 className="card-heading font-serif text-xl sm:text-2xl text-white font-medium mb-1">
-                                            Your Private Preview Begins Here
+                                            Your Enquiry Begins Here
                                         </h3>
                                         <p className="body-small font-sans text-gray-300/80 text-xs sm:text-sm font-light leading-relaxed">
                                             Share your details and our Privé Advisor will connect with you to arrange a personalised conversation about Grand Forest Privé.
@@ -250,36 +250,36 @@ export const ContactForm: React.FC = () => {
 
                                     {/* Dual Action CTAs */}
                                     <div className="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                        {/* Primary: Request a Private Preview */}
+                                        {/* Primary: Enquire Now */}
                                         <button
                                             type="button"
                                             disabled={loading}
                                             onClick={() => handleSubmit('callback')}
-                                            className="w-full bg-gold-400 hover:bg-gold-300 text-navy-950 font-sans font-semibold py-4 sm:py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-gold-400/20 active:scale-95 text-xs uppercase tracking-[0.18em] disabled:opacity-50 cursor-pointer min-h-[48px]"
+                                            className="w-full bg-gradient-to-r from-amber-400 via-gold-400 to-amber-500 hover:from-amber-300 hover:to-gold-300 text-navy-950 font-sans font-semibold py-3.5 sm:py-4 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-gold-400/20 active:scale-95 text-xs uppercase tracking-[0.14em] disabled:opacity-50 cursor-pointer min-h-[48px]"
                                         >
                                             {loading && actionType === 'callback' ? (
                                                 <div className="w-4 h-4 border-2 border-navy-950/30 border-t-navy-950 rounded-full animate-spin" />
                                             ) : (
                                                 <>
-                                                    <PhoneCall size={15} />
-                                                    Request a Private Preview
+                                                    <PhoneCall size={15} className="shrink-0" />
+                                                    <span>Enquire Now</span>
                                                 </>
                                             )}
                                         </button>
 
-                                        {/* Secondary: Speak With Our Privé Advisor */}
+                                        {/* Secondary: Schedule Visit */}
                                         <button
                                             type="button"
                                             disabled={loading}
                                             onClick={() => handleSubmit('visit')}
-                                            className="w-full bg-white/10 hover:bg-white/15 text-white border border-white/20 font-sans font-semibold py-4 sm:py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-all active:scale-95 text-xs uppercase tracking-[0.18em] disabled:opacity-50 cursor-pointer min-h-[48px]"
+                                            className="w-full bg-white/10 hover:bg-white/15 text-white border border-white/20 font-sans font-semibold py-3.5 sm:py-4 px-4 rounded-xl flex items-center justify-center gap-2 transition-all active:scale-95 text-xs uppercase tracking-[0.14em] disabled:opacity-50 cursor-pointer min-h-[48px]"
                                         >
                                             {loading && actionType === 'visit' ? (
                                                 <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                                             ) : (
                                                 <>
-                                                    <Calendar size={15} />
-                                                    Speak With Our Privé Advisor
+                                                    <Calendar size={15} className="shrink-0" />
+                                                    <span>Schedule Visit</span>
                                                 </>
                                             )}
                                         </button>

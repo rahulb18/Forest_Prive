@@ -43,7 +43,7 @@ export const FAQSection: React.FC = () => {
     };
 
     return (
-        <section id="FAQ" className="py-16 md:py-28 bg-navy-900 text-white relative overflow-hidden border-t border-white/5">
+        <section id="FAQ" className="pt-16 pb-24 md:py-28 bg-navy-900 text-white relative overflow-hidden border-t border-white/5 scroll-mt-20 md:scroll-mt-24">
             {/* Subtle background glow */}
             <div className="absolute inset-0 bg-grain opacity-[0.03] pointer-events-none" />
             <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gold-400/5 rounded-full blur-[140px] pointer-events-none" />

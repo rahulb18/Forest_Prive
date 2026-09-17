@@ -170,21 +170,21 @@ export const VisualStorySections: React.FC = () => {
             {/* Subtle top edge scrim for brand contrast */}
             <div className="absolute inset-x-0 top-0 h-44 sm:h-56 bg-gradient-to-b from-black/85 via-black/45 to-transparent pointer-events-none z-10" />
 
-            {/* TOP BRAND LOCKUP (Slide 1): NeoLiv BIGGER, Grand Forest Privé SMALLER */}
+            {/* TOP BRAND LOCKUP (Slide 1): Sized up for commanding visibility on mobile */}
             {slide.showLogo ? (
-              <header className="relative z-20 w-full pt-5 sm:pt-7 md:pt-9 px-6 flex flex-col items-center text-center">
+              <header className="relative z-20 w-full pt-6 sm:pt-7 md:pt-9 px-6 flex flex-col items-center text-center">
                 {/* Seamless feathered dark aura: eliminates bright sun flare behind text without visible box */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 sm:w-[440px] h-24 sm:h-28 bg-navy-950/70 rounded-full blur-2xl sm:blur-3xl -z-10 pointer-events-none" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-84 sm:w-[460px] h-28 sm:h-32 bg-navy-950/75 rounded-full blur-2xl sm:blur-3xl -z-10 pointer-events-none" />
 
                 <div className="relative inline-flex flex-col items-center">
                   <img
                     src="assets/logo.png"
                     alt="NeoLiv"
-                    width={160}
-                    height={46}
-                    className="h-10 sm:h-12 md:h-14 w-auto mb-1.5 sm:mb-2 opacity-100 filter drop-shadow-[0_4px_18px_rgba(0,0,0,0.95)] transition-transform hover:scale-105 duration-300"
+                    width={180}
+                    height={52}
+                    className="h-12 sm:h-13 md:h-15 w-auto mb-2 opacity-100 filter drop-shadow-[0_4px_20px_rgba(0,0,0,0.95)] transition-transform hover:scale-105 duration-300"
                   />
-                  <span className="font-serif text-[9.5px] sm:text-xs md:text-sm text-white/90 tracking-[0.28em] uppercase font-medium [text-shadow:_0_2px_12px_rgba(0,0,0,0.98),_0_4px_24px_rgba(0,0,0,0.95)]">
+                  <span className="font-serif text-[11px] sm:text-xs md:text-sm text-white/95 tracking-[0.28em] uppercase font-medium [text-shadow:_0_2px_14px_rgba(0,0,0,0.98),_0_4px_28px_rgba(0,0,0,0.95)]">
                     GRAND FOREST <span className="text-gold-400 font-semibold">PRIVÉ</span>
                   </span>
                 </div>

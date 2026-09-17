@@ -168,24 +168,24 @@ export const VisualStorySections: React.FC = () => {
             {/* Subtle bottom-left radial vignette */}
             <div className="absolute inset-y-0 left-0 w-full max-w-2xl bg-[radial-gradient(ellipse_at_bottom_left,rgba(0,0,0,0.7)_0%,rgba(0,0,0,0.2)_50%,transparent_80%)] pointer-events-none z-10" />
             {/* Subtle top edge scrim for brand contrast */}
-            <div className="absolute inset-x-0 top-0 h-44 sm:h-56 bg-gradient-to-b from-black/85 via-black/45 to-transparent pointer-events-none z-10" />
+            <div className="absolute inset-x-0 top-0 h-48 sm:h-60 bg-gradient-to-b from-black/90 via-black/55 to-transparent pointer-events-none z-10" />
 
-            {/* TOP BRAND LOCKUP (Slide 1): Sized up for commanding visibility on mobile */}
+            {/* TOP BRAND LOCKUP (Slide 1): NeoLiv bolder & Grand Forest Privé prominently visible */}
             {slide.showLogo ? (
               <header className="relative z-20 w-full pt-6 sm:pt-7 md:pt-9 px-6 flex flex-col items-center text-center">
                 {/* Seamless feathered dark aura: eliminates bright sun flare behind text without visible box */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-84 sm:w-[460px] h-28 sm:h-32 bg-navy-950/75 rounded-full blur-2xl sm:blur-3xl -z-10 pointer-events-none" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[360px] sm:w-[520px] h-36 sm:h-44 bg-navy-950/85 rounded-full blur-2xl sm:blur-3xl -z-10 pointer-events-none" />
 
                 <div className="relative inline-flex flex-col items-center">
                   <img
                     src="assets/logo.png"
                     alt="NeoLiv"
-                    width={180}
-                    height={52}
-                    className="h-12 sm:h-13 md:h-15 w-auto mb-2 opacity-100 filter drop-shadow-[0_4px_20px_rgba(0,0,0,0.95)] transition-transform hover:scale-105 duration-300"
+                    width={200}
+                    height={58}
+                    className="h-14 sm:h-16 md:h-18 w-auto mb-2.5 opacity-100 filter drop-shadow-[0_4px_22px_rgba(0,0,0,0.95)] transition-transform hover:scale-105 duration-300"
                   />
-                  <span className="font-serif text-[11px] sm:text-xs md:text-sm text-white/95 tracking-[0.28em] uppercase font-medium [text-shadow:_0_2px_14px_rgba(0,0,0,0.98),_0_4px_28px_rgba(0,0,0,0.95)]">
-                    GRAND FOREST <span className="text-gold-400 font-semibold">PRIVÉ</span>
+                  <span className="font-serif text-[13px] sm:text-sm md:text-base text-white font-bold tracking-[0.26em] uppercase [text-shadow:_0_2px_14px_rgba(0,0,0,0.98),_0_4px_28px_rgba(0,0,0,0.95)]">
+                    GRAND FOREST <span className="text-[#F6D57E] font-bold drop-shadow-[0_0_12px_rgba(246,213,126,0.4)]">PRIVÉ</span>
                   </span>
                 </div>
               </header>

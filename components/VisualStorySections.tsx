@@ -96,31 +96,37 @@ export const VisualStorySections: React.FC = () => {
     modalState.open(title);
   };
 
-  // Dynamic Scroll Snapping: Enforce mandatory 100% viewport snapping while navigating Slides 1-7,
-  // then gracefully release into natural free-scrolling when entering detailed content sections (#Overview).
+  // Smart Story Settle: Zero jitter during active scroll. When user stops near a slide in Slides 1-7,
+  // gently align to full frame. Released completely once entering detailed sections (#Overview).
   React.useEffect(() => {
-    const handleScrollSnap = () => {
-      const overviewEl = document.getElementById("Overview");
-      if (overviewEl) {
-        const overviewTop = overviewEl.getBoundingClientRect().top;
-        if (overviewTop > window.innerHeight * 0.4) {
-          document.documentElement.classList.add("story-snap-active");
-        } else {
-          document.documentElement.classList.remove("story-snap-active");
+    let settleTimer: ReturnType<typeof setTimeout> | null = null;
+
+    const handleScrollSettle = () => {
+      if (settleTimer) clearTimeout(settleTimer);
+
+      settleTimer = setTimeout(() => {
+        const overviewEl = document.getElementById("Overview");
+        const overviewTop = overviewEl ? overviewEl.getBoundingClientRect().top : -1;
+
+        // Only settle if user is resting within the visual story slides (Slides 1-7)
+        if (overviewTop > window.innerHeight * 0.5 && window.scrollY < window.innerHeight * 6.8) {
+          const slideHeight = window.innerHeight;
+          const currentSlideIndex = Math.round(window.scrollY / slideHeight);
+          const targetY = currentSlideIndex * slideHeight;
+
+          // If resting within 35% of slide boundary, gently settle into place
+          if (Math.abs(window.scrollY - targetY) > 8 && Math.abs(window.scrollY - targetY) < slideHeight * 0.35) {
+            window.scrollTo({ top: targetY, behavior: "smooth" });
+          }
         }
-      } else {
-        document.documentElement.classList.add("story-snap-active");
-      }
+      }, 150);
     };
 
-    handleScrollSnap();
-    window.addEventListener("scroll", handleScrollSnap, { passive: true });
-    window.addEventListener("resize", handleScrollSnap, { passive: true });
+    window.addEventListener("scroll", handleScrollSettle, { passive: true });
 
     return () => {
-      window.removeEventListener("scroll", handleScrollSnap);
-      window.removeEventListener("resize", handleScrollSnap);
-      document.documentElement.classList.remove("story-snap-active");
+      if (settleTimer) clearTimeout(settleTimer);
+      window.removeEventListener("scroll", handleScrollSettle);
     };
   }, []);
 
@@ -144,7 +150,7 @@ export const VisualStorySections: React.FC = () => {
           <section
             key={slide.id}
             id={slide.id}
-            className="story-snap-slide relative w-full h-[100dvh] min-h-[100dvh] max-h-[100dvh] flex flex-col justify-between overflow-hidden bg-navy-950 select-none"
+            className="relative w-full h-[100dvh] min-h-[100dvh] max-h-[100dvh] flex flex-col justify-between overflow-hidden bg-navy-950 select-none"
           >
             {/* BACKGROUND RENDER: Dedicated high-resolution client visual */}
             <div className="absolute inset-0 w-full h-full pointer-events-none z-0">

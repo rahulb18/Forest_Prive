@@ -39,7 +39,7 @@ export const Location: React.FC = () => {
     const [isMapActive, setIsMapActive] = useState(false);
 
     return (
-        <section id="Location" className="pt-16 pb-24 md:py-28 bg-navy-900 text-white relative overflow-hidden scroll-mt-20 md:scroll-mt-24">
+        <section id="Location" className="pt-12 pb-8 sm:pt-16 sm:pb-12 md:py-24 bg-navy-900 text-white relative overflow-hidden scroll-mt-20 md:scroll-mt-24">
             {/* Ambient Background Glows */}
             <div className="absolute inset-0 bg-grain opacity-[0.03] pointer-events-none" />
             <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-gold-400/5 rounded-full blur-[150px] pointer-events-none" />
@@ -47,7 +47,7 @@ export const Location: React.FC = () => {
             <div className="container mx-auto px-6 md:px-12 relative z-10 max-w-7xl">
                 {/* Header */}
                 <RevealOnScroll variant="up">
-                    <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+                    <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
                         <span className="eyebrow-label inline-block text-gold-400 font-sans text-[10px] sm:text-xs uppercase tracking-[0.35em] font-semibold mb-3">
                             Khopoli • Mumbai <span className="numeric">3.0</span>
                         </span>
@@ -68,7 +68,7 @@ export const Location: React.FC = () => {
                 </RevealOnScroll>
 
                 {/* 2-Column: Connectivity Anchors & Interactive Map (Balanced Baseline & Equal Height) */}
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch mb-12">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
                     
                     {/* Left Column: 5 Approved Connectivity Anchors */}
                     <div className="lg:col-span-5 h-full">

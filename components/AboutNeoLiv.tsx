@@ -53,7 +53,7 @@ export const AboutNeoLiv: React.FC = () => {
   return (
     <section
       id="Overview"
-      className="story-snap-slide pt-24 pb-14 sm:pt-28 sm:pb-16 md:pt-20 md:pb-14 lg:pt-24 lg:pb-16 bg-navy-950 text-white relative overflow-hidden scroll-mt-24 md:scroll-mt-28"
+      className="pt-24 pb-14 sm:pt-28 sm:pb-16 md:pt-20 md:pb-14 lg:pt-24 lg:pb-16 bg-navy-950 text-white relative overflow-hidden scroll-mt-24 md:scroll-mt-28"
     >
       {/* Environmental Landscape Backdrop (Direct visual grounding in the mountain & nature landscape) */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none">

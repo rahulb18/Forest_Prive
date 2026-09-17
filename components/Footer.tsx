@@ -1,11 +1,27 @@
 import React from 'react';
 import { ShieldCheck, ExternalLink } from 'lucide-react';
 
-const RERA_NUMBERS = [
-  "PP1270002502553",
-  "PP1270002502551",
-  "PP1270002502087",
-  "PP1270002502595"
+const RERA_PROJECTS = [
+  {
+    phase: "Phase 01",
+    number: "PP1270002502553",
+    qr: "assets/qr-phase-1.png",
+  },
+  {
+    phase: "Phase 02",
+    number: "PP1270002502551",
+    qr: "assets/qr-phase-2.png",
+  },
+  {
+    phase: "Phase 03",
+    number: "PP1270002502087",
+    qr: "assets/qr-phase-3.png",
+  },
+  {
+    phase: "Phase 04",
+    number: "PP1270002502595",
+    qr: "assets/qr-phase-4.png",
+  },
 ];
 
 export const Footer: React.FC = () => {
@@ -29,12 +45,12 @@ export const Footer: React.FC = () => {
           </p>
         </div>
 
-        {/* MahaRERA Registration Block */}
+        {/* MahaRERA Registration Block with QR Codes */}
         <div className="w-full bg-navy-900/90 border border-gold-400/20 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 mb-10 sm:mb-12 shadow-2xl">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 border-b border-white/10 pb-3.5 sm:pb-4 mb-3.5 sm:mb-4">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 border-b border-white/10 pb-3.5 sm:pb-4 mb-4 sm:mb-6">
             <div className="flex items-center gap-2 text-gold-400 font-sans font-semibold text-xs md:text-sm uppercase tracking-wider">
               <ShieldCheck size={16} />
-              <span>MahaRERA Registered Projects</span>
+              <span>MahaRERA Registered Projects & Official QR Codes</span>
             </div>
             <a
               href="https://maharera.maharashtra.gov.in/"
@@ -47,11 +63,37 @@ export const Footer: React.FC = () => {
             </a>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 text-center">
-            {RERA_NUMBERS.map((num, i) => (
-              <div key={i} className="bg-navy-950/80 border border-white/5 px-2.5 sm:px-3 py-2 sm:py-2.5 rounded-lg">
-                <span className="text-gray-400 block text-[8.5px] sm:text-[9px] uppercase tracking-wider mb-0.5 font-sans">Phase <span className="numeric">0{i + 1}</span></span>
-                <strong className="numeric font-sans text-white text-[11px] sm:text-xs md:text-sm tracking-wider font-semibold">{num}</strong>
+          {/* 4 Phase Cards: QR code + Phase name + Registration Number */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 text-center">
+            {RERA_PROJECTS.map((item, i) => (
+              <div
+                key={i}
+                className="bg-navy-950/80 border border-white/10 hover:border-gold-400/40 p-3 sm:p-4 rounded-xl flex flex-col items-center justify-between transition-all duration-300 group shadow-lg"
+              >
+                <div className="flex items-center gap-1.5 mb-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-gold-400"></span>
+                  <span className="text-gray-300 font-sans text-[9.5px] sm:text-[10.5px] uppercase tracking-wider font-semibold">
+                    {item.phase}
+                  </span>
+                </div>
+                
+                {/* QR Code with crisp white backing for instant camera scanability */}
+                <div className="bg-white p-1.5 sm:p-2 rounded-lg shadow-md mb-2 group-hover:scale-105 transition-transform">
+                  <img
+                    src={item.qr}
+                    alt={`MahaRERA QR Code - ${item.phase} (${item.number})`}
+                    width={95}
+                    height={95}
+                    className="w-16 h-16 sm:w-20 sm:h-20 object-contain"
+                    loading="lazy"
+                  />
+                </div>
+
+                <div className="w-full">
+                  <strong className="numeric font-sans text-white text-[10.5px] sm:text-xs md:text-sm tracking-wider font-semibold block leading-tight">
+                    {item.number}
+                  </strong>
+                </div>
               </div>
             ))}
           </div>

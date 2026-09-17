@@ -159,14 +159,17 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
 
     return (
         <div className="fixed inset-0 z-[99999] flex items-center justify-center p-3.5 sm:p-6 overflow-hidden">
-            {/* Full Viewport Dark Backdrop */}
-            <div className="fixed inset-0 bg-navy-950/95 backdrop-blur-xl z-0" onClick={handleClose} />
+            {/* Viewport Backdrop with refined transparency so background remains subtly visible */}
+            <div className="fixed inset-0 bg-black/60 sm:bg-black/65 backdrop-blur-md z-0 transition-opacity duration-300" onClick={handleClose} />
 
-            {/* Modal Dialog Card */}
-            <div className="relative z-10 bg-navy-900 border border-gold-400/30 w-full max-w-lg rounded-3xl shadow-[0_25px_70px_rgba(0,0,0,0.98)] max-h-[92dvh] flex flex-col overflow-hidden animate-in fade-in zoom-in duration-300">
-                
+            {/* Modal Dialog Card: Semi-transparent luxury glassmorphism */}
+            <div className="relative z-10 bg-[#070e1c]/85 sm:bg-[#070e1c]/80 border border-gold-400/35 backdrop-blur-2xl w-full max-w-lg rounded-3xl shadow-[0_25px_70px_rgba(0,0,0,0.85)] max-h-[92dvh] flex flex-col overflow-hidden animate-in fade-in zoom-in duration-300">
+                {/* Subtle Luxury Ambient Glows */}
+                <div className="absolute -top-20 -right-20 w-56 h-56 bg-gold-400/10 rounded-full blur-3xl pointer-events-none" />
+                <div className="absolute -bottom-20 -left-20 w-56 h-56 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+
                 {/* Header with High-Contrast Touch Target Close Button */}
-                <div className="pt-6 pb-3 px-6 flex flex-col items-center relative border-b border-white/5 shrink-0">
+                <div className="pt-6 pb-3 px-6 flex flex-col items-center relative border-b border-white/10 shrink-0">
                     <button
                         onClick={handleClose}
                         className="absolute right-4 sm:right-5 top-4 sm:top-5 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/10 hover:bg-gold-400 hover:text-navy-950 text-gray-300 flex items-center justify-center transition-all cursor-pointer shadow-lg active:scale-95 z-20 border border-white/10"
@@ -177,12 +180,12 @@ export const EnquiryModal: React.FC<EnquiryModalProps> = ({
                     <img 
                         src="assets/logo.png" 
                         alt="NeoLiv" 
-                        width={98}
-                        height={28}
-                        className="h-6 sm:h-7 w-auto mb-2 opacity-95 brightness-110 drop-shadow-md" 
+                        width={110}
+                        height={30}
+                        className="h-7 sm:h-8 w-auto mb-1.5 opacity-100 brightness-110 drop-shadow-md" 
                     />
-                    <h3 className="font-serif text-sm sm:text-base md:text-lg tracking-[0.22em] text-white uppercase font-bold leading-tight whitespace-nowrap">
-                        GRAND FOREST <span className="text-gold-400">PRIVÉ</span>
+                    <h3 className="font-serif text-xs sm:text-sm tracking-[0.24em] text-white/90 uppercase font-medium leading-tight whitespace-nowrap">
+                        GRAND FOREST <span className="text-gold-400 font-semibold">PRIVÉ</span>
                     </h3>
                 </div>
 

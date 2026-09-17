@@ -11,8 +11,17 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
   overflow-x: hidden;
+}
+
+/* Dynamic Scroll Snap: Active exclusively during visual story slides for 100% viewport fitting */
+html.story-snap-active {
+  scroll-snap-type: y mandatory;
+}
+
+.story-snap-slide {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 body {
@@ -206,16 +215,7 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Native Smooth Scroll Behavior & Complete Image Snapping */
-html {
-  scroll-behavior: smooth;
-  scroll-snap-type: y proximity;
-}
 
-.story-snap-slide {
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-}
 
 .iti { width: 100%; }
 .iti__country-list { 

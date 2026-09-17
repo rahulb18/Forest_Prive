@@ -53,7 +53,7 @@ export const AboutNeoLiv: React.FC = () => {
   return (
     <section
       id="Overview"
-      className="pt-16 pb-20 md:pt-20 md:pb-14 lg:pt-24 lg:pb-16 bg-navy-950 text-white relative overflow-hidden scroll-mt-20 md:scroll-mt-24"
+      className="story-snap-slide pt-24 pb-14 sm:pt-28 sm:pb-16 md:pt-20 md:pb-14 lg:pt-24 lg:pb-16 bg-navy-950 text-white relative overflow-hidden scroll-mt-24 md:scroll-mt-28"
     >
       {/* Environmental Landscape Backdrop (Direct visual grounding in the mountain & nature landscape) */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none">
@@ -78,12 +78,12 @@ export const AboutNeoLiv: React.FC = () => {
           <div className="lg:col-span-6 xl:col-span-6 text-left">
             <RevealOnScroll variant="up">
               {/* Eyebrow */}
-              <span className="eyebrow-label inline-block text-gold-400 font-sans text-[11px] sm:text-xs md:text-sm uppercase tracking-[0.35em] font-semibold mb-4">
+              <span className="eyebrow-label inline-block text-gold-400 font-sans text-[11px] sm:text-xs md:text-sm uppercase tracking-[0.35em] font-semibold mb-3 sm:mb-4">
                 Privé Has Arrived
               </span>
 
               {/* Main Headline */}
-              <h2 className="section-heading font-serif text-3xl sm:text-4xl md:text-5xl xl:text-6xl text-white font-medium leading-[1.12] mb-6">
+              <h2 className="section-heading font-serif text-2xl sm:text-4xl md:text-5xl xl:text-6xl text-white font-medium leading-[1.15] mb-4 sm:mb-6">
                 Not Simply a Place to Own — <br className="hidden sm:inline" />
                 <span className="text-gold-400 italic">A World to Belong To.</span>
               </h2>
